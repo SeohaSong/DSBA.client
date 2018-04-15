@@ -1,0 +1,35 @@
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs">
+  <div class="container">
+    <h1 class="pull-left">Research</h1>
+    <ul class="pull-right breadcrumb">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="">Research</a></li>
+      <li class="active">Research</li>
+    </ul>
+  </div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content Part ===-->
+<div class="container content-sm">
+  <div *ngFor="let i of [2,3,4,5]"
+    class="row">
+    <div class="col-sm-offset-1 col-sm-10">
+      <div class="view view-tenth">
+        <img class="img-responsive" src="assets/img/custom/research0{{i}}.png" alt="">
+        <div class="mask">
+          <h2>Locally Linear Reconstruction for classfication, regression, novelty detection, clustering, and missing value imputation</h2>
+          <ul style="text-align: left; font-size: 18px; padding: 0 50px 0 50px;">
+            <li>개체 기반 학습(instance-based learning)은 사전에 모델 구축이 필요 없는 방식으로 k개의 유사 개체를 통해 판단하는 k-인접 이웃(k-nearest neighbor; k-NN) 알고리즘이 대표적임</li>
+            <li>k-NN의 경우 이웃 개체의 수인 k와 이들을 결합하는 가중치(weights)에 따라 성능이 크게 좌우됨</li>
+            <li>k의 수에 강건(robust)하며 주위 개체들과의 관계(local topology)를 고려하여 재구축 오차(reconstruction error)를 최소화하는 최적화 문제를 정의함</li>
+            <li>최적화 문제의 해(solution)은 어느 이웃이(which neighbor) 얼마나 중요한지(how important)에 대한 정보를 담고 있음</li>
+            <li>이 최적화 방법론을 분류(classification), 회귀(regression), 이상치 탐지(novelty detection), 군집화(clustering), 결측치 대치(missing value imputation) 등에 적용하여 성능을 향상시킴</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div><!--/row-->
+</div><!--/container-->
+<!--=== End Content Part ===-->

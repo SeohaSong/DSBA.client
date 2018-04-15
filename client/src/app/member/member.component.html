@@ -1,0 +1,30 @@
+<!--=== Profile ===-->
+<div class="container content profile">
+  <div class="row">
+    <!--Left Sidebar-->
+    <div class="col-md-3 md-margin-bottom-40">
+
+      <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+        <li class="list-group-item">
+          <a routerLink="/member/overall"><i class="fa fa-group"></i> Overall</a>
+        </li>
+        <li class="list-group-item">
+          <a routerLink="/member/professor"><i class="fa fa-user"></i> Professor</a>
+        </li>
+        <li class="list-group-item">
+          <a routerLink="/member/students"><i class="fa fa-group"></i> Students</a>
+        </li>
+        <li class="list-group-item">
+          <a routerLink="/member/alumni"><i class="fa fa-group"></i> Alumni</a>
+        </li>
+      </ul>
+
+    </div>
+    <!--End Left Sidebar-->
+
+    <div class="col-md-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<!--=== End Profile ===-->
