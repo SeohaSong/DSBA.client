@@ -1,0 +1,54 @@
+<!-- Profile Content -->
+<div class="profile-body margin-bottom-20">
+    
+  <!--Profile Blog-->
+  <div class="panel-heading overflow-h margin-bottom-20">
+    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-group"></i>Students</h2>
+    <a href="#"><i class="fa fa-cog pull-right"></i></a>
+  </div>
+
+  <div *ngFor="let pair of member_pairs"
+    class="row margin-bottom-20">
+    <div *ngFor="let one of pair"
+      class="col-sm-6 sm-margin-bottom-20">
+      <div class="profile-blog">
+        <img src="{{ one.img }}" alt="">
+        <div class="name-location">
+          <strong>{{ one.name_ko }} ({{ one.name_en }})</strong>
+          <span>{{ one.status1 }}</span>
+          <span *ngIf="one.status2">({{ one.status2 }}학기)</span><br>
+          <span *ngIf="one.mail">
+            <i class="fa fa-envelope"></i>
+            <a href="mailto:{{ one.mail }}">{{ one.mail }}</a>
+            <a *ngIf="one.CV"
+              href="{{ one.CV }}" target="_blank"> / Curriculum Viate</a>
+          </span>
+        </div>
+        <div class="clearfix margin-bottom-20"></div>
+        <p><strong>Research Areas:</strong> {{ one.research_areas }}</p>
+        <hr>
+        <ul class="list-inline share-list">
+          <li>
+            <i class="fa fa-graduation-cap"></i>
+            <span><strong>BS:</strong> {{ one.BS }}</span>
+          </li>
+          <li *ngIf="one.MS">
+            <i class="fa fa-graduation-cap"></i>
+            <span><strong>MS:</strong> {{ one.MS }}</span>
+          </li>
+          <li *ngIf="one.career">
+            <i class="fa fa-briefcase"></i>
+            <span><strong>Career:</strong> {{ one.career }}</span>
+          </li>
+          <li *ngIf="one.admission">
+            <i class="fa fa-play"></i>
+            <span><strong>Admission:</strong> {{ one.admission }} ~ Current</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div><!--/end row-->
+  <!--End Profile Blog-->
+
+</div>
+<!-- End Profile Content -->
