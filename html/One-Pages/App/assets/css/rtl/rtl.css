@@ -1,7 +1,0 @@
-* {
-  direction: rtl;
-  unicode-bidi: embed; /* bidi-override */
-}
-.cbp-popup-wrap {
-	overflow: hidden;
-}
