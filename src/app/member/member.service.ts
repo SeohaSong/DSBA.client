@@ -27,22 +27,31 @@ export class MemberService {
     });
   }
 
-  get_members(type, member_pairs=[]): Array<Array<Member>> {
-
+  get_members(type): Array<Array<Member>> {
+    let member_pairs=[]
     let members = MEMBERS.filter(member => member.type == type)
-		let pairs_length = parseInt("" + members.length / 2) + 1;
+		let pairs_length = parseInt(""+members.length/2)+1;
 		for(let i = 0; i < pairs_length; i++) member_pairs.push([]);
 		for(let i = 0; i < members.length; i++) {
-			let index = parseInt("" + i / 2);
+			let index = parseInt(""+i/2);
 			member_pairs[index].push(members[i]);
 		}
 		return member_pairs;
   }
 
+  get_member_type(){
+    let url = this.router.url
+    let member_type = url.split("/")[2]
+    let whitelist = ["students", "alumni"]
+    if (whitelist.indexOf(member_type) >= 0) {
+      return member_type
+    }
+  }
+
   _convert_url2style(){
     let url = this.router.url;
     $("li.list-group-item").removeClass("active");
-    $("li.list-group-item:nth-child(" + url_map[url] + ")").addClass("active");
+    $("li.list-group-item:nth-child("+url_map[url]+")").addClass("active");
   }
 
 }

@@ -1,9 +1,9 @@
 <!-- Profile Content -->
-<div class="profile-body margin-bottom-20">
+<div *ngIf="member_type" class="profile-body margin-bottom-20">
 
   <!--Profile Blog-->
   <div class="panel-heading overflow-h margin-bottom-20">
-    <h2 class="panel-title heading-sm pull-left">Students</h2>
+    <h2 class="panel-title heading-sm pull-left">{{member_type}}</h2>
   </div>
 
   <div *ngFor="let pair of member_pairs"
@@ -26,7 +26,7 @@
         <p><strong>Research Areas:</strong> {{ one.research_areas }}</p>
         <hr>
         <ul class="list-inline share-list">
-          <li>
+          <li *ngIf="one.MS">
             <span><strong>BS:</strong> {{ one.BS }}</span>
           </li>
           <li *ngIf="one.MS">

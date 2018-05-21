@@ -13,6 +13,9 @@ declare const $: any;
 })
 export class OverallComponent implements OnInit {
 
+  students = "students"
+  alumni = "alumni"
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit() {

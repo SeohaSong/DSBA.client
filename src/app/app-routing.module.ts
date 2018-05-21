@@ -4,14 +4,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MainComponent } from './main/main.component';
-
 import { MemberComponent } from './member/member.component';
 import { ProfessorComponent } from './member/professor/professor.component';
 import { OverallComponent } from './member/overall/overall.component';
 import { StudentsComponent } from './member/students/students.component';
 import { AlumniComponent } from './member/alumni/alumni.component';
-
 import { ResearchComponent } from './research/research.component'
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
@@ -22,7 +21,7 @@ const routes: Routes = [
       { path: 'overall', component:  OverallComponent},
       { path: 'professor', component:  ProfessorComponent},
       { path: 'students', component: StudentsComponent },
-      { path: 'alumni', component: AlumniComponent }
+      { path: 'alumni', component: StudentsComponent }
     ]
   },
   { path: 'research', component: ResearchComponent }
@@ -32,7 +31,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes) 
+    RouterModule.forRoot(routes)
   ],
   declarations: [],
   exports: [ RouterModule ]
