@@ -17,7 +17,6 @@ export class MainComponent implements OnInit {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
-
   latestShots = [
     {
       id: 1,
@@ -43,7 +42,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      setTimeout(()=>{
+      setTimeout(() => {
         OwlCarousel.initOwlCarousel();
         ParallaxSlider.initParallaxSlider();
       })

@@ -16,7 +16,7 @@ export class Member {
 }
 
 
-export const STUDENTS: Array<Member> = [
+export const MEMBERS: Array<Member> = [
 	{
 		type: "students",
 		img: "assets/img/custom/student1.png",
@@ -96,12 +96,8 @@ export const STUDENTS: Array<Member> = [
 		career: "AhnLab, South Korea(2007.1 ~ 2016.8)",
 		current: null,
 		admission: "September 1, 2016"
-	}
-]
-
-
-export const ALUMNI: Array<Member> = [
-	{
+  },
+  {
 		type: "alumni",
 		img: "assets/img/custom/alumnus1.jpg",
 		name_ko: "서동민",

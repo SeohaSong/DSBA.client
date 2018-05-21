@@ -1,5 +1,5 @@
 import { PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 import { Component, OnInit, Inject } from '@angular/core';
 

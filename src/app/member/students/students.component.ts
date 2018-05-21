@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Member, STUDENTS } from '../member';
 import { MemberService } from "../member.service"
 
 
@@ -10,15 +9,14 @@ import { MemberService } from "../member.service"
 })
 export class StudentsComponent implements OnInit {
 
-  members = STUDENTS;
-  member_pairs: Array<Array<Member>>;
+  private member_pairs: Array<any>
 
   constructor(
-    private memberService: MemberService
+    private memberService: MemberService,
   ) { }
 
   ngOnInit() {
-    this.member_pairs = this.memberService.get_pair_list(this.members);
+    this.member_pairs = this.memberService.get_members("students");
   }
 
 }
