@@ -1,16 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { Member, MEMBERS } from '../../../db/member';
-
-declare const $: any;
-
-
-let url_map = {
-  "/member/overall": 1,
-  "/member/professor": 2,
-  "/member/students": 3,
-  "/member/alumni": 4
-}
 
 
 @Injectable()
@@ -19,13 +10,6 @@ export class MemberService {
   constructor(
     private router: Router
   ) { }
-
-  initialize(){
-    this._convert_url2style();
-    $("a[routerLink^='/member/']").click(() => {
-      this._convert_url2style();
-    });
-  }
 
   get_members(type): Array<Array<Member>> {
     let member_pairs=[]
@@ -39,19 +23,9 @@ export class MemberService {
 		return member_pairs;
   }
 
-  get_member_type(){
-    let url = this.router.url
-    let member_type = url.split("/")[2]
-    let whitelist = ["students", "alumni"]
-    if (whitelist.indexOf(member_type) >= 0) {
-      return member_type
-    }
-  }
-
-  _convert_url2style(){
-    let url = this.router.url;
-    $("li.list-group-item").removeClass("active");
-    $("li.list-group-item:nth-child("+url_map[url]+")").addClass("active");
+  get_curr_type(){
+    let curr_type = this.router.url.split("/")[2]
+    return curr_type
   }
 
 }
