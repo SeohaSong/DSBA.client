@@ -1,10 +1,9 @@
 <!-- Profile Content -->
 <div class="profile-body margin-bottom-20">
-    
+
   <!--Profile Blog-->
   <div class="panel-heading overflow-h margin-bottom-20">
-    <h2 class="panel-title heading-sm pull-left"><i class="fa fa-group"></i>Alumni</h2>
-    <a href="#"><i class="fa fa-cog pull-right"></i></a>
+    <h2 class="panel-title heading-sm pull-left">Alumni</h2>
   </div>
 
   <div *ngFor="let pair of member_pairs"
@@ -18,7 +17,6 @@
           <span>{{ one.status1 }}</span>
           <span *ngIf="one.status2">({{ one.status2 }}학기)</span><br>
           <span *ngIf="one.mail">
-            <i class="fa fa-envelope"></i>
             <a href="mailto:{{ one.mail }}">{{ one.mail }}</a>
             <a *ngIf="one.CV"
               href="{{ one.CV }}" target="_blank"> / Curriculum Viate</a>
@@ -29,19 +27,15 @@
         <hr>
         <ul class="list-inline share-list">
           <li>
-            <i class="fa fa-graduation-cap"></i>
             <span><strong>BS:</strong> {{ one.BS }}</span>
           </li>
           <li *ngIf="one.MS">
-            <i class="fa fa-graduation-cap"></i>
             <span><strong>MS:</strong> {{ one.MS }}</span>
           </li>
           <li *ngIf="one.career">
-            <i class="fa fa-briefcase"></i>
             <span><strong>Career:</strong> {{ one.career }}</span>
           </li>
           <li *ngIf="one.admission">
-            <i class="fa fa-play"></i>
             <span><strong>Admission:</strong> {{ one.admission }} ~ Current</span>
           </li>
         </ul>

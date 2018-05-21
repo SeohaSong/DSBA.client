@@ -1,10 +1,11 @@
 import { PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 import { Component, OnInit, Inject } from '@angular/core';
 
 declare const OwlCarousel: any;
 declare const ParallaxSlider: any;
+declare const $: any;
 
 
 @Component({
@@ -42,8 +43,10 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      OwlCarousel.initOwlCarousel();
-      ParallaxSlider.initParallaxSlider();
+      setTimeout(()=>{
+        OwlCarousel.initOwlCarousel();
+        ParallaxSlider.initParallaxSlider();
+      })
     }
   }
 
