@@ -4,6 +4,5 @@ export const ROUTES = [
   '/member',
   '/member/professor',
   '/member/students',
-  '/member/alumni',
   '/member/overall',
 ];

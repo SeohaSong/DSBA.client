@@ -8,7 +8,6 @@ import { MemberComponent } from './member/member.component';
 import { ProfessorComponent } from './member/professor/professor.component';
 import { OverallComponent } from './member/overall/overall.component';
 import { StudentsComponent } from './member/students/students.component';
-import { AlumniComponent } from './member/alumni/alumni.component';
 import { ResearchComponent } from './research/research.component'
 
 

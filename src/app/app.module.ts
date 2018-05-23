@@ -9,7 +9,6 @@ import { MemberComponent } from './member/member.component';
 import { ProfessorComponent } from './member/professor/professor.component';
 import { OverallComponent } from './member/overall/overall.component';
 import { StudentsComponent } from './member/students/students.component';
-import { AlumniComponent } from './member/alumni/alumni.component';
 
 import { MemberService } from './member/member.service';
 import { ResearchComponent } from './research/research.component';
@@ -23,7 +22,6 @@ import { ResearchComponent } from './research/research.component';
     MemberComponent,
     OverallComponent,
     StudentsComponent,
-    AlumniComponent,
     ResearchComponent,
   ],
   imports: [
