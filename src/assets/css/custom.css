@@ -1,22 +1,22 @@
 /* Add here all your css styles (customizations) */
 
 .da-slide h2 i {
-    background-color: rgba(29, 49, 89, 0.8);
+  background-color: rgba(29, 49, 89, 0.8);
 }
 
 .header .navbar-nav > li > a:hover,
 .header .navbar-nav > .active > a,
 .headline h2, .headline h3, .headline h4 {
-    border-bottom: solid 2px #0065B2;
+  border-bottom: solid 2px #0065B2;
 }
 
 .header .dropdown-menu {
-    border-top: solid 2px #0065B2;
+  border-top: solid 2px #0065B2;
 }
 
 .header .navbar-nav > .active > a {
-    color: #0065B2;
-    font-weight: 900;
+  color: #0065B2;
+  font-weight: 900;
 }
 
 .btn-u, .thumbnail-style a.btn-more,
@@ -25,23 +25,23 @@
 .header .navbar-toggle:hover,
 .header .navbar-toggle:focus
 {
-    background: #0065B2;
+  background: #0065B2;
 }
 
 @media (max-width: 991px) {
-    .header .navbar-nav > .active > a,
-    .header .navbar-nav > .active > a:hover,
-    .header .navbar-nav > .active > a:focus {
-        background: #0065B2;
-    }        
+  .header .navbar-nav > .active > a,
+  .header .navbar-nav > .active > a:hover,
+  .header .navbar-nav > .active > a:focus {
+    background: #0065B2;
+  }
 }
 
 .header .navbar-toggle:hover{
-    background: #1D3159 !important;
+  background: #1D3159 !important;
 }
 
 .header .navbar-toggle {
-    border-color: #1D3159;
+  border-color: #1D3159;
 }
 a, .service .service-icon, .color-green,
 .header .navbar-nav > .open > a,
@@ -50,28 +50,38 @@ a, .service .service-icon, .color-green,
 .header .navbar-nav > li:hover > a,
 .profile .name-location span i,
 .share-list li i,
-a:hover
- {
-    color: #0065B2;
+a:hover {
+  color: #0065B2;
 }
 
 .thumbnail-style a.btn-more:hover {
-    box-shadow: 0 0 0 2px #1D3159;
+  box-shadow: 0 0 0 2px #1D3159;
 }
 
 .btn-u:hover, .btn-u:focus,
 .btn-u:active, .btn-u.active,
 .open .dropdown-toggle.btn-u {
-    background: #1D3159;
+  background: #1D3159;
 }
 
 .profile .name-location span a:hover {
-    color: #0065B2;
+  color: #0065B2;
 }
 
 .breadcrumb li.active, .breadcrumb li a:hover {
-    color: #0065B2;
+  color: #0065B2;
 }
 
+
+.header .nav > li > .search:hover {
+  color: #0065B2;
+  border-bottom-color: #0065B2;
+}
+
+#effect-2 figure .img-hover {
+  background-color: #0065B2;
+}
 /* #0065B2 */
 /* #1D3159 */
+/* #482525 */
+/* #605B5B */

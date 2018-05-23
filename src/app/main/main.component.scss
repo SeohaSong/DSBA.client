@@ -1,0 +1,35 @@
+#dsba-intro-buttons {
+  a {
+    margin-left: 20px;
+    &:nth-child(3) {
+      background: #482525;
+    }
+    &:nth-child(4) {
+      background: #605B5B;
+    }
+  }
+}
+
+#da-slider {
+  background: #482525;
+  .da-img {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    line-height: 120px;
+    img {
+      width: 200px;
+      height: 120px;
+      margin: 10px;
+    }
+    a {
+      img {
+        position: absolute;
+        width: 50px;
+        height: auto;
+        transform: translate(-145px, 40px)
+      }
+    }
+  }
+
+}

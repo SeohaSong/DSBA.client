@@ -15,7 +15,11 @@ declare const $: any;
 })
 export class MainComponent implements OnInit {
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) { }
+
+  vids = ["f9k5fxouO1Q", "BiIlQQAx70c", "vHsa4tUErPg", "rko6cb_Gq0k"]
 
   latestShots = [
     {
