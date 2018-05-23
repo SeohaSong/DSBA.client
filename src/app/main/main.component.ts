@@ -19,7 +19,7 @@ export class MainComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
-  vids = ["f9k5fxouO1Q", "BiIlQQAx70c", "vHsa4tUErPg", "rko6cb_Gq0k"]
+  vids = ["f9k5fxouO1Q", "vHsa4tUErPg", "rko6cb_Gq0k", "BiIlQQAx70c",]
 
   latestShots = [
     {
@@ -41,7 +41,7 @@ export class MainComponent implements OnInit {
       id: 4,
       active: "",
       description: "Facilisis odio, dapibus ac justo acilisis gestinas."
-    }
+    },
   ]
 
   ngOnInit() {

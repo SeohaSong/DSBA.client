@@ -1,6 +1,6 @@
 #dsba-intro-buttons {
   a {
-    margin-left: 20px;
+    margin: 10px;
     &:nth-child(3) {
       background: #482525;
     }
@@ -32,4 +32,15 @@
     }
   }
 
+}
+
+
+@media (max-width: 991px) {
+  #da-slider {
+    .da-img {
+      a {
+        display: none;
+      }
+    }
+  }
 }
