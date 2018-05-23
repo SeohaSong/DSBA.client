@@ -5,13 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { MemberComponent } from './member/member.component';
-import { ProfessorComponent } from './member/professor/professor.component';
-import { OverallComponent } from './member/overall/overall.component';
-import { StudentsComponent } from './member/students/students.component';
-
-import { MemberService } from './member/member.service';
+import { MembersComponent } from './members/members.component';
+import { ProfessorComponent } from './members/professor/professor.component';
+import { OverallComponent } from './members/overall/overall.component';
+import { StudentsComponent } from './members/students/students.component';
 import { ResearchComponent } from './research/research.component';
+
+import { MembersService } from './members/members.service';
 
 
 @NgModule({
@@ -19,17 +19,17 @@ import { ResearchComponent } from './research/research.component';
     AppComponent,
     MainComponent,
     ProfessorComponent,
-    MemberComponent,
     OverallComponent,
     StudentsComponent,
     ResearchComponent,
+    MembersComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'DSBA'}),
     AppRoutingModule
   ],
   providers: [
-    MemberService
+    MembersService
   ],
   bootstrap: [AppComponent]
 })

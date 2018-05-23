@@ -4,8 +4,10 @@ import { Router } from '@angular/router';
 import { Member, MEMBERS } from '../../../db/member';
 
 
-@Injectable()
-export class MemberService {
+@Injectable({
+  providedIn: 'root'
+})
+export class MembersService {
 
   constructor(
     private router: Router

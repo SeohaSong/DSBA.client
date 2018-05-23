@@ -19,7 +19,7 @@ export class Member {
 export const MEMBERS: Array<Member> = [
 	{
 		type: "students",
-		img: "assets/img/member/s000.png",
+		img: "assets/img/members/s000.png",
 		name_ko: "김준홍",
 		name_en: "Junhong Kim",
 		status1: "Ph.D. Candidate",
@@ -35,7 +35,7 @@ export const MEMBERS: Array<Member> = [
 	},
 	{
 		type: "students",
-		img: "assets/img/member/s001.jpg",
+		img: "assets/img/members/s001.jpg",
 		name_ko: "김창엽",
 		name_en: "Czangyeob Kim",
 		status1: "Ph.D. Student",
@@ -51,7 +51,7 @@ export const MEMBERS: Array<Member> = [
 	},
 	{
 		type: "students",
-		img: "assets/img/member/s002.jpg",
+		img: "assets/img/members/s002.jpg",
 		name_ko: "김동화",
 		name_en: "Donghwa Kim",
 		status1: "Integrated M.S/Ph.D. Student",
@@ -67,7 +67,7 @@ export const MEMBERS: Array<Member> = [
   },
 	{
 		type: "students",
-		img: "assets/img/member/s003.png",
+		img: "assets/img/members/s003.png",
 		name_ko: "김형석",
 		name_en: "Hyungseok Kim",
 		status1: "Integrated M.S/Ph.D. Student",
@@ -83,7 +83,7 @@ export const MEMBERS: Array<Member> = [
   },
 	{
 		type: "students",
-		img: "assets/img/member/s004.png",
+		img: "assets/img/members/s004.png",
 		name_ko: "박민식",
 		name_en: "Minsik Park",
 		status1: "Integrated M.S/Ph.D. Student",
@@ -99,7 +99,7 @@ export const MEMBERS: Array<Member> = [
   },
 	{
 		type: "students",
-		img: "assets/img/member/s005.jpg",
+		img: "assets/img/members/s005.jpg",
 		name_ko: "서승완",
 		name_en: "Seungwan Seo",
 		status1: "Integrated M.S/Ph.D. Student",
@@ -115,7 +115,7 @@ export const MEMBERS: Array<Member> = [
   },
 	{
 		type: "students",
-		img: "assets/img/member/s006.jpeg",
+		img: "assets/img/members/s006.jpeg",
 		name_ko: "박경찬",
 		name_en: "Kyoungchan Park",
 		status1: "Integrated M.S/Ph.D. Student",
@@ -131,7 +131,7 @@ export const MEMBERS: Array<Member> = [
   },
 	{
 		type: "students",
-		img: "assets/img/member/s007.jpeg",
+		img: "assets/img/members/s007.jpeg",
 		name_ko: "손규빈",
 		name_en: "Gyubin Son",
 		status1: "Integrated M.S/Ph.D. Student",
@@ -147,7 +147,7 @@ export const MEMBERS: Array<Member> = [
 	},
 	{
 		type: "students",
-		img: "assets/img/member/s008.png",
+		img: "assets/img/members/s008.png",
 		name_ko: "류나현",
 		name_en: "Nahyeon Ryu",
 		status1: "M.S. Student",
@@ -163,7 +163,7 @@ export const MEMBERS: Array<Member> = [
 	},
   {
 		type: "alumni",
-		img: "assets/img/member/a000.png",
+		img: "assets/img/members/a000.jpg",
 		name_ko: "서동민",
 		name_en: "Dongmin Seo",
 		status1: "M.S.",
@@ -179,7 +179,7 @@ export const MEMBERS: Array<Member> = [
 	},
 	{
 		type: "alumni",
-		img: "assets/img/member/a001.jpg",
+		img: "assets/img/members/a001.png",
 		name_ko: "김보섭",
 		name_en: "Boseop Kim",
 		status1: "M.S.",

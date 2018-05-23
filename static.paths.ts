@@ -1,8 +1,8 @@
 export const ROUTES = [
   '/',
   '/main',
-  '/member',
-  '/member/professor',
-  '/member/students',
-  '/member/overall',
+  '/members',
+  '/members/professor',
+  '/members/students',
+  '/members/overall',
 ];

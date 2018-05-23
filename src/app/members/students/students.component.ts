@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { MemberService } from "../member.service";
+import { MembersService } from "../members.service";
 
 
 @Component({
@@ -14,14 +14,14 @@ export class StudentsComponent implements OnInit {
   @Input() member_type: string;
 
   constructor(
-    private memberService: MemberService,
+    private membersService: MembersService,
   ) { }
 
   ngOnInit() {
     if (this.member_type == undefined) {
-      this.member_type = this.memberService.get_curr_type()
+      this.member_type = this.membersService.get_curr_type()
     }
-    this.member_pairs = this.memberService.get_members(this.member_type);
+    this.member_pairs = this.membersService.get_members(this.member_type);
   }
 
 }
