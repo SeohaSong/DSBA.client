@@ -16,18 +16,22 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    line-height: 120px;
-    img {
-      width: 200px;
-      height: 120px;
-      margin: 10px;
-    }
-    a {
+    line-height: unset;
+    padding: 0 calc(25% - 250px) 0 calc(25% - 150px);
+    div{
+      width: 180px;
+      height: auto;
+      margin: 10px 10px;
       img {
-        position: absolute;
-        width: 50px;
-        height: auto;
-        transform: translate(-145px, 40px)
+        width: 100%;
+      }
+      a {
+        img {
+          position: absolute;
+          width: 50px;
+          height: auto;
+          transform: translate(-115px, 50px);
+        }
       }
     }
   }
