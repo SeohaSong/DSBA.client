@@ -11,7 +11,9 @@ import { OverallComponent } from './members/overall/overall.component';
 import { StudentsComponent } from './members/students/students.component';
 import { ResearchComponent } from './research/research.component';
 
-import { MembersService } from './members/members.service';
+import { DisplayService } from './_services/display.service';
+import { DatabaseService } from './_services/database.service';
+import { UtilsService } from './_services/utils.service';
 
 
 @NgModule({
@@ -26,10 +28,12 @@ import { MembersService } from './members/members.service';
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'DSBA'}),
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
-    MembersService
+    DisplayService,
+    DatabaseService,
+    UtilsService,
   ],
   bootstrap: [AppComponent]
 })

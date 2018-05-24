@@ -1,4 +1,15 @@
-export class Member {
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DatabaseService {
+
+  constructor() { }
+}
+
+
+export class Student {
 	type: string;
 	img: string;
 	name_ko: string;
@@ -16,7 +27,7 @@ export class Member {
 }
 
 
-export const MEMBERS: Array<Member> = [
+export const STUDENTS: Array<Student> = [
 	{
 		type: "students",
 		img: "assets/img/members/s000.png",

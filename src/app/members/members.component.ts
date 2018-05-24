@@ -1,9 +1,6 @@
-import { PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { MembersService } from './members.service';
-
+import { DisplayService } from "../_services/display.service";
 
 
 @Component({
@@ -16,16 +13,11 @@ export class MembersComponent implements OnInit {
   types = ["overall", "professor", "students", "alumni"]
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private membersService: MembersService,
+    private displayService: DisplayService,
   ) { }
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      setTimeout(() => {
-        this.membersService.set_display()
-      })
-    }
+    this.displayService.set_members_display()
   }
 
 }

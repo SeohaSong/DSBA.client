@@ -1,15 +1,13 @@
 <!-- Profile Content -->
-<div *ngIf="member_type" class="profile-body margin-bottom-20">
+<div *ngIf="student_type" class="profile-body margin-bottom-20">
 
   <!--Profile Blog-->
   <div class="panel-heading overflow-h margin-bottom-20">
-    <h2 class="panel-title heading-sm pull-left">{{member_type}}</h2>
+    <h2 class="panel-title heading-sm pull-left">{{student_type}}</h2>
   </div>
 
-  <div *ngFor="let pair of member_pairs"
-    class="row margin-bottom-20">
-    <div *ngFor="let one of pair"
-      class="col-sm-6 sm-margin-bottom-20">
+  <div *ngFor="let pair of student_pairs" class="row margin-bottom-20">
+    <div *ngFor="let one of pair" class="col-sm-6 sm-margin-bottom-20">
       <div class="profile-blog">
         <img src="{{ one.img }}" alt="">
         <div class="name-location">

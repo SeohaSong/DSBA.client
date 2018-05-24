@@ -19,7 +19,7 @@ export class MainComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
-  vids = ["f9k5fxouO1Q", "vHsa4tUErPg", "rko6cb_Gq0k", "BiIlQQAx70c",]
+  vids = ["f9k5fxouO1Q", "rko6cb_Gq0k", "BiIlQQAx70c", "vHsa4tUErPg",]
 
   latestShots = [
     {
