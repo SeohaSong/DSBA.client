@@ -1,11 +1,6 @@
-import { PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
-
 import { Component, Inject } from '@angular/core';
 
-declare const App: any;
-declare const StyleSwitcher: any;
-declare const $: any;
+import { DisplayService } from './_services/display.service'
 
 
 @Component({
@@ -15,18 +10,14 @@ declare const $: any;
 })
 export class AppComponent {
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor(
+    private displayService: DisplayService,
+  ) { }
 
   title = 'app';
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      App.init();
-      StyleSwitcher.initStyleSwitcher();
-      $(window).load(() => {
-        $("#loading-ui").fadeOut();
-      })
-    }
+    this.displayService.set_default_display()
   }
 
 }

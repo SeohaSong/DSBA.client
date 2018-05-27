@@ -5,6 +5,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { UtilsService } from './utils.service';
 
 
+declare const App: any;
+declare const StyleSwitcher: any;
 declare const $: any;
 
 
@@ -18,6 +20,19 @@ export class DisplayService {
     @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
+  set_default_display(){
+    if (isPlatformBrowser(this.platformId)) {
+      $(window).load(() => {
+        App.init();
+        StyleSwitcher.initStyleSwitcher();
+        $("a[href^='/']").click(() => {
+          $(".navbar-responsive-collapse").removeClass("in");
+        })
+        $("#loading-ui").fadeOut();
+      })
+    }
+  }
+
   set_members_display(){
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
@@ -29,7 +44,6 @@ export class DisplayService {
         ).parent().addClass("active");
         $("a[href^='/members/']").click(() => {
           let type = this.utilsService.get_url_tail();
-          $(".navbar-responsive-collapse").removeClass("in");
           $("li.list-group-item").removeClass("active");
           $(
             "li.list-group-item > a[href='/members/"
