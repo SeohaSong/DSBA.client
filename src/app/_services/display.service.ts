@@ -22,7 +22,7 @@ export class DisplayService {
 
   set_default_display(){
     if (isPlatformBrowser(this.platformId)) {
-      $(window).load(() => {
+      $(document).ready(() => {
         App.init();
         StyleSwitcher.initStyleSwitcher();
         $("a[href^='/']").click(() => {
