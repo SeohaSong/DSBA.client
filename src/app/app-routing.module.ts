@@ -5,10 +5,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MainComponent } from './main/main.component';
 import { MembersComponent } from './members/members.component';
-import { ProfessorComponent } from './members/professor/professor.component';
 import { OverallComponent } from './members/overall/overall.component';
+import { ProfessorComponent } from './members/professor/professor.component';
 import { StudentsComponent } from './members/students/students.component';
-import { ResearchComponent } from './research/research.component'
+import { ResearchesComponent } from './researches/researches.component'
+import { PublicationsComponent } from './publications/publications.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 
 const routes: Routes = [
@@ -17,13 +19,22 @@ const routes: Routes = [
   { path: 'members', component: MembersComponent,
     children: [
       { path: '', redirectTo: 'overall', pathMatch: 'full' },
-      { path: 'overall', component:  OverallComponent},
-      { path: 'professor', component:  ProfessorComponent},
+      { path: 'overall', component: OverallComponent},
+      { path: 'professor', component: ProfessorComponent},
       { path: 'students', component: StudentsComponent },
       { path: 'alumni', component: StudentsComponent }
     ]
   },
-  { path: 'research', component: ResearchComponent }
+  { path: 'researches', component: ResearchesComponent },
+  { path: 'projects', component: ProjectsComponent },
+  { path: 'publications', component: PublicationsComponent,
+    children: [
+      { path: 'international-journal', component: PublicationsComponent},
+      { path: 'domestic-journal', component: PublicationsComponent},
+      { path: 'international-conference', component: PublicationsComponent },
+      { path: 'domestic-conference', component: PublicationsComponent }
+    ]
+  }
 ];
 
 

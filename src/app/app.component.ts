@@ -17,7 +17,7 @@ export class AppComponent {
   title = 'app';
 
   ngOnInit() {
-    this.displayService.set_default_display()
+    this.displayService.init_display()
   }
 
 }

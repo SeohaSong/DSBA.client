@@ -1,3 +1,11 @@
 li.list-group-item a{
   text-transform: capitalize;
 }
+
+
+@media(min-width: 992px) {
+  #dsba-side-nav{
+    position: fixed;
+    width: calc(25% - 30px);
+  }
+}

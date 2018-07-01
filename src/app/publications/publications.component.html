@@ -1,0 +1,55 @@
+<div class="container content-sm">
+  <div class="headline-center">
+    <h2>PUBLICATIONS</h2>
+  </div>
+</div>
+
+<div class="cube-portfolio container margin-bottom-60">
+  <div class="content-xs">
+    <div id="filters-container" class="cbp-l-filters-text content-xs"> |
+      <span
+      *ngFor="let pub of pubs">
+        <a routerLink="/publications/{{pub.type}}">
+          <div class="cbp-filter-item"
+          [attr.data-type0]="pub.type"> {{pub.title}} </div>
+        </a> |
+      </span>
+    </div><!--/end Filters Container-->
+  </div>
+
+  <div class="row dsba-publications"
+  *ngFor="let pub of pubs"
+  [attr.data-type0]="pub.type">
+    <div class="col-md-12">
+      <div class="tab-v1">
+        <div class="tab-content">
+          <div id="home" class="tab-pane fade in active">
+            <div id="accordion-v1" class="panel-group acc-v1">
+              <div class="panel panel-default"
+              *ngFor="let content of pub.contents; let i = index">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a href="#collapse-{{i}}" class="accordion-toggle"
+                    data-parent="#accordion-v1" data-toggle="collapse">
+                      <span>{{i+1}}.</span>
+                      <span>{{content.content}}</span>
+                    </a>
+                  </h4>
+                </div>
+                <div class="panel-collapse collapse" id="collapse-{{i}}"
+                *ngIf="content.url">
+                  <div class="panel-body">
+                    <a href="{{content.url}}" target='black_'>
+                      {{content.url}}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

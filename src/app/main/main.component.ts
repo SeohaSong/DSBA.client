@@ -1,11 +1,7 @@
-import { PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-
 import { Component, OnInit, Inject } from '@angular/core';
 
-declare const OwlCarousel: any;
-declare const ParallaxSlider: any;
-declare const $: any;
+import { DisplayService } from '../_services/display.service'
+import { UtilsService } from "../_services/utils.service";
 
 
 @Component({
@@ -16,10 +12,12 @@ declare const $: any;
 export class MainComponent implements OnInit {
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
+    private displayService: DisplayService,
+    private utilsService: UtilsService
   ) { }
 
-  vids = ["f9k5fxouO1Q", "rko6cb_Gq0k", "BiIlQQAx70c", "vHsa4tUErPg",]
+  vids = ["f9k5fxouO1Q", "rko6cb_Gq0k", "BiIlQQAx70c", "vHsa4tUErPg"]
+  cooperations: any[]
 
   latestShots = [
     {
@@ -41,16 +39,12 @@ export class MainComponent implements OnInit {
       id: 4,
       active: "",
       description: "Facilisis odio, dapibus ac justo acilisis gestinas."
-    },
+    }
   ]
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      setTimeout(() => {
-        OwlCarousel.initOwlCarousel();
-        ParallaxSlider.initParallaxSlider();
-      })
-    }
+    this.displayService.set_main_display();
+    this.cooperations = this.utilsService.get_cooperations();
   }
 
 }

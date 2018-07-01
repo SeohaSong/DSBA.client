@@ -9,7 +9,9 @@ import { MembersComponent } from './members/members.component';
 import { ProfessorComponent } from './members/professor/professor.component';
 import { OverallComponent } from './members/overall/overall.component';
 import { StudentsComponent } from './members/students/students.component';
-import { ResearchComponent } from './research/research.component';
+import { ResearchesComponent } from './researches/researches.component';
+import { PublicationsComponent } from './publications/publications.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 import { DisplayService } from './_services/display.service';
 import { DatabaseService } from './_services/database.service';
@@ -20,11 +22,13 @@ import { UtilsService } from './_services/utils.service';
   declarations: [
     AppComponent,
     MainComponent,
-    ProfessorComponent,
-    OverallComponent,
-    StudentsComponent,
-    ResearchComponent,
     MembersComponent,
+    OverallComponent,
+    ProfessorComponent,
+    StudentsComponent,
+    ResearchesComponent,
+    PublicationsComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'DSBA'}),

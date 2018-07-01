@@ -30,77 +30,54 @@
       <div class="container">
         <ul class="nav navbar-nav">
 
-          <!-- Home -->
-          <li class="dropdown active">
+          <li class="dropdown" data-category="members">
             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-              MEMBER
+              MEMBERS
             </a>
             <ul class="dropdown-menu">
-              <!-- Blog Template -->
               <li><a routerLink="/members/overall">Overall</a></li>
               <li><a routerLink="/members/professor">Professor</a></li>
               <li><a routerLink="/members/students">Students</a></li>
               <li><a routerLink="/members/alumni">Alumni</a></li>
             </ul>
           </li>
-          <!-- End Home -->
 
-          <!-- Pages -->
-          <li class="dropdown">
+          <li class="dropdown" data-category="publications">
             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-              RESEARCH
+              PUBLICATIONS
             </a>
             <ul class="dropdown-menu">
-              <!-- About Pages -->
-              <li class="dropdown-submenu">
-                <a href="javascript:void(0);">Publications</a>
-                <ul class="dropdown-menu">
-                  <li><a href="page_about2.html">International Journal</a></li>
-                  <li><a href="page_about2.html">Domestic Journal</a></li>
-                  <li><a href="page_about2.html">International Conference <br> Proceedings/Presentations</a></li>
-                  <li><a href="page_about2.html">Domestic Conference <br> Proceedings/Presentations</a></li>
-                </ul>
-              </li>
-              <!-- End About Pages -->
-              <li><a routerLink="/research">Research</a></li>
+              <li><a routerLink="/publications/international-journal">International Journal</a></li>
+              <li><a routerLink="/publications/domestic-journal">Domestic Journal</a></li>
+              <li><a routerLink="/publications/international-conference">International Conference</a></li>
+              <li><a routerLink="/publications/domestic-conference">Domestic Conference</a></li>
             </ul>
           </li>
-          <!-- End Pages -->
 
-          <li>
-            <a>
-              PROJECT
-            </a>
-          </li>
-          <li>
-            <a>
-              COURSE
-            </a>
-          </li>
-          <li>
-            <a>
-              ACTIVITY
+          <li data-category="projects">
+            <a routerLink="/projects">
+              PROJECTS
             </a>
           </li>
 
-          <!-- Search Block -->
-          <li>
-            <i class="search fa fa-search search-btn"></i>
-            <div class="search-open">
-              <div class="input-group animated fadeInDown">
-                <input type="text" class="form-control" placeholder="Search">
-                <span class="input-group-btn">
-                  <button class="btn-u" type="button">Go</button>
-                </span>
-              </div>
-            </div>
+          <li data-category="researches">
+            <a routerLink="/researches">
+              RESEARCHES
+            </a>
           </li>
-          <!-- End Search Block -->
+
+          <li data-category="activities">
+            <a>
+              ACTIVITIES
+            </a>
+          </li>
+
         </ul>
       </div><!--/end container-->
     </div><!--/navbar-collapse-->
   </div>
   <!--=== End Header ===-->
+  <div id='dsba-back-header'></div>
 
   <router-outlet></router-outlet>
 

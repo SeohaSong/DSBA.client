@@ -43,6 +43,7 @@
 .header .navbar-toggle {
   border-color: #395182;
 }
+
 a, .service .service-icon, .color-green,
 .header .navbar-nav > .open > a,
 .header .navbar-nav > .open > a:hover,
@@ -50,38 +51,36 @@ a, .service .service-icon, .color-green,
 .header .navbar-nav > li:hover > a,
 .profile .name-location span i,
 .share-list li i,
-a:hover {
+.breadcrumb li.active, .breadcrumb li a:hover,
+.profile .name-location span a:hover,
+.btn-u:hover, .btn-u:focus,
+.btn-u:active, .btn-u.active,
+.open .dropdown-toggle.btn-u,
+#effect-2 figure .img-hover,
+.lists-v2 i,
+a:hover{
   color: #395182;
+}
+
+.headline-left .headline-brd:after,
+.headline-center h2:after {
+  background: #395182;
 }
 
 .thumbnail-style a.btn-more:hover {
   box-shadow: 0 0 0 2px #395182;
 }
 
-.btn-u:hover, .btn-u:focus,
-.btn-u:active, .btn-u.active,
-.open .dropdown-toggle.btn-u {
-  background: #395182;
-}
-
-.profile .name-location span a:hover {
-  color: #395182;
-}
-
-.breadcrumb li.active, .breadcrumb li a:hover {
-  color: #395182;
-}
-
-
 .header .nav > li > .search:hover {
   color: #395182;
   border-bottom-color: #395182;
 }
 
-#effect-2 figure .img-hover {
-  background-color: #395182;
+.header .nav > li > .search:hover {
+  color: #fff;
+  background: #395182
 }
-/* #395182 */
+
 /* #395182 */
 /* #482525 */
 /* #605B5B */

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { STUDENTS } from "./database.service";
+import {
+  STUDENTS, RESEARCHES, PUBLICATIONS, COOPERATIONS, PROJECTS
+} from "./database.service";
 
 
 @Injectable({
@@ -12,6 +14,11 @@ export class UtilsService {
   constructor(
     private router: Router,
   ) { }
+
+  get_url_head(){
+    let head = this.router.url.split("/")[1];
+    return head
+  }
 
   get_url_tail(){
     let tail = this.router.url.split("/")[2];
@@ -38,4 +45,19 @@ export class UtilsService {
     })
   }
 
+  get_researches() {
+    return RESEARCHES
+  }
+
+  get_publications() {
+    return PUBLICATIONS
+  }
+
+  get_cooperations() {
+    return COOPERATIONS
+  }
+
+  get_projects() {
+    return PROJECTS
+  }
 }
