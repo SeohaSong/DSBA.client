@@ -5,13 +5,11 @@ import { DisplayService } from "../_services/display.service";
 
 
 @Component({
-  selector: 'app-researches',
-  templateUrl: './researches.component.html',
-  styleUrls: ['./researches.component.scss']
+  selector: 'app-news',
+  templateUrl: './news.component.html',
+  styleUrls: ['./news.component.scss']
 })
-export class ResearchesComponent implements OnInit {
-
-  researches: any[];
+export class NewsComponent implements OnInit {
 
   constructor(
     private utilsService: UtilsService,
@@ -19,8 +17,7 @@ export class ResearchesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.displayService.set_researches_display()
-    this.researches = this.utilsService.get_researches()
+    this.displayService.set_board_display();
   }
 
 }

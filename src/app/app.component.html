@@ -9,14 +9,6 @@
       </a>
       <!-- End Logo -->
 
-      <!-- Topbar -->
-      <div class="topbar">
-        <ul class="loginbar pull-right">
-          <li><a href="page_login.html">Login</a></li>
-        </ul>
-      </div>
-      <!-- End Topbar -->
-
       <!-- Toggle get grouped for better mobile display -->
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -29,6 +21,21 @@
     <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
       <div class="container">
         <ul class="nav navbar-nav">
+
+          <li class="dropdown"
+          data-category="activities">
+            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+              ACTIVITIES
+            </a>
+            <ul class="dropdown-menu">
+              <li><a routerLink='/news'>News</a></li>
+              <li><a>Photos</a></li>
+              <li><a>Seminar</a></li>
+              <li><a>Youtube</a></li>
+              <li><a>Archive</a></li>
+              <li><a><i class="rounded-x icon-eye"></i> LINKS</a></li>
+            </ul>
+          </li>
 
           <li class="dropdown" data-category="members">
             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
@@ -63,12 +70,6 @@
           <li data-category="researches">
             <a routerLink="/researches">
               RESEARCHES
-            </a>
-          </li>
-
-          <li data-category="activities">
-            <a>
-              ACTIVITIES
             </a>
           </li>
 

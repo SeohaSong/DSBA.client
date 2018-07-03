@@ -8,9 +8,21 @@
 .container.content-sm {
   padding-top: 60px;
   padding-bottom: 10px;
-  max-width: 970px;
 }
 
 img {
   margin-bottom: 10px;
+}
+
+@media (min-width: 992px) {
+  #dsba-right-nav {
+    position: fixed;
+    max-width: 250px;
+    width: calc(25% - 100px);
+  }
+}
+@media (max-width: 991px) {
+  #dsba-right-nav {
+    display: none;
+  }
 }

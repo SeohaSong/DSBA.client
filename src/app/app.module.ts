@@ -12,6 +12,7 @@ import { StudentsComponent } from './members/students/students.component';
 import { ResearchesComponent } from './researches/researches.component';
 import { PublicationsComponent } from './publications/publications.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { NewsComponent } from './news/news.component';
 
 import { DisplayService } from './_services/display.service';
 import { DatabaseService } from './_services/database.service';
@@ -28,7 +29,8 @@ import { UtilsService } from './_services/utils.service';
     StudentsComponent,
     ResearchesComponent,
     PublicationsComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'DSBA'}),

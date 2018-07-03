@@ -25,6 +25,20 @@ export class UtilsService {
     return tail
   }
 
+  group_list(size, list){
+    let groups = [];
+    let group_idxs = []
+    let n_group = parseInt(""+list.length/size)+1;
+    for (let i=0; i < n_group; i++) {
+      groups.push([]);
+      for (let i_=0; i_ < size; i_++) group_idxs.push(i);
+    }
+    for (let i=0; i < list.length; i++) {
+      groups[group_idxs[i]].push(list[i])
+    }
+    return groups
+  }
+
   get_student_pairs(type): any {
     return new Promise(resolve => {
       if (type == undefined) {
@@ -35,12 +49,7 @@ export class UtilsService {
     }).then(type => {
       let pairs = [];
       let students = STUDENTS.filter(val => val.type == type);
-      let pairs_length = parseInt(""+students.length/2)+1;
-      for(let i=0; i < pairs_length; i++) pairs.push([]);
-      for(let i=0; i < students.length; i++) {
-        let index = parseInt(""+i/2);
-        pairs[index].push(students[i]);
-      }
+      pairs = this.group_list(2, students)
       return [type, pairs]
     })
   }

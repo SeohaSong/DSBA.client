@@ -11,6 +11,7 @@ import { StudentsComponent } from './members/students/students.component';
 import { ResearchesComponent } from './researches/researches.component'
 import { PublicationsComponent } from './publications/publications.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { NewsComponent } from './news/news.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
       { path: 'international-conference', component: PublicationsComponent },
       { path: 'domestic-conference', component: PublicationsComponent }
     ]
-  }
+  },
+  { path: 'news', component: NewsComponent }
 ];
 
 

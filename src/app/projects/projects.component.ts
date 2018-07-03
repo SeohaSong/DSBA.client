@@ -19,7 +19,7 @@ export class ProjectsComponent implements OnInit {
   projects: any[];
 
   ngOnInit() {
-    this.displayService.set_default_display()
+    this.displayService.set_researches_display()
     this.projects = this.utilsService.get_projects()
   }
 

@@ -6,6 +6,7 @@ li.list-group-item a{
 @media(min-width: 992px) {
   #dsba-side-nav{
     position: fixed;
+    max-width: 250px;
     width: calc(25% - 30px);
   }
 }

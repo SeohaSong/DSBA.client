@@ -100,6 +100,333 @@ export const PROJECTS: Array<Project> = [
         ]
       }
     ]
+  },
+  {
+    img: 'assets/img/projects/5.png',
+    title: '2018.03 ~ 2019.02: QoE 정보를 이용한 머신러닝 미디어 스트리밍 최적화 시스템 개발 (정보통신기술진흥센터)',
+    contents: [
+      {
+        title: 'ABR(Available Bit Rate)',
+        contents: [
+          'HTTP 동적 적응 스트리밍(Dynamic Adaptive Streaming over HTTP, DASH)',
+          'http를 이용하여 사용자의 통신 상태에 맞춰 최적의 품질로 멀티미디어 콘텐츠를 전송하는 적응 스트리밍 기술'
+        ]
+      },
+      {
+        title: '사용자의 콘텐츠 사용에 대한 QoE 분석 기술 개발',
+        contents: [
+          '사용자의 콘텐츠 이용 경험을 통해 생성되는 QoE 데이터에 대한 다각적인 분석',
+          '특이한 형태의 QoE 데이터를 조기에 판별 적절한 대응 전략을 수립할 수 있는 알고리즘 구축'
+        ]
+      },
+      {
+        title: 'QoE 향상을 위한 CDN 배치 최적화',
+        contents: [
+          '동영상등 대용량 미디어 콘텐츠를 PC, 모바일 단말등에 서비스하기 위해서는 다양한 계층의 CDN을 구축하고, 각 CDN에 콘텐츠를 적절히 배치하여야 함',
+          '멀티 CDN의 최적화를 위한 미디어 컨텐츠의 뷰카운트 예측 및 전체 비용의 최적화'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/6.png',
+    title: '2018.06 ~ 2019.02: 딥러닝을 활용한 문서와 그래프의 유사성 판단에 대한 연구 (NCSoft)',
+    contents: [
+      {
+        title: '연상작용을 통한 문장의 유사여부 판단',
+        contents: [
+          '사람이 연상작용을 통해 두 문장의 유사여부를 판단하는 것처럼 연상작용을 모델에 적용해 문장을 이미지에 빗대어 표현한 후, 두 문장의 유사여부를 판단하고자 함',
+          '전체 모델 구조는 두개의 input을 받을 수 있는 siamese network에 문장 embedding module과 association module을 적용'
+        ]
+      },
+      {
+        title: '경제 지표를 통한 과거의 유사한 날 식별',
+        contents: [
+          '각 날에 기록된 경제 지표들을 통하여 데이터 생성',
+          '비정형 또는 정형 데이터를 사용하여 날(day)을 representation',
+          '각 날들의 유사도 비교'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/7.png',
+    title: '2018.03 ~ 2019.032: 머신러닝을 활용한 시스템 이상상태 탐지기술 연구 (국방과학연구소)',
+    contents: [
+      {
+        title: 'Data Representation Learning',
+        contents: [
+          'Syscall을 하나의 token으로 취급하여 Syscall-Syscall sequence의 관계를 텍스트 분석의 단어-문서 관계와 동일하게 설정',
+          'Doc2vec을 사용하여 Syscall의 관계를 고려한 d차원 벡터 representation 학습',
+          'TF-IDF, Bag-of-Words(BOW)를 사용하여 Syscall의 개수만큼의 차원을 갖는 벡터로 representation 학습'
+        ]
+      },
+      {
+        title: 'Novelty Detection',
+        contents: [
+          '정상 상태의 데이터만을 사용하는 비지도학습 기반의 이상치 탐지 기법을 적용하여 정상-비정상 class간의 불균형 문제 극복',
+          '다양한 머신러닝 이상치 탐지 기법을 적용하여 데이터에 가장 적합한 모형 탐색'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/8.png',
+    title: '2017.11 ~ 2018.04: 뉴스 기사 및 댓글 극성 분석 방법론 개발 (시그널 코리아)',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '뉴스 기사, 댓글의 극성을 분류하는 딥러닝 기반의 모델 개발',
+          '문서 분류에서 좋은 성능을 보이는 Recurrent Neural Network와 Attention mechanism을 적용',
+          '극성 판별 확률이 높지 않은 gray 영역에 속하는 데이터에 중립 label 할당'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/9.png',
+    title: '2017.09~2017.12: 빅데이터 기반 조기경보모형 연구 개발 (금융감독원)',
+    contents: [
+      {
+        title: '현 금융위험조기경보모형의 한계',
+        contents: [
+          '데이터의 가용성, 정확성에 의존적인 모형으로 인한 신뢰성 및 예측력 문제',
+          '시시각각 변화하는 금융환경 및 금융산업의 구조로 인한 예측력 약화',
+          '정량적(quantitative) 데이터 위주의 분석에 정성적(qualitative) 데이터 분석으로 보완할 필요가 있음'
+        ]
+      },
+      {
+        title: '빅데이터 기반 조기경보모형',
+        contents: [
+          '빅데이터(뉴스 및 민원)를 통한 기존 조기 경보 모형의 통해서 정성적(qualitative)인 한계점을 극복',
+          '기존 재무 변수와 빅데이터를 동시 활용함으로써 금융위기조기경보모형의 시너지 효과를 확보',
+          '단순계량기법이 아닌 기계학습 및 딥러닝을 활용하여 예측력 높은 조기경보모형을 구축'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/10.png',
+    title: '2017.07~2018.01: 딥러닝 및 텍스트마이닝 기반의 VDS 분석 시스템 개발 (현대자동차)',
+    contents: [
+      {
+        title: '이상치 탐지를 이용한 특이 VDS 응답 추출',
+        contents: [
+          '텍스트 분석을 통해 특이, 민감 소비자 의견 청취를 목적으로 함',
+          'VDS 응답에 Doc2Vec 모델을 적용하여 벡터로 나타낸 후 novelty detection 기법을 활용해 각 응답별 정량적인 특이 점수 산출'
+        ]
+      },
+      {
+        title: 'LDA 기반 소비자 만족도 요인 추출 및 군집화',
+        contents: [
+          'VDS 소비자 의견에 토픽모델링(LDA) 적용',
+          '문서 별 토픽의 비중을 이용해 각 VDS 소비자 의견을 다차원 공간상의 한 점으로 표현',
+          '군집화 기법을 이용해 유사 VDS 군집화 혹은 세분화'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/11.png',
+    title: '2017.05~2017.10: 딥러닝 기반의 웨이퍼 맵 분류 및 원인 규명 시각화 알고리즘 개발 (삼성전자)',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '딥러닝 기반의 이상 Wafer 인식기 개발 및 원인규명 시각화 알고리즘 개발을 목적으로 함',
+          '엔지니어들의 다양한 사전 지식을 통합적으로 반영하고 모사하고자 함',
+          '최근 머신러닝 분야에서 월등한 이미지 처리 성능을 보여주는 딥러닝 구조인 Convolutional Neural Network(CNN)을 사용하여 분류 정확도를 향상시킴',
+          'CNN을 사용하여 Wafer Bin Map의 불량의 원인이 되는 위치를 추출 및 파악함'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/12.png',
+    title: '2017.05~2018.03: 정형/비정형 데이터 기반의 경제 Knowledge Mining  기술 연구 (NCSoft)',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '주가 데이터(정형)와 뉴스기사(비정형)로부터 의미 있는 Knowledge Extraction을 목적으로 함',
+          '뉴스 기사를 통한 네트워크 분석 기반 핵심 이벤트를 추출 및 시각화',
+          '뉴스 기사의 representation을 통한 뉴스기사 event pattern 추출',
+          '각 기간별 기사의 representation의 유사도를 기준으로 과거 유사 주가 pattern을 추출',
+          'Similarity/Distance에 근거한 유사한 과거 탐색 및 주식 동향 예측'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/13.png',
+    title: '2017.04~2018.03: QoE 정보를 이용한 머신러닝 미디어 스트리밍 최적화 시스템 개발 (정보통신기술진흥센터)',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '동영상 등 대용량 미디어 콘텐츠를 인터넷과 모바일 상에서 효율적으로 서비스하기 위해, CDN (Content Delivary Network)상 콘텐츠를 자동적으로 배치하는 머신러닝 기반의 알고리즘과 라이브러리를 개발함',
+          '사용자의 콘텐츠 사용에 대한 QoE(Quality of Experience) Report 수집 기술 개발',
+          '멀티 CDN 하에서 성능/가격 최적화를 위한 동적 콘텐츠 배치 및 CDN 선택 알고리즘 개발',
+          '단말단 콘텐츠 활용을 위한 QoE(Quality of Experiece) Report 시스템 기술 개발',
+          '멀티 CDN하 성능/가격화 최적화 알고리즘'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/14.png',
+    title: '2016.08~2017.02: 다변량 설비/품질 분석용 병렬 Machine learning/Artificial Intelligence 알고리듬 개발(삼성전자)',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '“딥러닝 기반의 이상 Wafer 인식기 개발” 을 목적으로 함',
+          '엔지니어들의 다양한 사전 지식(domain knowledge)를 통합적으로 반영하고 모사하고자 함',
+          '최근 머신러닝 분야에서 월등한 이미지 처리 성능을 보여주는 딥러닝 구조인 Convolutional Neural Network(CNN)을 사용하여 분류 정확도를 향상시키고자 함',
+          '삼성전자에서 제공한 EDS Wafer BIN Map 결과와 엔지니어들에 의해 사전 정의된 정상/불량 정보',
+          'BIN map을 통해 정상/불량을 판별 가능한 Convolutional Neural Network(CNN) 구조 설계 및 BIN Color schema framework 제시'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/15.png',
+    title: '2016.10 ~ 2017.03: 뉴스와 주가를 이용한 Knowledge Extraction 기술 개발 (NCSoft)',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '금융 분야에서의 정형/비정형 데이터를 기반으로 의미 있는 정보를 추출',
+          'Text(뉴스기사)로부터 정형 데이터(주가)를 해석하는 방법론 개발',
+          '뉴스기사로부터 해당 기사의 내용을 함축적으로 표현하는 Keyword 추출 및 일반화',
+          'Machine Learning을 활용한 금융/경제 분야 기사와 주가와의 연관성 추출',
+          '뉴스 기사와 주가 흐름의 관계를 3가지(실시간, 선행, 후행)측면으로 해석'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/16.png',
+    title: '2016.05 ~ 2017. 04: 비정형의 빅데이터를 활용하여 경쟁환경에서 사업자의 신제품 포지셔닝과 다기간 제품 포트폴리오 선정에 도움을 줄 수 있는 전사적 의사결정 시스템의 개발 (연구책임자, 연세대학교 모정훈 교수님)',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '비정형 형태인 휴대폰에 대한 한글 리뷰 텍스트를 통해 수요분석과 전사적 의사결정에 도움이 되는 시스템 개발',
+          '온라인 휴대폰 커뮤니티 사이트(세티즌, 뽐뿌 등)를 통하여 한글 휴대폰 리뷰 텍스트 수집',
+          '비정규 형태(신조어, 문법오류 등)의 한글 휴대폰 리뷰 텍스트에 능동적으로 대응하면서 높은 정확도를 나타내는 준지도학습 기반의 자연어 처리 엔진 개발',
+          '휴대폰의 기능에 대해 ‘배터리, 화면, 디자인, 스펙, 음질, 촬영, 운영체제 ‘ 7가지의 기능으로 분류하고 해당 리뷰에 대한 기능 점수 할당 및 감정 스코어 추출',
+          '자연어 처리 엔진을 바탕으로 휴대폰 도메인에 대한 한국어 감성 어휘 사전을 구축하고 구축된 어휘를 기반으로 하는 텍스트 감성 분석 기술 개발'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/17.png',
+    title: '2016. 09 ~ 2016. 12: 뉴스 기사 극성 방법론 개발, granted by 시그널코리아',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '뉴스 기사가 가진 내재적 감성을 정량적 수치로 표현하는 방법론 개발',
+          '뉴럴넷 기반의 단어 임베딩 방법론과 머신러닝 기반의 감성 전파 방법론을 이용한 텍스트 감성 분석 기술 적용',
+          'Corpus 내 출현 단어에 대해 uni-gram 단위와 bi-gram 단위 두 관점으로 각각의 감성사전을 구축',
+          '두개의 감성사전을 ensemble한 최종 뉴스 감성점수 추출',
+          '뉴스 기사 기반의 한국어 감성 어휘 사전 구축 및 실제 기사 감성 검수'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/18.png',
+    title: '2016.11 ~ 2017. 01: 초음파 관련 임상연구 데이터의 텍스트마이닝 플랫폼 개발, granted by 삼성메디슨',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '2009년, 2015년에 등록된 의료용 초음파 연구 관련 초록 문헌을 수집',
+          '토픽 모델링 기반의 초음파 임상연구 주요 주제 및 트렌드를 분석',
+          '초음파 임상연구 관련 주요 키워드와 네트워크를 분석하고 연구자 및 연구기관 간의 협업 네트워크를 분석',
+          '의료 연구 관련 주제 및 트렌드 분석, 키워드 네트워크 분석, 연구자 및 연구기관 협업 네트워크 플랫폼 개발을 통한 분석 환경을 제공'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/19.png',
+    title: '2016.04 ~ 2016.11: 보안 데이터 분석을 위한 사용자 행위 모델 연구 (국가보안기술연구소)',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '기업 내부 및 협력 사 직원에 의한 정보 유출 문제가 보안에서 화두가 되고 있는데 이를 방지하기 위해서 사용자 행위 모델을 구축하고 이를 탐지하기 위한 기계학습/데이터마이닝 알고리즘 개발',
+          '시스템 로그 데이터로부터 내부자 위협 탐지 관련 주요 특성(Feature) 추출',
+          '개별 그룹 사용자의 대표 사용 패턴 탬플릿 생성 및 정상 사용자와의 유사도 추정 방법론 개발',
+          '사용자 행위 그래프 기반의 이상 탐지 방법론 개발',
+          '기계학습 기반의 이상 탐지 기법을 이용한 사용자 행위 모델의 활용 가능성 평가'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/20.png',
+    title: '2016.03 ~ 2016.08: Information Quality 평가 기술 개발 (NCSoft)',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '금융 분야에서 대화 형식의 질의에 대한 정형/비정형 데이터를 기반으로 정보를 추출하여 적절한 답변을 제공할 수 있는 질의-응답 방법론 개발',
+          '뉴스기사로부터 해당 기사의 내용을 함축적으로 표현하는 Keyword 추출 및 일반화',
+          'Machine Learning을 통한 금융/경제 분야 기사의 속성 (속보/ 시황-전망/ 홍보 / 분석 등) 을 자동으로 분류',
+          '기업간 주가 변동의 연관성을 통한 동적 네트워크 구축',
+          '종목간 네트워크를 통해 기업들의 군집 파악 및 군집 내 발생 기사들을 분석'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/21.png',
+    title: '2016.03 ~ 2016.08: Information Quality 평가 기술 개발 (NCSoft)',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '제품 유형별 특성을 고려한 신제품 수명주기 예측모형 개발',
+          '신제품 수명주기 예측모형의 정확도 향상을 위한 최적의 제품 특성값 산출',
+          '신제품 수명주기 예측을 바탕으로 수요예측 모형으로의 연계 토대 마련',
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/22.png',
+    title: '2015.05 ~ 2015. 07: Opinion Generation 기술 개발 (NCSoft)',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '사람의 대화 형식의 질의에 대해 해당 분야(domain)의 정형/비정형 데이터를 기반으로 적절한 답변을 제공하는 질의-응답 방법론 개발',
+          '대화형태의 질의를 탐색 가능한 형태의 질의 집합으로 변환',
+          '질의 집합에 해당하는 속성에 대해 정형 데이터와 비정형 데이터로부터 필요한 정보를 추출',
+          '추출된 정보를 결합하여 평가요소의 긍정/부정의 정도를 표현'
+        ]
+      }
+    ]
+  },
+  {
+    img: 'assets/img/projects/23.png',
+    title: '2014.05 ~ 2017. 04: 빅데이터를 활용한 준지도학습 기반의 한글 자연어처리 엔진 개발 및 응용, (한국연구재단 신진연구자 지원사업)',
+    contents: [
+      {
+        title: null,
+        contents: [
+          '비정규 형태(신조어, 문법오류 등)의 한글 텍스트에 능동적으로 대응하면서 높은 정확도를 나타내는 준지도학습 기반의 자연어 처리 엔진 개발',
+          '높은 정밀도와 재현율을 갖는 한국어 감성 어휘 사전을 구축하고 구축된 어휘를 기반으로 하는 텍스트 감성 분석 기술 개발',
+          '자연어 처리 엔진을 바탕으로 감성분석기술을 적용하여 사회 트렌드 분석과 같은 빅데이터 기반 텍스트 분석 및 활용 사례 발굴'
+        ]
+      }
+    ]
   }
 ]
 
@@ -135,6 +462,10 @@ export const COOPERATIONS = [
     name: "정보통신기술진흥센터"
   },
   {
+    img: "assets/img/main/cooperations/kcb.jpg",
+    name: "케이씨비"
+  },
+  {
     img: "assets/img/main/cooperations/kepco.gif",
     name: "한국전력공사"
   },
@@ -143,8 +474,8 @@ export const COOPERATIONS = [
     name: "한국과학기술정보연구원"
   },
   {
-    img: "assets/img/main/cooperations/lg.jpg",
-    name: "엘지"
+    img: "assets/img/main/cooperations/lgd.jpg",
+    name: "엘지디스플레이"
   },
   {
     img: "assets/img/main/cooperations/naver.png",
@@ -175,8 +506,8 @@ export const COOPERATIONS = [
     name: "시그널코리아"
   },
   {
-    img: "assets/img/main/cooperations/sk.png",
-    name: "에스케이"
+    img: "assets/img/main/cooperations/skt.jpg",
+    name: "에스케이텔레콤"
   }
 ]
 

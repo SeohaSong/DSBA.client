@@ -13,25 +13,56 @@
 </div>
 
 
-<!--=== Content Part ===-->
-<div *ngFor='let research of researches' class="container content-sm">
-  <div class="row">
-    <div class="col-md-12 md-margin-bottom-50">
-      <br>
-      <img class="img-responsive" src='{{research.img}}' alt="">
-    </div>
-    <div class="col-md-12">
-      <div class="headline-left margin-bottom-30">
-        <h3 class="headline-brd">{{research.title}}</h3>
+<div class="container content-sm">
+
+  <div class='row'>
+
+    <div class="col-md-3">
+      <div id="dsba-right-nav" class="col-md-12 fixed" data-nav>
+        <div class="headline-v2"><h2>Researches</h2></div>
+        <ul class="list-unstyled blog-trending margin-bottom-50">
+          <li
+          *ngFor='let research of researches; let i=index'>
+            <h3>
+              <a
+              [attr.data-section]="i">
+                {{research.title}}
+              </a>
+            </h3>
+          </li>
+        </ul>
       </div>
-      <ul *ngFor='let content of research.contents' class="list-unstyled lists-v2 margin-bottom-30">
-        <h4 *ngIf='content.title'>{{content.title}}</h4>
-        <li *ngFor='let content_ of content.contents' class='dsba-li'>
-          <i class="fa fa-check"></i>
-          <span>{{content_}}</span>
-        </li>
-      </ul>
-    </div><!--/end row-->
+    </div>
+
+    <div class='col-md-9'>
+      <div class="row"
+      *ngFor='let research of researches; let i=index'>
+        <div class="col-md-12 md-margin-bottom-50"
+        [attr.data-section]="i">
+          <img class="img-responsive" src='{{research.img}}' alt="">
+        </div>
+        <div class="col-md-9">
+          <div class="headline-left margin-bottom-30">
+            <h3 class="headline-brd">{{research.title}}</h3>
+          </div>
+          <ul class="list-unstyled lists-v2 margin-bottom-30"
+          *ngFor='let content of research.contents'>
+            <h4
+            *ngIf='content.title'>
+              {{content.title}}
+            </h4>
+            <li class='dsba-li'
+            *ngFor='let content_ of content.contents'>
+              <i class="fa fa-check"></i>
+              <span>{{content_}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+
 </div>
 <br><br><br><br><br><br>

@@ -6,9 +6,11 @@ import { UtilsService } from './utils.service';
 
 
 declare const App: any;
+declare const FancyBox: any;
 declare const StyleSwitcher: any;
 declare const OwlCarousel: any;
 declare const ParallaxSlider: any;
+
 declare const $: any;
 
 
@@ -47,6 +49,7 @@ export class DisplayService {
       this.set_default_display()
       setTimeout(() => {
         App.init();
+  			FancyBox.initFancybox();
         StyleSwitcher.initStyleSwitcher();
         $("#loading-ui").fadeOut();
         init();
@@ -62,6 +65,13 @@ export class DisplayService {
       setTimeout(() => {
         OwlCarousel.initOwlCarousel();
         ParallaxSlider.initParallaxSlider();
+
+        $("a[data-section]").click((e) => {
+          let id = $(e.target).data('section');
+          let scroll_top = $("div[data-section="+id+"]").offset().top
+          $(document).scrollTop(scroll_top-100)
+        })
+
       })
     }
   }
@@ -101,4 +111,52 @@ export class DisplayService {
       })
     }
   }
+
+
+  set_researches_display(){
+
+    let init_scroll = (doc, top_pad) => {
+      let nav = $("[data-nav]");
+      let init_top = parseInt(nav.css('top'));
+      doc.scroll(() => {
+        let top = init_top-doc.scrollTop()-top_pad;
+        if (top > 0) {nav.css('top', top+top_pad);}
+        else {nav.css('top', top_pad);}
+      })
+    }
+
+    let init_section = (doc, top_pad) => {
+      $("a[data-section]").click((e) => {
+        let id = $(e.target).data('section');
+        let scroll_top = $("div[data-section="+id+"]").offset().top
+        doc.scrollTop(scroll_top-top_pad)
+      })
+    }
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.set_default_display();
+      setTimeout(() => {
+        let doc = $(document)
+        init_scroll(doc, 150);
+        init_section(doc, 100);
+      })
+    }
+  }
+
+  set_board_display(){
+    if (isPlatformBrowser(this.platformId)) {
+      this.set_default_display();
+      setTimeout(() => {
+        $('#demo-in').click(() => {
+          $('[data-board-toggle]').removeClass('on');
+          $('[data-board-toggle=content]').addClass('on');
+        })
+        $('#dsba-back-btn').click(() => {
+          $('[data-board-toggle]').removeClass('on');
+          $('[data-board-toggle=menu]').addClass('on');
+        })
+      })
+    }
+  }
+
 }

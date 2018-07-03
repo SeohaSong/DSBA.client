@@ -1,0 +1,32 @@
+[data-board-toggle] {
+  display: none;
+  &.on {
+    display: block;
+  }
+}
+
+#dsba-back-btn {
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  border: 2px solid #395182;
+  margin-bottom: 10px;
+  span {
+    position: absolute;
+    font-size: 30px;
+    top: -6px;
+    left: 20px;
+    color: #395182;
+  }
+}
+
+.news-v3 h2 a:hover {
+  color: #482525;
+  font-weight: 500;
+}
+
+.news-v3 .post-shares li span {
+  background-color: #395182;
+  min-width: 22px;
+  width: inherit;
+}

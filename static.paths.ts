@@ -4,5 +4,10 @@ export const ROUTES = [
   '/members',
   '/members/professor',
   '/members/students',
-  '/members/overall',
+  '/publications/international-journal',
+  '/publications/domestic-journal',
+  '/publications/international-conference',
+  '/publications/domestic-conference',
+  '/projects',
+  '/researches'
 ];
