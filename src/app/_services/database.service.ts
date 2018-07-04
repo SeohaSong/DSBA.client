@@ -108,7 +108,7 @@ export const PROJECTS: Array<Project> = [
   },
   {
     img: 'assets/img/projects/5.png',
-    term: '2018.03 ~ 2019.02'
+    term: '2018.03 ~ 2019.02',
     title: 'QoE 정보를 이용한 머신러닝 미디어 스트리밍 최적화 시스템 개발 (정보통신기술진흥센터)',
     contents: [
       {
