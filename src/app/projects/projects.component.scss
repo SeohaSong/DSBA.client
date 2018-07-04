@@ -1,3 +1,20 @@
+ul[data-page] {
+  display: none;
+  &.in {
+    display: block;
+  }
+}
+
+span[data-page] {
+  &.in {
+    .cbp-filter-item {
+      color: #395182;
+      font-weight: 900;
+    }
+  }
+}
+
+
 .dsba-li {
   display: flex;
   i, span {

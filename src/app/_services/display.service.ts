@@ -115,12 +115,19 @@ export class DisplayService {
 
   set_researches_display(){
 
-    let init_scroll = (doc, top_pad) => {
+    let init_scroll = (doc, top_pad, bottom_pad) => {
       let nav = $("[data-nav]");
       let init_top = parseInt(nav.css('top'));
-      doc.scroll(() => {
-        let top = init_top-doc.scrollTop()-top_pad;
-        if (top > 0) {nav.css('top', top+top_pad);}
+      doc.on('scroll resize', () => {
+        let scroll_top = doc.scrollTop();
+        let top = init_top-scroll_top;
+        let nav_h = parseInt(nav.css('height'));
+        let body_h = parseInt($('body').css('height'));
+        let bottom = body_h-top_pad-scroll_top-nav_h;
+        let top_cutoff = top-top_pad;
+        let bottom_cutoff = bottom-bottom_pad;
+        if (top_cutoff > 0) {nav.css('top', top);}
+        else if (bottom_cutoff < 0) {nav.css('top', top_pad+bottom_cutoff);}
         else {nav.css('top', top_pad);}
       })
     }
@@ -133,12 +140,28 @@ export class DisplayService {
       })
     }
 
+    let init_page = () => {
+      let ul8spans = $("[data-page]")
+      let uls = ul8spans.filter('ul')
+      let spans = ul8spans.filter('span')
+      $(uls[0]).addClass('in');
+      $(spans[0]).addClass('in');
+      spans.click((e) => {
+        let span = $(e.currentTarget)
+        let ul = uls[span.data('page')]
+        ul8spans.removeClass('in');
+        span.addClass('in');
+        $(ul).addClass('in');
+      });
+    }
+
     if (isPlatformBrowser(this.platformId)) {
       this.set_default_display();
       setTimeout(() => {
         let doc = $(document)
-        init_scroll(doc, 150);
+        init_scroll(doc, 150, 450);
         init_section(doc, 100);
+        init_page();
       })
     }
   }
