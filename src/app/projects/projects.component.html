@@ -20,30 +20,36 @@
     <div class="col-md-3">
       <div id="dsba-right-nav" class="col-md-12 fixed" data-nav>
         <div class="headline-v2"><h2>Korea University<br>(연구책임자)</h2></div>
-        <ul class="list-unstyled blog-trending margin-bottom-50">
+        <ul class="list-unstyled blog-trending margin-bottom-50"
+        *ngFor='let projects of project_groups; let i=index'
+        [attr.data-page]=i>
           <li
           *ngFor='let project of projects; let i=index'>
-            <h3>
-              <a
-              [attr.data-section]="i">
-                {{project.title}}
-              </a>
-            </h3>
+            <a
+            [attr.data-section]="i">
+              <h3>{{project.title}}</h3>
+            </a>
           </li>
         </ul>
+        <div class="cbp-l-filters-text content-xs" id="filters-container">
+          <span
+          *ngFor='let projects of project_groups; let i=index'>
+            <a><div class="cbp-filter-item">{{ i }}</div></a> |
+          </span>
+        </div>
       </div>
     </div>
 
     <div class='col-md-9'>
       <div class="row"
-      *ngFor='let project of projects'>
+      *ngFor='let project of projects; let i=index'>
         <div class="col-md-12 md-margin-bottom-50"
         [attr.data-section]="i">
           <img class="img-responsive" src='{{project.img}}' alt="">
         </div>
-        <div class="col-md-9">
+        <div class="col-md-12">
           <div class="headline-left margin-bottom-30">
-            <h3 class="headline-brd">{{project.title}}</h3>
+            <h3 class="headline-brd">{{project.term}} : {{project.title}}</h3>
           </div>
           <ul class="list-unstyled lists-v2 margin-bottom-30"
           *ngFor='let content of project.contents'>

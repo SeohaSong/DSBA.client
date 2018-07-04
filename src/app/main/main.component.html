@@ -67,8 +67,29 @@
 <!--=== Content Part ===-->
 <div class="container content-sm">
 
-  <!-- Recent Works -->
-  <div class="headline"><h2>Recent Works</h2></div>
+  <div class="headline"><h2>Researches</h2></div>
+  <div class="row margin-bottom-20"
+  *ngFor="let researches of research_groups">
+    <div class="col-md-3 col-sm-6"
+    *ngFor="let research of researches">
+      <div class="thumbnails thumbnail-style">
+        <div class="thumbnail-img">
+          <div class="overflow-hidden">
+            <img class="img-responsive" src="{{research.img}}" alt="">
+          </div>
+          <a class="btn-more"
+          routerLink="/researches">
+            read more +
+          </a>
+        </div>
+        <div class="caption">
+          <p>{{research.title}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="headline"><h2>Projects</h2></div>
   <div class="row margin-bottom-20"
   *ngFor="let projects of project_groups">
     <div class="col-md-3 col-sm-6"
@@ -84,13 +105,12 @@
           </a>
         </div>
         <div class="caption">
-          <h3><a class="hover-effect" routerLink="/projects">Project</a></h3>
+          <h3>{{project.term}}</h3>
           <p>{{project.title}}</p>
         </div>
       </div>
     </div>
   </div>
-  <!-- End Recent Works -->
 
   <!-- Info Blokcs -->
   <div class="row margin-bottom-30">

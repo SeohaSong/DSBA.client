@@ -127,7 +127,7 @@ export class DisplayService {
 
     let init_section = (doc, top_pad) => {
       $("a[data-section]").click((e) => {
-        let id = $(e.target).data('section');
+        let id = $(e.currentTarget).data('section');
         let scroll_top = $("div[data-section="+id+"]").offset().top
         doc.scrollTop(scroll_top-top_pad)
       })

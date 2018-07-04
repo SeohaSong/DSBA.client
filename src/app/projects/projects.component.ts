@@ -17,10 +17,13 @@ export class ProjectsComponent implements OnInit {
   ) { }
 
   projects: any[];
+  project_groups: any[];
 
   ngOnInit() {
-    this.displayService.set_researches_display()
-    this.projects = this.utilsService.get_projects()
+    this.displayService.set_researches_display();
+    let projects = this.utilsService.get_projects();
+    this.projects = projects;
+    this.project_groups = this.utilsService.group_list(4, projects)
   }
 
 }

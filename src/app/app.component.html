@@ -22,21 +22,6 @@
       <div class="container">
         <ul class="nav navbar-nav">
 
-          <li class="dropdown"
-          data-category="activities">
-            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-              ACTIVITIES
-            </a>
-            <ul class="dropdown-menu">
-              <li><a routerLink='/news'>News</a></li>
-              <li><a>Photos</a></li>
-              <li><a>Seminar</a></li>
-              <li><a>Youtube</a></li>
-              <li><a>Archive</a></li>
-              <li><a><i class="rounded-x icon-eye"></i> LINKS</a></li>
-            </ul>
-          </li>
-
           <li class="dropdown" data-category="members">
             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
               MEMBERS
@@ -47,6 +32,12 @@
               <li><a routerLink="/members/students">Students</a></li>
               <li><a routerLink="/members/alumni">Alumni</a></li>
             </ul>
+          </li>
+
+          <li data-category="researches">
+            <a routerLink="/researches">
+              RESEARCHES
+            </a>
           </li>
 
           <li class="dropdown" data-category="publications">
@@ -67,10 +58,19 @@
             </a>
           </li>
 
-          <li data-category="researches">
-            <a routerLink="/researches">
-              RESEARCHES
+          <li class="dropdown"
+          data-category="activities">
+            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+              ACTIVITIES
             </a>
+            <ul class="dropdown-menu">
+              <li><a routerLink='/news'>News</a></li>
+              <li><a>Photos</a></li>
+              <li><a>Seminar</a></li>
+              <li><a>Youtube</a></li>
+              <li><a>Archive</a></li>
+              <li><a><i class="rounded-x icon-eye"></i> LINKS</a></li>
+            </ul>
           </li>
 
         </ul>

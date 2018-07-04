@@ -17,8 +17,10 @@ export class MainComponent implements OnInit {
   ) { }
 
   vids = ["f9k5fxouO1Q", "rko6cb_Gq0k", "BiIlQQAx70c", "vHsa4tUErPg"];
-  project_groups: any[];
+
   cooperations: any[];
+  project_groups: any[];
+  research_groups: any[];
 
   latestShots = [
     {
@@ -45,10 +47,16 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.displayService.set_main_display();
+
+    this.cooperations = this.utilsService.get_cooperations();
+
     let projects = this.utilsService.get_projects();
     this.project_groups = this.utilsService.group_list(4, projects)
-                          .slice(0, 2);
-    this.cooperations = this.utilsService.get_cooperations();
+                                           .slice(0, 1);
+
+    let researches = this.utilsService.get_researches()
+    this.research_groups = this.utilsService.group_list(4, researches)
+                                            .slice(0, 1);
   }
 
 }
