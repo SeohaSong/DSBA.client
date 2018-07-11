@@ -28,7 +28,7 @@ export class UtilsService {
   group_list(size, list){
     let groups = [];
     let group_idxs = []
-    let n_group = parseInt(""+list.length/size)+1;
+    let n_group = parseInt(""+(list.length-1)/size)+1;
     for (let i=0; i < n_group; i++) {
       groups.push([]);
       for (let i_=0; i_ < size; i_++) group_idxs.push(i);

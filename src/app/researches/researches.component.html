@@ -20,17 +20,29 @@
     <div class="col-md-3">
       <div id="dsba-right-nav" class="col-md-12 fixed" data-nav>
         <div class="headline-v2"><h2>Researches</h2></div>
-        <ul class="list-unstyled blog-trending margin-bottom-50">
+        <ul class="list-unstyled blog-trending margin-bottom-50"
+        *ngFor='let researches of research_groups; let i=index'
+        [attr.data-page]='i'>
           <li
           *ngFor='let research of researches; let i=index'>
-            <h3>
-              <a
-              [attr.data-section]="i">
-                {{research.title}}
-              </a>
-            </h3>
+            <a
+            [attr.data-section]="i">
+              <h3>{{research.title}}</h3>
+            </a>
           </li>
         </ul>
+        <div class="cbp-l-filters-text content-xs" id="filters-container"
+        *ngIf='research_groups[1]'>
+          <span
+          *ngFor='let researches of research_groups; let i=index'
+          [attr.data-page]='i'>
+            <span
+            *ngIf='i'>|</span>
+            <a>
+              <div class="cbp-filter-item">{{ i+1 }}</div>
+            </a>
+          </span>
+        </div>
       </div>
     </div>
 

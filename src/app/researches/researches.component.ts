@@ -20,11 +20,10 @@ export class ResearchesComponent implements OnInit {
   research_groups: any[];
 
   ngOnInit() {
-    this.displayService.set_researches_display()
-    let researches = this.utilsService.get_researches()
-    this.researches = researches
-    this.research_groups = this.utilsService.group_list(4, researches)
-                                            .slice(0, 1);
+    this.displayService.set_researches_display();
+    let researches = this.utilsService.get_researches();
+    this.researches = researches;
+    this.research_groups = this.utilsService.group_list(4, researches);
   }
 
 }

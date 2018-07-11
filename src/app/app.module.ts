@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule }    from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -12,7 +13,7 @@ import { StudentsComponent } from './members/students/students.component';
 import { ResearchesComponent } from './researches/researches.component';
 import { PublicationsComponent } from './publications/publications.component';
 import { ProjectsComponent } from './projects/projects.component';
-import { NewsComponent } from './news/news.component';
+import { BoardComponent } from './board/board.component';
 
 import { DisplayService } from './_services/display.service';
 import { DatabaseService } from './_services/database.service';
@@ -30,11 +31,12 @@ import { UtilsService } from './_services/utils.service';
     ResearchesComponent,
     PublicationsComponent,
     ProjectsComponent,
-    NewsComponent
+    BoardComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'DSBA'}),
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [
     DisplayService,

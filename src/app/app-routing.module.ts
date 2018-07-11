@@ -11,7 +11,7 @@ import { StudentsComponent } from './members/students/students.component';
 import { ResearchesComponent } from './researches/researches.component'
 import { PublicationsComponent } from './publications/publications.component';
 import { ProjectsComponent } from './projects/projects.component';
-import { NewsComponent } from './news/news.component';
+import { BoardComponent } from './board/board.component';
 
 
 const routes: Routes = [
@@ -36,7 +36,15 @@ const routes: Routes = [
       { path: 'domestic-conference', component: PublicationsComponent }
     ]
   },
-  { path: 'news', component: NewsComponent }
+  { path: 'board', component: BoardComponent,
+    children: [
+      { path: 'news', component: BoardComponent},
+      { path: 'photos', component: BoardComponent},
+      { path: 'seminar', component: BoardComponent},
+      { path: 'videos', component: BoardComponent},
+      { path: 'archive', component: BoardComponent},
+    ]
+},
 ];
 
 
