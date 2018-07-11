@@ -27,6 +27,10 @@ export class BoardComponent implements OnInit {
     })
   }
 
+  safe_html(html){
+    return html.replace(/<.+?>/g, ' ').slice(0, 128)+' ...'
+  }
+
   get_newses() {
     let newses = this.http.get('http://localhost:4200/assets/db/news.json')
     return newses

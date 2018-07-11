@@ -6,29 +6,6 @@
 </div>
 
 
-<div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <div
-  *ngFor='let news of newses'>
-    {{news.title}}
-  </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-</div>
-
-
 <div class="container content-md">
   <div class="row">
 
@@ -38,12 +15,12 @@
         <a><div id='dsba-back-btn'><span>←</span></div></a>
         <h2><a href="blog_item_option1.html">2018 대한산업공학회 춘계학술대회</a></h2>
         <div class="blog-post-tags">
-            <ul class="list-unstyled list-inline blog-info">
-                <li><i class="fa fa-calendar"></i> 2018. 04. 16.</li>
-                <li><i class="fa fa-pencil"></i> Gyubin Son</li>
-                <li><i class="fa fa-comments"></i> <a href="#">0 Comments</a></li>
-                <li><i class="fa fa-tags"></i> News</li>
-            </ul>
+          <ul class="list-unstyled list-inline blog-info">
+            <li><i class="fa fa-calendar"></i> 2018. 04. 16.</li>
+            <li><i class="fa fa-pencil"></i> Gyubin Son</li>
+            <li><i class="fa fa-comments"></i> <a href="#">0 Comments</a></li>
+            <li><i class="fa fa-tags"></i> News</li>
+          </ul>
         </div>
         <p>
           2018 대한산업공학회 춘계학술대회 후기
@@ -65,43 +42,36 @@
       </div>
     </div>
 
-    <!-- Blog All Posts -->
     <div class="col-md-9 on"
     data-board-toggle='menu'>
-      <!-- News v3 -->
-      <div class="row margin-bottom-20">
-        <div class="col-sm-7 news-v3">
-          <div class="news-v3-in-sm no-padding">
-            <ul class="list-inline posted-info">
-              <li>Gyubin Son</li>
-              <li>In <a href="#">News</a></li>
-              <li>2018. 04. 16.</li>
-            </ul>
-            <h2><a id='demo-in'>2018 대한산업공학회 춘계학술대회</a></h2>
-            <p>2018 대한산업공학회 춘계학술대회 후기 이번 학회는 제 첫 학회입니다. 발표를 하거나 논문을 제출하진 않았지만 불과 1년 전만 하더라도 학회에 참가한다는 것을 상상도 못한 저에겐 매우 특별한 ...</p>
-            <ul class="post-shares">
-              <li>
-                <a href="#">
-                  <i class="rounded-x icon-speech"></i>
-                  <span>5</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="rounded-x icon-eye"></i>
-                  <span>247</span>
-                </a>
-              </li>
-            </ul>
+
+      <div
+      *ngFor='let post of newses'>
+        <div class="row margin-bottom-20">
+          <div class="col-sm-7 news-v3">
+            <div class="news-v3-in-sm no-padding">
+              <ul class="list-inline posted-info">
+                <li>{{ post.writer }}</li>
+                <li>In <a href="#">{{ post.category }}</a></li>
+                <li>{{ post.date }}</li>
+              </ul>
+              <h2><a id='demo-in'>{{ post.title }}</a></h2>
+              <p>{{ safe_html(post.content) }}</p>
+              <ul class="post-shares">
+                <li>
+                  <a href="#">
+                    <i class="rounded-x icon-eye"></i>
+                    <span>{{ post.view_count }}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div><!--/end row-->
-      <!-- End News v3 -->
+        <div class="clearfix margin-bottom-20"><hr></div>
+      </div>
 
-      <div class="clearfix margin-bottom-20"><hr></div>
-
-      <!-- News v3 -->
-      <div class="row margin-bottom-20">
+      <!-- <div class="row margin-bottom-20">
         <div class="col-sm-7 news-v3">
           <div class="news-v3-in-sm no-padding">
             <ul class="list-inline posted-info">
@@ -132,13 +102,10 @@
             <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""
             src="https://www.youtube.com/embed/f9k5fxouO1Q">
             </iframe>
-            <!-- <iframe src="//player.vimeo.com/video/93094247?title=0&amp;byline=0&amp;portrait=0" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe> -->
           </div>
         </div>
-      </div><!--/end row-->
-      <!-- End News v3 -->
-
-      <div class="clearfix margin-bottom-20"><hr></div>
+      </div>
+      <div class="clearfix margin-bottom-20"><hr></div> -->
 
       <!-- Pager v3 -->
       <ul class="pager pager-v3 pager-sm no-margin-bottom">
