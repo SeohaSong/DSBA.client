@@ -19,16 +19,24 @@ export class BoardComponent implements OnInit {
   ) { }
 
   post_groups: any;
+  posts: any;
 
   ngOnInit() {
     this.displayService.set_board_display();
-    this.get_newses().subscribe(data => {
-      let posts = data.reverse();
-      this.post_groups = this.utilsService.group_list(8, posts)
-    })
+    this.get_newses().subscribe(this.init.bind(this))
   }
-  // https://angularfirebase.com/snippets/how-to-reverse-an-observable-array-in-angular-angularfire2-firebaselistobservable/
-  safe_html(html){
+
+  init(data) {
+    let posts = data.reverse();
+    this.post_groups = this.utilsService.group_list(8, posts);
+    this.posts = this.post_groups[0]
+  }
+
+  reverse(value) {
+    return value.reverse();
+  }
+
+  trim_html(html){
     return html.replace(/<.+?>/g, ' ').slice(0, 128)+' ...';
   }
 

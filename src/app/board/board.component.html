@@ -44,9 +44,8 @@
 
     <div class="col-md-9 on"
     data-board-toggle='menu'>
-<!--
       <div
-      *ngFor='let post of newses'>
+      *ngFor='let post of posts'>
         <div class="row margin-bottom-20">
           <div class="col-sm-7 news-v3">
             <div class="news-v3-in-sm no-padding">
@@ -56,7 +55,7 @@
                 <li>{{ post.date }}</li>
               </ul>
               <h2><a id='demo-in'>{{ post.title }}</a></h2>
-              <p>{{ safe_html(post.content) }}</p>
+              <p>{{ trim_html(post.content) }}</p>
               <ul class="post-shares">
                 <li>
                   <a href="#">
@@ -69,7 +68,7 @@
           </div>
         </div>
         <div class="clearfix margin-bottom-20"><hr></div>
-      </div> -->
+      </div>
 
       <!-- <div class="row margin-bottom-20">
         <div class="col-sm-7 news-v3">
