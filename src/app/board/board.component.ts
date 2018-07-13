@@ -21,15 +21,17 @@ export class BoardComponent implements OnInit {
   post_groups: any;
   posts: any;
 
+  // https://joshua1988.github.io/web-development/angular/angular2-learn/#angular-1-%EA%B3%BC-2-%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90
+
   ngOnInit() {
     this.displayService.set_board_display();
-    this.get_newses().subscribe(this.init.bind(this))
+    this.get_newses().subscribe(this.init.bind(this));
   }
 
   init(data) {
     let posts = data.reverse();
     this.post_groups = this.utilsService.group_list(8, posts);
-    this.posts = this.post_groups[0]
+    this.posts = this.post_groups[0];
   }
 
   reverse(value) {
