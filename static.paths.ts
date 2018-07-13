@@ -10,5 +10,7 @@ export const ROUTES = [
   '/publications/international-conference',
   '/publications/domestic-conference',
   '/projects',
-  '/researches'
+  '/researches',
+  '/board',
+  '/board/news'
 ];
