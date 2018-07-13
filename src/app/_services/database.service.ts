@@ -10,6 +10,7 @@ export class DatabaseService {
 
 
 export class Project {
+  id: number;
   img: string;
   term: string;
   title: string;
@@ -18,6 +19,7 @@ export class Project {
 
 export const PROJECTS: Array<Project> = [
   {
+    id: 1,
     img: 'assets/img/projects/1.png',
     term: '2018.03 ~ 2019.02',
     title: 'XAI (eXplainable AI) 기반 스마트 에너지 플랫폼 기술 개발 (한국전력공사 전력연구원)',
@@ -50,6 +52,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 2,
     img: 'assets/img/projects/2.png',
     term: '2018.04 ~ 2018.11',
     title: '딥러닝 기반 Wafer Bin Map 이상 및 Map Fail 패턴 탐지 방법 (삼성전자)',
@@ -66,6 +69,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 3,
     img: 'assets/img/projects/3.png',
     term: '2018.04 ~ 2018.10',
     title: '모바일 환경에서 사용자 행위기반 실시간 이상징후 탐지기법 연구 (국가보안기술연구소)',
@@ -86,6 +90,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 4,
     img: 'assets/img/projects/4.png',
     term: '2018.04 ~ 2018.10',
     title: '해상환경 추정 정확도 향상을 위한 이미지 프로세싱을 통한 해상환경 추정기법 개발 (대우조선해양)',
@@ -107,6 +112,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 5,
     img: 'assets/img/projects/5.png',
     term: '2018.03 ~ 2019.02',
     title: 'QoE 정보를 이용한 머신러닝 미디어 스트리밍 최적화 시스템 개발 (정보통신기술진흥센터)',
@@ -135,6 +141,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 6,
     img: 'assets/img/projects/6.png',
     term: '2018.06 ~ 2019.02',
     title: '딥러닝을 활용한 문서와 그래프의 유사성 판단에 대한 연구 (NCSoft)',
@@ -157,6 +164,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 7,
     img: 'assets/img/projects/7.png',
     term: '2018.03 ~ 2019.03',
     title: '머신러닝을 활용한 시스템 이상상태 탐지기술 연구 (국방과학연구소)',
@@ -179,6 +187,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 8,
     img: 'assets/img/projects/8.png',
     term: '2017.11 ~ 2018.04',
     title: '뉴스 기사 및 댓글 극성 분석 방법론 개발 (시그널 코리아)',
@@ -194,6 +203,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 9,
     img: 'assets/img/projects/9.png',
     term: '2017.09 ~ 2017.12',
     title: '빅데이터 기반 조기경보모형 연구 개발 (금융감독원)',
@@ -217,6 +227,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 10,
     img: 'assets/img/projects/10.png',
     term: '2017.07 ~ 2018.01',
     title: '딥러닝 및 텍스트마이닝 기반의 VDS 분석 시스템 개발 (현대자동차)',
@@ -239,6 +250,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 11,
     img: 'assets/img/projects/11.png',
     term: '2017.05 ~ 2017.10',
     title: '딥러닝 기반의 웨이퍼 맵 분류 및 원인 규명 시각화 알고리즘 개발 (삼성전자)',
@@ -255,6 +267,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 12,
     img: 'assets/img/projects/12.png',
     term: '2017.05 ~ 2018.03',
     title: '정형/비정형 데이터 기반의 경제 Knowledge Mining  기술 연구 (NCSoft)',
@@ -272,6 +285,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 13,
     img: 'assets/img/projects/13.png',
     term: '2017.04 ~ 2018.03',
     title: 'QoE 정보를 이용한 머신러닝 미디어 스트리밍 최적화 시스템 개발 (정보통신기술진흥센터)',
@@ -289,6 +303,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 14,
     img: 'assets/img/projects/14.png',
     term: '2016.08 ~ 2017.02',
     title: '다변량 설비/품질 분석용 병렬 Machine learning/Artificial Intelligence 알고리듬 개발(삼성전자)',
@@ -306,6 +321,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 15,
     img: 'assets/img/projects/15.png',
     term: '2016.10 ~ 2017.03',
     title: '뉴스와 주가를 이용한 Knowledge Extraction 기술 개발 (NCSoft)',
@@ -323,6 +339,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 16,
     img: 'assets/img/projects/16.png',
     term: '2016.05 ~ 2017.04',
     title: '비정형의 빅데이터를 활용하여 경쟁환경에서 사업자의 신제품 포지셔닝과 다기간 제품 포트폴리오 선정에 도움을 줄 수 있는 전사적 의사결정 시스템의 개발 (연구책임자, 연세대학교 모정훈 교수님)',
@@ -340,6 +357,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 17,
     img: 'assets/img/projects/17.png',
     term: '2016.09 ~ 2016.12',
     title: '뉴스 기사 극성 방법론 개발, granted by 시그널코리아',
@@ -357,6 +375,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 18,
     img: 'assets/img/projects/18.png',
     term: '2016.11 ~ 2017.01',
     title: '초음파 관련 임상연구 데이터의 텍스트마이닝 플랫폼 개발, granted by 삼성메디슨',
@@ -373,6 +392,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 19,
     img: 'assets/img/projects/19.png',
     term: '2016.04 ~ 2016.11',
     title: '보안 데이터 분석을 위한 사용자 행위 모델 연구 (국가보안기술연구소)',
@@ -390,6 +410,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 20,
     img: 'assets/img/projects/20.png',
     term: '2016.03 ~ 2016.08',
     title: 'Information Quality 평가 기술 개발 (NCSoft)',
@@ -407,6 +428,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 21,
     img: 'assets/img/projects/21.png',
     term: '2016.03 ~ 2016.08',
     title: 'Information Quality 평가 기술 개발 (NCSoft)',
@@ -422,6 +444,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 22,
     img: 'assets/img/projects/22.png',
     term: '2015.05 ~ 2015.07',
     title: 'Opinion Generation 기술 개발 (NCSoft)',
@@ -438,6 +461,7 @@ export const PROJECTS: Array<Project> = [
     ]
   },
   {
+    id: 23,
     img: 'assets/img/projects/23.png',
     term: '2014.05 ~ 2017.04',
     title: '빅데이터를 활용한 준지도학습 기반의 한글 자연어처리 엔진 개발 및 응용, (한국연구재단 신진연구자 지원사업)',
@@ -1139,6 +1163,7 @@ export const PUBLICATIONS: Array<Publication> = [
 
 
 export class Research {
+  id: number;
   img: string;
   title: string;
   contents: Array<object>;
@@ -1146,6 +1171,7 @@ export class Research {
 
 export const RESEARCHES: Array<Research> = [
   {
+    id: 1,
     img: 'assets/img/researches/research01.png',
     title: 'Locally Linear Reconstruction for classification, regression, novelty detection, clustering, and missing value imputation',
     contents: [{
@@ -1160,6 +1186,7 @@ export const RESEARCHES: Array<Research> = [
     }]
   },
   {
+    id: 2,
     img: 'assets/img/researches/research02.png',
     title: 'Supervised Document Embedding & Korean Word Recognition',
     contents: [
@@ -1175,6 +1202,7 @@ export const RESEARCHES: Array<Research> = [
     ]
   },
   {
+    id: 3,
     img: 'assets/img/researches/research03.png',
     title: 'Industrial & Public Applications based on Structured Data',
     contents: [
@@ -1195,6 +1223,7 @@ export const RESEARCHES: Array<Research> = [
     ]
   },
   {
+    id: 4,
     img: 'assets/img/researches/research04.png',
     title: 'Industrial & Public Applications based on Unstructured Data',
     contents: [

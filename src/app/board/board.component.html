@@ -8,9 +8,8 @@
 
 <div class="container content-md">
   <div class="row">
-
-    <div class="col-md-9"
-    data-board-toggle='content'>
+<!--
+    <div class="col-md-9">
       <div class="blog margin-bottom-40">
         <a><div id='dsba-back-btn'><span>←</span></div></a>
         <h2><a href="blog_item_option1.html">2018 대한산업공학회 춘계학술대회</a></h2>
@@ -40,22 +39,36 @@
           감사합니다.
         </p>
       </div>
-    </div>
+    </div> -->
 
-    <div class="col-md-9 on"
-    data-board-toggle='menu'>
+    <div class="col-md-9 on">
+
+      <ul class="pager pager-v3 pager-sm no-margin-bottom">
+        <li class="previous">
+          <a
+          (click)='turn_page(-1)'>← Newer</a>
+        </li>
+        <li class="page-amount">{{ page }} of {{ page_length }}</li>
+        <li class="next">
+          <a
+          (click)='turn_page(+1)'>
+          Older →</a>
+        </li>
+      </ul>
+      <br><br>
       <div
       *ngFor='let post of posts'>
-        <div class="row margin-bottom-20">
-          <div class="col-sm-7 news-v3">
+        <div class="row">
+          <div class="col-sm-{{ is_thumb(post)[0] }} news-v3">
             <div class="news-v3-in-sm no-padding">
               <ul class="list-inline posted-info">
                 <li>{{ post.writer }}</li>
                 <li>In <a href="#">{{ post.category }}</a></li>
-                <li>{{ post.date }}</li>
+                <li>{{ beautify_date(post.date) }}</li>
               </ul>
               <h2><a id='demo-in'>{{ post.title }}</a></h2>
-              <p>{{ trim_html(post.content) }}</p>
+              <p
+              [innerHTML]='trim_html(post.content)'></p>
               <ul class="post-shares">
                 <li>
                   <a href="#">
@@ -66,95 +79,78 @@
               </ul>
             </div>
           </div>
+
+          <div class="col-sm-5 sm-margin-bottom-20"
+          *ngIf='is_thumb(post)[1]'>
+            <div class="responsive-video">
+              <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""
+              src="https://www.youtube.com/embed/f9k5fxouO1Q">
+              </iframe>
+            </div>
+          </div>
+
         </div>
-        <div class="clearfix margin-bottom-20"><hr></div>
+        <div class="clearfix"><hr></div>
       </div>
 
-      <!-- <div class="row margin-bottom-20">
-        <div class="col-sm-7 news-v3">
-          <div class="news-v3-in-sm no-padding">
-            <ul class="list-inline posted-info">
-              <li>김해동</li>
-              <li>In <a href="#">Youtube</a></li>
-              <li>2017. 7. 22.</li>
-            </ul>
-            <h2><a href="#">[DeepNLP]1&2. Introduction & word vector</a></h2>
-            <p></p>
-            <ul class="post-shares">
-              <li>
-                <a href="#">
-                  <i class="rounded-x icon-speech"></i>
-                  <span>5</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="rounded-x icon-eye"></i>
-                  <span>5</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-sm-5 sm-margin-bottom-20">
-          <div class="responsive-video">
-            <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""
-            src="https://www.youtube.com/embed/f9k5fxouO1Q">
-            </iframe>
-          </div>
-        </div>
-      </div>
-      <div class="clearfix margin-bottom-20"><hr></div> -->
-
-      <!-- Pager v3 -->
       <ul class="pager pager-v3 pager-sm no-margin-bottom">
-        <li class="previous"><a href="#">← Older</a></li>
-        <li class="page-amount">1 of 7</li>
-        <li class="next"><a href="#">Newer →</a></li>
+        <li class="previous">
+          <a
+          (click)='turn_page(-1)'>← Newer</a>
+        </li>
+        <li class="page-amount">{{ page }} of {{ page_length }}</li>
+        <li class="next">
+          <a
+          (click)='turn_page(+1)'>
+          Older →</a>
+        </li>
       </ul>
-      <!-- End Pager v3 -->
+      <br><br>
+
     </div>
     <!-- End Blog All Posts -->
-
     <!-- Blog Sidebar -->
     <div class="col-md-3">
 
-      <div class="headline-v2 bg-color-light"><h2>Latest Posts</h2></div>
-      <!-- Latest Links -->
-      <ul class="list-unstyled blog-latest-posts margin-bottom-50">
-        <li>
-          <h3><a href="#">2018 대한산업공학회 춘계학술대회</a></h3>
-          <small>2018. 04. 16. / <a href="#">News</a></small>
-        </li>
-        <li>
-          <h3><a href="#">[DeepNLP]1&2. Introduction & word vector</a></h3>
-          <small>2017. 7. 22. / <a href="#">Youtube</a></small>
-        </li>
-      </ul>
-      <!-- End Latest Links -->
+      <div id='dsba-right-nav' data-nav>
+        <div class="headline-v2 bg-color-light"><h2>Latest Posts</h2></div>
+        <!-- Latest Links -->
+        <ul class="list-unstyled blog-latest-posts margin-bottom-50">
+          <li>
+            <h3><a href="#">2018 대한산업공학회 춘계학술대회</a></h3>
+            <small>2018. 04. 16. / <a href="#">News</a></small>
+          </li>
+          <li>
+            <h3><a href="#">[DeepNLP]1&2. Introduction & word vector</a></h3>
+            <small>2017. 7. 22. / <a href="#">Youtube</a></small>
+          </li>
+        </ul>
+        <!-- End Latest Links -->
 
-      <div class="headline-v2 bg-color-light"><h2>Categories</h2></div>
-      <!-- Tags v2 -->
-      <ul class="list-inline tags-v2 margin-bottom-50">
-        <li><a>News</a></li>
-        <li><a>Photos</a></li>
-        <li><a>Seminar</a></li>
-        <li><a>Youtube</a></li>
-        <li><a>Archive</a></li>
-      </ul>
-      <!-- End Tags v2 -->
+        <div class="headline-v2 bg-color-light"><h2>Categories</h2></div>
+        <!-- Tags v2 -->
+        <ul class="list-inline tags-v2 margin-bottom-50">
+          <li><a>News</a></li>
+          <li><a>Photos</a></li>
+          <li><a>Seminar</a></li>
+          <li><a>Youtube</a></li>
+          <li><a>Archive</a></li>
+        </ul>
+        <!-- End Tags v2 -->
 
-      <div class="headline-v2 bg-color-light"><h2>Photostream</h2></div>
-      <!-- Photostream -->
-      <ul class="list-inline blog-photostream margin-bottom-50">
-        <li
-        *ngFor='let _ of [1,2,3,4,5,6,7,8,9]'>
-          <a href="assets/img/main/placeholder.jpg" rel="gallery" class="fancybox img-hover-v2" title="Image 1">
-            <span><img class="img-responsive" src="assets/img/main/placeholder.jpg" alt=""></span>
-          </a>
-        </li>
-      </ul>
-      <!-- End Photostream -->
+        <div class="headline-v2 bg-color-light"><h2>Photostream</h2></div>
+        <!-- Photostream -->
+        <ul class="list-inline blog-photostream margin-bottom-50">
+          <li
+          *ngFor='let _ of [1,2,3,4,5,6,7,8,9]'>
+            <a href="assets/img/main/placeholder.jpg" rel="gallery" class="fancybox img-hover-v2" title="Image 1">
+              <span><img class="img-responsive" src="assets/img/main/placeholder.jpg" alt=""></span>
+            </a>
+          </li>
+        </ul>
+        <!-- End Photostream -->
+      </div>
+
     </div>
     <!-- End Blog Sidebar -->
   </div>

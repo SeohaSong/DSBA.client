@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common'
 
 import { DisplayService } from "../_services/display.service";
 import { UtilsService } from "../_services/utils.service";
@@ -15,27 +16,60 @@ export class BoardComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private displayService: DisplayService,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private location: Location
   ) { }
 
   post_groups: any;
   posts: any;
-
-  // https://joshua1988.github.io/web-development/angular/angular2-learn/#angular-1-%EA%B3%BC-2-%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90
+  page_length: number;
+  page: number;
 
   ngOnInit() {
-    this.displayService.set_board_display();
-    this.get_newses().subscribe(this.init.bind(this));
+    let init = (data) => {
+      let posts = data.reverse();
+      this.post_groups = this.utilsService.group_list(10, posts);
+      this.page_length = this.post_groups.length;
+      this.turn_page();
+      this.displayService.set_board_display();
+    }
+    this.get_newses().subscribe(init.bind(this));
+
   }
 
-  init(data) {
-    let posts = data.reverse();
-    this.post_groups = this.utilsService.group_list(8, posts);
-    this.posts = this.post_groups[0];
+  turn_page(change=0) {
+
+    let page: number;
+    let max_page = this.page_length;
+    let path = this.location.path();
+    let page_param = /\?.*page=(\w+)/.exec(path);
+    let post_groups = this.post_groups;
+
+    if(!page_param) {page = 1} else {page = parseInt(page_param[1])+change}
+    if(page < 1) {page = 1} else if(page > max_page) {page = max_page}
+
+    this.page = page;
+    this.posts = post_groups[page-1];
+    this.location.go(path.split('?')[0]+'?page='+(page));
   }
 
   reverse(value) {
     return value.reverse();
+  }
+
+  is_thumb(post) {
+    if(post.images.length) {
+      return [7, true]
+    } else {
+      return [10, false]
+    }
+  }
+
+  beautify_date(date) {
+    let y = date.slice(0, 4)
+    let m = date.slice(4, 6)
+    let d = date.slice(6, 8)
+    return [y, m, d].join('.')
   }
 
   trim_html(html){

@@ -38,13 +38,10 @@ const routes: Routes = [
   },
   { path: 'board', component: BoardComponent,
     children: [
-      { path: 'news', component: BoardComponent},
-      { path: 'photos', component: BoardComponent},
-      { path: 'seminar', component: BoardComponent},
-      { path: 'videos', component: BoardComponent},
-      { path: 'archive', component: BoardComponent},
+      { path: 'news', component: BoardComponent },
+      // { path: 'news/:id', component: BoardComponent }
     ]
-},
+  }
 ];
 
 

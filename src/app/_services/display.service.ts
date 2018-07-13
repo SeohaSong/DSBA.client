@@ -25,6 +25,39 @@ export class DisplayService {
   ) { }
 
 
+  init_scroll(doc, top_pad, bottom_pad) {
+    let nav = $("[data-nav]");
+    let init_top = parseInt(nav.css('top'));
+    doc.on('scroll resize', () => {
+      let scroll_top = doc.scrollTop();
+      let top = init_top-scroll_top;
+      let nav_h = parseInt(nav.css('height'));
+      let body_h = parseInt($('body').css('height'));
+      let bottom = body_h-top_pad-scroll_top-nav_h;
+      let top_cutoff = top-top_pad;
+      let bottom_cutoff = bottom-bottom_pad;
+      if (top_cutoff > 0) {nav.css('top', top);}
+      else if (bottom_cutoff < 0) {nav.css('top', top_pad+bottom_cutoff);}
+      else {nav.css('top', top_pad);}
+    })
+  }
+
+
+  init_pagenation() {
+    let lsts = $("[data-pagenation-lst]")
+    let btns = $("[data-pagenation-btn]")
+    $(lsts[0]).addClass('in');
+    $(btns[0]).addClass('in');
+    btns.click((e) => {
+      let btn = $(e.currentTarget)
+      let lst = lsts[btn.data('pagenation-btn')]
+      lsts.removeClass('in');
+      btns.removeClass('in');
+      btn.addClass('in');
+      $(lst).addClass('in');
+    });
+  }
+
   set_default_display(){
     setTimeout(() => {
       $("a[href^='/']").click(() => {
@@ -115,23 +148,6 @@ export class DisplayService {
 
   set_researches_display(){
 
-    let init_scroll = (doc, top_pad, bottom_pad) => {
-      let nav = $("[data-nav]");
-      let init_top = parseInt(nav.css('top'));
-      doc.on('scroll resize', () => {
-        let scroll_top = doc.scrollTop();
-        let top = init_top-scroll_top;
-        let nav_h = parseInt(nav.css('height'));
-        let body_h = parseInt($('body').css('height'));
-        let bottom = body_h-top_pad-scroll_top-nav_h;
-        let top_cutoff = top-top_pad;
-        let bottom_cutoff = bottom-bottom_pad;
-        if (top_cutoff > 0) {nav.css('top', top);}
-        else if (bottom_cutoff < 0) {nav.css('top', top_pad+bottom_cutoff);}
-        else {nav.css('top', top_pad);}
-      })
-    }
-
     let init_section = (doc, top_pad) => {
       $("a[data-section]").click((e) => {
         let id = $(e.currentTarget).data('section');
@@ -140,44 +156,24 @@ export class DisplayService {
       })
     }
 
-    let init_page = () => {
-      let ul8spans = $("[data-page]")
-      let uls = ul8spans.filter('ul')
-      let spans = ul8spans.filter('span')
-      $(uls[0]).addClass('in');
-      $(spans[0]).addClass('in');
-      spans.click((e) => {
-        let span = $(e.currentTarget)
-        let ul = uls[span.data('page')]
-        ul8spans.removeClass('in');
-        span.addClass('in');
-        $(ul).addClass('in');
-      });
-    }
-
     if (isPlatformBrowser(this.platformId)) {
       this.set_default_display();
       setTimeout(() => {
         let doc = $(document)
-        init_scroll(doc, 150, 450);
+        this.init_scroll(doc, 150, 450);
         init_section(doc, 100);
-        init_page();
+        this.init_pagenation();
       })
     }
   }
+
 
   set_board_display(){
     if (isPlatformBrowser(this.platformId)) {
       this.set_default_display();
       setTimeout(() => {
-        $('#demo-in').click(() => {
-          $('[data-board-toggle]').removeClass('on');
-          $('[data-board-toggle=content]').addClass('on');
-        })
-        $('#dsba-back-btn').click(() => {
-          $('[data-board-toggle]').removeClass('on');
-          $('[data-board-toggle=menu]').addClass('on');
-        })
+        let doc = $(document)
+        this.init_scroll(doc, 150, 450);
       })
     }
   }

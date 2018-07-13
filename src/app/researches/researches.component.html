@@ -22,11 +22,11 @@
         <div class="headline-v2"><h2>Researches</h2></div>
         <ul class="list-unstyled blog-trending margin-bottom-50"
         *ngFor='let researches of research_groups; let i=index'
-        [attr.data-page]='i'>
+        [attr.data-pagenation-lst]='i'>
           <li
-          *ngFor='let research of researches; let i=index'>
+          *ngFor='let research of researches'>
             <a
-            [attr.data-section]="i">
+            [attr.data-section]="research.id">
               <h3>{{research.title}}</h3>
             </a>
           </li>
@@ -35,12 +35,10 @@
         *ngIf='research_groups[1]'>
           <span
           *ngFor='let researches of research_groups; let i=index'
-          [attr.data-page]='i'>
+          [attr.data-pagenation-btn]='i'>
             <span
             *ngIf='i'>|</span>
-            <a>
-              <div class="cbp-filter-item">{{ i+1 }}</div>
-            </a>
+            <a><div class="cbp-filter-item">{{ i+1 }}</div></a>
           </span>
         </div>
       </div>
@@ -50,7 +48,7 @@
       <div class="row"
       *ngFor='let research of researches; let i=index'>
         <div class="col-md-12 md-margin-bottom-50"
-        [attr.data-section]="i">
+        [attr.data-section]="research.id">
           <img class="img-responsive" src='{{research.img}}' alt="">
         </div>
         <div class="col-md-9">
@@ -77,4 +75,3 @@
 
 
 </div>
-<br><br><br><br><br><br>

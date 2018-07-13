@@ -22,11 +22,11 @@
         <div class="headline-v2"><h2>Korea University<br>(연구책임자)</h2></div>
         <ul class="list-unstyled blog-trending margin-bottom-50"
         *ngFor='let projects of project_groups; let i=index'
-        [attr.data-page]='i'>
+        [attr.data-pagenation-lst]='i'>
           <li
-          *ngFor='let project of projects; let i=index'>
+          *ngFor='let project of projects'>
             <a
-            [attr.data-section]="i">
+            [attr.data-section]="project.id">
               <h3>{{project.title}}</h3>
             </a>
           </li>
@@ -35,12 +35,10 @@
         *ngIf='project_groups[1]'>
           <span
           *ngFor='let projects of project_groups; let i=index'
-          [attr.data-page]='i'>
+          [attr.data-pagenation-btn]='i'>
             <span
             *ngIf='i'>|</span>
-            <a>
-              <div class="cbp-filter-item">{{ i+1 }}</div>
-            </a>
+            <a><div class="cbp-filter-item">{{ i+1 }}</div></a>
           </span>
         </div>
       </div>
@@ -48,9 +46,9 @@
 
     <div class='col-md-9'>
       <div class="row"
-      *ngFor='let project of projects; let i=index'>
+      *ngFor='let project of projects'>
         <div class="col-md-12 md-margin-bottom-50"
-        [attr.data-section]="i">
+        [attr.data-section]="project.id">
           <img class="img-responsive" src='{{project.img}}' alt="">
         </div>
         <div class="col-md-12">
@@ -77,4 +75,3 @@
 
 
 </div>
-<br><br><br><br><br><br>

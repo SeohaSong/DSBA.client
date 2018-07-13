@@ -1,11 +1,11 @@
-ul[data-page] {
+[data-pagenation-lst] {
   display: none;
   &.in {
     display: block;
   }
 }
 
-span[data-page] {
+[data-pagenation-btn] {
   &.in {
     .cbp-filter-item {
       color: #395182;

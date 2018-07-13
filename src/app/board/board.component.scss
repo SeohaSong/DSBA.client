@@ -5,6 +5,19 @@
   }
 }
 
+@media (min-width: 992px) {
+  #dsba-right-nav {
+    position: fixed;
+    max-width: 270px;
+    width: 25%;
+  }
+}
+@media (max-width: 991px) {
+  #dsba-right-nav {
+    display: block;
+  }
+}
+
 #dsba-back-btn {
   height: 40px;
   width: 40px;
@@ -20,6 +33,10 @@
   }
 }
 
+.container.content-md {
+  min-height: 1000px;
+}
+
 .news-v3 h2 a:hover {
   color: #482525;
   font-weight: 500;
@@ -29,4 +46,8 @@
   background-color: #395182;
   min-width: 22px;
   width: inherit;
+}
+
+.pager-v3 {
+  margin-top: 0px;
 }
