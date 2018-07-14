@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import {
-  STUDENTS, RESEARCHES, PUBLICATIONS, COOPERATIONS, PROJECTS
+  CATEGORIES, STUDENTS, RESEARCHES, PUBLICATIONS, COOPERATIONS, PROJECTS
 } from "./database.service";
 
 
@@ -37,6 +37,10 @@ export class UtilsService {
       groups[group_idxs[i]].push(list[i])
     }
     return groups
+  }
+
+  get_categories() {
+    return CATEGORIES
   }
 
   get_student_pairs(type): any {

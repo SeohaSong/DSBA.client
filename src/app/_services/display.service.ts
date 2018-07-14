@@ -59,22 +59,11 @@ export class DisplayService {
   }
 
 
-  set_default_display(){
-    setTimeout(() => {
-      $("a[href^='/']").click(() => {
-        $(document).scrollTop(0)
-        let nav = $('.navbar-responsive-collapse')
-        nav.removeClass("in");
-      });
-    });
-  }
-
-
   init_display(){
 
     let init = () => {
       let type = this.utilsService.get_url_head();
-      console.log(type)
+      if(type == 'board') {type = 'activities'}
       $("[data-category]").removeClass('active');
       $("[data-category="+type+"]").addClass('active');
     }
@@ -90,6 +79,17 @@ export class DisplayService {
         $("a[href^='/']").click(() => {init();});
       })
     }
+  }
+
+
+  set_default_display(){
+    setTimeout(() => {
+      $("a[href^='/']").click(() => {
+        $(document).scrollTop(0)
+        let nav = $('.navbar-responsive-collapse')
+        nav.removeClass("in");
+      });
+    });
   }
 
 

@@ -58,18 +58,14 @@ export class BoardComponent implements OnInit {
   }
 
   is_image(images) {
-    if(images.length) {
-      return [7, true]
-    } else {
-      return [10, false]
-    }
+    if(images.length) {return true} else {return false}
   }
 
   beautify_date(date) {
-    let y = date.slice(0, 4)
-    let m = date.slice(4, 6)
-    let d = date.slice(6, 8)
-    return [y, m, d].join('.')
+    let y = date.slice(0, 4);
+    let m = date.slice(4, 6);
+    let d = date.slice(6, 8);
+    return [y, m, d].join('.');
   }
 
   trim_html(html){

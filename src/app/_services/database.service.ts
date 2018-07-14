@@ -9,6 +9,58 @@ export class DatabaseService {
 }
 
 
+export class Category {
+  id: number;
+  lv0content: object;
+  lv1content: Array<object>;
+}
+
+export const CATEGORIES: Array<Category> = [
+  {
+    id: 0,
+    lv0content: {title: 'members', link: null},
+    lv1content: [
+      {title: 'Overall', link: '/members/overall'},
+      {title: 'Professor', link: '/members/professor'},
+      {title: 'Students', link: '/members/students'},
+      {title: 'Alumni', link: '/members/alumni'},
+    ]
+  },
+  {
+    id: 1,
+    lv0content: {title: 'researches', link: '/researches'},
+    lv1content: []
+  },
+  {
+    id: 2,
+    lv0content: {title: 'publications', link: null},
+    lv1content: [
+      {title: 'International Journal', link: '/publications/international-journal'},
+      {title: 'Domestic Journal', link: '/publications/domestic-journal'},
+      {title: 'International Conference', link: '/publications/international-conference'},
+      {title: 'Domestic Conference', link: '/publications/domestic-conference'},
+    ]
+  },
+  {
+    id: 3,
+    lv0content: {title: 'projects', link: '/projects'},
+    lv1content: []
+  },
+  {
+    id: 4,
+    lv0content: {title: 'activities', link: null},
+    lv1content: [
+      {title: 'News', link: '/board/news'},
+      {title: 'Photos', link: '/board/photos'},
+      {title: 'Seminar', link: '/board/seminar'},
+      {title: 'Videos', link: '/board/videos'},
+      {title: 'Archive', link: '/board/archive'},
+      {title: 'LINKS', link: null},
+    ]
+  }
+]
+
+
 export class Project {
   id: number;
   img: string;

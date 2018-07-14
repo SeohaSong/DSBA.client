@@ -1,83 +1,46 @@
 <div class="wrapper">
-  <!--=== Header ===-->
   <div class="header">
     <div class="container">
-      <!-- Logo -->
       <a class="logo" routerLink="/main">
         <img height=40 src="assets/img/custom/ku_logo.png" alt="Logo">
         <img height=40 src="assets/img/custom/dsba_logo.png" alt="Logo">
       </a>
-      <!-- End Logo -->
 
-      <!-- Toggle get grouped for better mobile display -->
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="fa fa-bars"></span>
       </button>
-      <!-- End Toggle -->
-    </div><!--/end container-->
+    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
       <div class="container">
         <ul class="nav navbar-nav">
-
-          <li class="dropdown" data-category="members">
-            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-              MEMBERS
-            </a>
-            <ul class="dropdown-menu">
-              <li><a routerLink="/members/overall">Overall</a></li>
-              <li><a routerLink="/members/professor">Professor</a></li>
-              <li><a routerLink="/members/students">Students</a></li>
-              <li><a routerLink="/members/alumni">Alumni</a></li>
-            </ul>
-          </li>
-
-          <li data-category="researches">
-            <a routerLink="/researches">
-              RESEARCHES
-            </a>
-          </li>
-
-          <li class="dropdown" data-category="publications">
-            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-              PUBLICATIONS
-            </a>
-            <ul class="dropdown-menu">
-              <li><a routerLink="/publications/international-journal">International Journal</a></li>
-              <li><a routerLink="/publications/domestic-journal">Domestic Journal</a></li>
-              <li><a routerLink="/publications/international-conference">International Conference</a></li>
-              <li><a routerLink="/publications/domestic-conference">Domestic Conference</a></li>
-            </ul>
-          </li>
-
-          <li data-category="projects">
-            <a routerLink="/projects">
-              PROJECTS
-            </a>
-          </li>
-
-          <li class="dropdown"
-          data-category="activities">
-            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-              ACTIVITIES
-            </a>
-            <ul class="dropdown-menu">
-              <li><a routerLink='board/news'>News</a></li>
-              <li><a routerLink='board/photos'>Photos</a></li>
-              <li><a routerLink='board/seminar'>Seminar</a></li>
-              <li><a routerLink='board/videos'>Videos</a></li>
-              <li><a routerLink='board/archive'>Archive</a></li>
-              <li><a><i class="rounded-x icon-eye"></i> LINKS</a></li>
-            </ul>
-          </li>
-
+          <ng-template ngFor let-category [ngForOf]='categories'>
+            <li class="dropdown"
+            *ngIf='!category.lv0content.link'
+            [attr.data-category]="category.lv0content.title">
+              <a class="dropdown-toggle" data-toggle="dropdown">
+                {{ category.lv0content.title }}
+              </a>
+              <ul class="dropdown-menu">
+                <li
+                *ngFor='let content of category.lv1content'>
+                  <a routerLink="{{ content.link }}">{{ content.title }}</a>
+                </li>
+              </ul>
+            </li>
+            <li
+            *ngIf='category.lv0content.link'
+            [attr.data-category]="category.lv0content.title">
+              <a routerLink="{{ category.lv0content.title }}">
+                {{ category.lv0content.title }}
+              </a>
+            </li>
+          </ng-template>
         </ul>
-      </div><!--/end container-->
-    </div><!--/navbar-collapse-->
+      </div>
+    </div>
   </div>
-  <!--=== End Header ===-->
   <div id='dsba-back-header'></div>
 
   <router-outlet></router-outlet>
@@ -89,7 +52,10 @@
         <div class="row">
           <!-- About -->
           <div class="col-md-3 md-margin-bottom-40">
-            <a routerLink=""><img id="logo-footer" class="footer-logo" src="assets/img/custom/dsba_logo.png" height=40></a>
+            <a routerLink="">
+              <img id="logo-footer" class="footer-logo"
+              src="assets/img/custom/dsba_logo.png" height=40>
+            </a>
             <p>Data Science & Business Analytics Lab</p>
             <p>School of Industrial Management Engineering</p>
             <p>College of Engineering, Korea University</p>
@@ -153,7 +119,10 @@
               대한민국 서울특별시 성북구 안암로 145 <br />
               고려대학교 신공학관 220호 <br />
               Tel: +82-(0)2-3290-3775 <br />
-              Email: <a href="mailto:dsba@korea.ac.kr" class="">pilsung_kang@korea.ac.kr</a>
+              Email:
+              <a href="mailto:dsba@korea.ac.kr" class="">
+                pilsung_kang@korea.ac.kr
+              </a>
             </address>
           </div><!--/col-md-3-->
           <!-- End Address -->

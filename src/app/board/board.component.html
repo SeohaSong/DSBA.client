@@ -58,8 +58,10 @@
       <br><br>
       <div
       *ngFor='let post of posts'>
-        <div class="row">
-          <div class="col-sm-{{ is_image(post.images)[0] }} news-v3">
+
+        <div class="row"
+        *ngIf='!is_image(post.images)'>
+          <div class="col-sm-10 news-v3">
             <div class="news-v3-in-sm no-padding">
               <ul class="list-inline posted-info">
                 <li>{{ post.writer }}</li>
@@ -79,15 +81,37 @@
               </ul>
             </div>
           </div>
+        </div>
 
-          <div class="col-sm-5 sm-margin-bottom-20"
-          *ngIf='is_image(post.images)[1]'>
+        <div class="row"
+        *ngIf='is_image(post.images)'>
+          <div class="col-sm-7 news-v3">
+            <div class="news-v3-in-sm no-padding">
+              <ul class="list-inline posted-info">
+                <li>{{ post.writer }}</li>
+                <li>In <a href="#">{{ post.category }}</a></li>
+                <li>{{ beautify_date(post.date) }}</li>
+              </ul>
+              <h2><a id='demo-in'>{{ post.title }}</a></h2>
+              <p
+              [innerHTML]='trim_html(post.content)'></p>
+              <ul class="post-shares">
+                <li>
+                  <a href="#">
+                    <i class="rounded-x icon-eye"></i>
+                    <span>{{ post.view_count }}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-4 sm-margin-bottom-20">
             <div class="responsive-video">
               <img src="http://dsba.korea.ac.kr/wp{{ post.images[0] }}">
             </div>
           </div>
-
         </div>
+
         <div class="clearfix"><hr></div>
       </div>
 
