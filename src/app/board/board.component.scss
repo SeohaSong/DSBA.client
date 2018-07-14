@@ -51,3 +51,20 @@
 .pager-v3 {
   margin-top: 0px;
 }
+
+.pager.pager-v3 li > a {
+  &:hover, &:focus {
+    background: #395182;
+    border-color: #395182;
+  }
+}
+
+.responsive-video {
+  > img {
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 80%;
+    position: absolute;
+  }
+}

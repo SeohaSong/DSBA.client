@@ -59,7 +59,7 @@
       <div
       *ngFor='let post of posts'>
         <div class="row">
-          <div class="col-sm-{{ is_thumb(post)[0] }} news-v3">
+          <div class="col-sm-{{ is_image(post.images)[0] }} news-v3">
             <div class="news-v3-in-sm no-padding">
               <ul class="list-inline posted-info">
                 <li>{{ post.writer }}</li>
@@ -81,11 +81,9 @@
           </div>
 
           <div class="col-sm-5 sm-margin-bottom-20"
-          *ngIf='is_thumb(post)[1]'>
+          *ngIf='is_image(post.images)[1]'>
             <div class="responsive-video">
-              <iframe frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""
-              src="https://www.youtube.com/embed/f9k5fxouO1Q">
-              </iframe>
+              <img src="http://dsba.korea.ac.kr/wp{{ post.images[0] }}">
             </div>
           </div>
 
@@ -108,8 +106,7 @@
       <br><br>
 
     </div>
-    <!-- End Blog All Posts -->
-    <!-- Blog Sidebar -->
+
     <div class="col-md-3">
 
       <div id='dsba-right-nav' data-nav>

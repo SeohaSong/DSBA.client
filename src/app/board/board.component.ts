@@ -57,8 +57,8 @@ export class BoardComponent implements OnInit {
     return value.reverse();
   }
 
-  is_thumb(post) {
-    if(post.images.length) {
+  is_image(images) {
+    if(images.length) {
       return [7, true]
     } else {
       return [10, false]

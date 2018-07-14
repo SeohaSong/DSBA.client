@@ -58,6 +58,7 @@ export class DisplayService {
     });
   }
 
+
   set_default_display(){
     setTimeout(() => {
       $("a[href^='/']").click(() => {
