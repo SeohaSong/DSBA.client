@@ -69,7 +69,7 @@ export class DisplayService {
     }
 
     if (isPlatformBrowser(this.platformId)) {
-      this.set_default_display()
+      this.set_default_display();
       setTimeout(() => {
         App.init();
   			FancyBox.initFancybox();
@@ -95,17 +95,15 @@ export class DisplayService {
 
   set_main_display(){
     if (isPlatformBrowser(this.platformId)) {
-      this.set_default_display()
+      this.set_default_display();
       setTimeout(() => {
         OwlCarousel.initOwlCarousel();
         ParallaxSlider.initParallaxSlider();
-
         $("a[data-section]").click((e) => {
           let id = $(e.target).data('section');
           let scroll_top = $("div[data-section="+id+"]").offset().top
           $(document).scrollTop(scroll_top-100)
         })
-
       })
     }
   }
@@ -113,7 +111,7 @@ export class DisplayService {
 
   set_members_display(){
     if (isPlatformBrowser(this.platformId)) {
-      this.set_default_display()
+      this.set_default_display();
       setTimeout(() => {
         let type = this.utilsService.get_url_tail();
         $("li.list-group-item > a[href='/members/"+type+"']")
@@ -160,7 +158,7 @@ export class DisplayService {
     if (isPlatformBrowser(this.platformId)) {
       this.set_default_display();
       setTimeout(() => {
-        let doc = $(document)
+        let doc = $(document);
         this.init_scroll(doc, 150, 450);
         init_section(doc, 100);
         this.init_pagenation();
@@ -173,7 +171,7 @@ export class DisplayService {
     if (isPlatformBrowser(this.platformId)) {
       this.set_default_display();
       setTimeout(() => {
-        let doc = $(document)
+        let doc = $(document);
         this.init_scroll(doc, 150, 450);
       })
     }
