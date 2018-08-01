@@ -36,6 +36,7 @@ const routes: Routes = [
       { path: 'domestic-conference', component: PublicationsComponent }
     ]
   },
+  { path: 'board', component: BoardComponent },
   { path: 'board/news', component: BoardComponent },
   { path: 'board/news/:id', component: BoardComponent }
 ];
