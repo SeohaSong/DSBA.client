@@ -84,7 +84,7 @@ export class DisplayService {
 
   set_default_display(){
     setTimeout(() => {
-      $("a[href^='/']").click(() => {
+      $("a").click(() => {
         $(document).scrollTop(0)
         let nav = $('.navbar-responsive-collapse')
         nav.removeClass("in");

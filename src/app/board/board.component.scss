@@ -1,10 +1,3 @@
-[data-board-toggle] {
-  display: none;
-  &.on {
-    display: block;
-  }
-}
-
 @media (min-width: 992px) {
   #dsba-right-nav {
     position: fixed;
@@ -18,20 +11,24 @@
   }
 }
 
-#dsba-back-btn {
-  height: 40px;
-  width: 40px;
-  border-radius: 5px;
-  border: 2px solid #395182;
-  margin-bottom: 10px;
-  span {
-    position: absolute;
-    font-size: 30px;
-    top: -6px;
-    left: 20px;
-    color: #395182;
+#daba-board {
+  padding: 0px 60px 30px 30px;
+  #dsba-back-btn {
+    height: 40px;
+    width: 40px;
+    border-radius: 5px;
+    border: 2px solid #395182;
+    margin-bottom: 10px;
+    span {
+      position: absolute;
+      font-size: 30px;
+      top: -6px;
+      left: 20px;
+      color: #395182;
+    }
   }
 }
+
 
 .container.content-md {
   min-height: 1000px;
