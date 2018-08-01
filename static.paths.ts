@@ -11,6 +11,5 @@ export const ROUTES = [
   '/publications/domestic-conference',
   '/projects',
   '/researches',
-  '/board',
   '/board/news'
 ];
