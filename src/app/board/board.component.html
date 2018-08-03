@@ -12,7 +12,9 @@
       <div class='row' id='daba-post-box'
       *ngIf='post'>
         <div class="blog margin-bottom-40">
-          <a><div id='dsba-back-btn'><span>←</span></div></a>
+          <a (click)='reset_post()'>
+            <div id='dsba-back-btn'><span>←</span></div>
+          </a>
           <h2><a>{{ post.title }}</a></h2>
           <div class="blog-post-tags">
             <ul class="list-unstyled list-inline blog-info">

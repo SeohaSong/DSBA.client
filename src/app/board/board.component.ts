@@ -50,6 +50,12 @@ export class BoardComponent implements OnInit {
       let url = this.location.path().split('?');
       this.location.go('/board/news/'+id+'?'+url[1]);
     }
+    this.displayService.do_click_postprocessing();
+  }
+
+  reset_post() {
+    this.post = null;
+    this.displayService.do_click_postprocessing();
   }
 
   turn_page(change=0) {

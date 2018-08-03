@@ -69,7 +69,7 @@ export class DisplayService {
     }
 
     if (isPlatformBrowser(this.platformId)) {
-      this.set_default_display();
+      this.init_click_postprocessing();
       setTimeout(() => {
         App.init();
   			FancyBox.initFancybox();
@@ -82,20 +82,21 @@ export class DisplayService {
   }
 
 
-  set_default_display(){
+  do_click_postprocessing() {
+    $(document).scrollTop(0)
+    $('.navbar-responsive-collapse').removeClass("in");
+  }
+
+  init_click_postprocessing() {
     setTimeout(() => {
-      $("a").click(() => {
-        $(document).scrollTop(0)
-        let nav = $('.navbar-responsive-collapse')
-        nav.removeClass("in");
-      });
+      this.do_click_postprocessing();
     });
   }
 
 
   set_main_display(){
     if (isPlatformBrowser(this.platformId)) {
-      this.set_default_display();
+      this.init_click_postprocessing();
       setTimeout(() => {
         OwlCarousel.initOwlCarousel();
         ParallaxSlider.initParallaxSlider();
@@ -111,7 +112,7 @@ export class DisplayService {
 
   set_members_display(){
     if (isPlatformBrowser(this.platformId)) {
-      this.set_default_display();
+      this.init_click_postprocessing();
       setTimeout(() => {
         let type = this.utilsService.get_url_tail();
         $("li.list-group-item > a[href='/members/"+type+"']")
@@ -136,7 +137,7 @@ export class DisplayService {
     }
 
     if (isPlatformBrowser(this.platformId)) {
-      this.set_default_display();
+      this.init_click_postprocessing();
       setTimeout(() => {
         init();
         $("a[href^='/publications/']").click(() => {init();});
@@ -156,7 +157,7 @@ export class DisplayService {
     }
 
     if (isPlatformBrowser(this.platformId)) {
-      this.set_default_display();
+      this.init_click_postprocessing();
       setTimeout(() => {
         let doc = $(document);
         this.init_scroll(doc, 150, 450);
@@ -169,7 +170,7 @@ export class DisplayService {
 
   set_board_display(){
     if (isPlatformBrowser(this.platformId)) {
-      this.set_default_display();
+      this.init_click_postprocessing();
       setTimeout(() => {
         let doc = $(document);
         this.init_scroll(doc, 150, 450);
