@@ -53,7 +53,6 @@ export const CATEGORIES: Array<Category> = [
       {title: 'News', link: '/board/news'},
       {title: 'Photos', link: '/board/photos'},
       {title: 'Seminar', link: '/board/seminar'},
-      {title: 'Videos', link: '/board/videos'},
       {title: 'Archive', link: '/board/archive'},
       {title: 'LINKS', link: null},
     ]

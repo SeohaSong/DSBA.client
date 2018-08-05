@@ -27,6 +27,7 @@ export class BoardComponent implements OnInit {
   post: any;
   post_groups: any;
   post_group: any;
+  latest_posts: any;
   page_length: number;
   page: number;
 
@@ -37,25 +38,46 @@ export class BoardComponent implements OnInit {
         this.posts = posts.slice().reverse();
         this.post_groups = this.utilsService.group_list(10, posts);
         this.page_length = this.post_groups.length;
-        this.show_post(this.route.snapshot.paramMap.get('id'));
+        let post_id = this.route.snapshot.paramMap.get('id');
+        if (post_id) {
+          this.show_post(post_id);
+        }
         this.turn_page();
+        this.latest_posts = posts.slice(0, 2);
         this.displayService.set_board_display();
       }).bind(this)
     );
   }
 
   show_post(id) {
-    if (id) {
-      this.post = this.posts[parseInt(id)];
-      let url = this.location.path().split('?');
-      this.location.go('/board/news/'+id+'?'+url[1]);
-    }
+    this.post = this.posts[parseInt(id)];
+    let url = this.location.path().split('?');
+    this.location.go(
+      [[url[0].replace(/\/\d+/, ''), id].join('/'), url[1]]
+      .join('?')
+    );
     this.displayService.do_click_postprocessing();
   }
 
   reset_post() {
     this.post = null;
-    this.displayService.do_click_postprocessing();
+    let url = this.location.path().split('?');
+    this.location.go(
+      [url[0].replace(/\/\d+/, ''), url[1]]
+      .join('?')
+    );
+  }
+
+  turn_post(change=0) {
+    let id = this.post.id+change;
+    if (!(id+1 < 1 || id+1 > this.posts.length)) {
+      this.post = this.posts[id]
+      let url = this.location.path().split('?');
+      this.location.go(
+        [[url[0].replace(/\/\d+/, ''), id].join('/'), url[1]]
+        .join('?')
+      );
+    }
   }
 
   turn_page(change=0) {

@@ -1,40 +1,58 @@
 <div class="breadcrumbs-v1">
   <div class="container">
-    <span>DABA</span>
+    <span>DSBA</span>
     <h1>BOARD</h1>
   </div>
 </div>
 
-<div class="container content-md">
-  <div class="row">
 
+<div class="container">
+  <div class="row">
+    <!-- post-board start -->
     <div class="col-md-9" id='daba-board'>
-      <div class='row' id='daba-post-box'
+
+      <!-- post-box start -->
+      <div class='row'
       *ngIf='post'>
-        <div class="blog margin-bottom-40">
-          <a (click)='reset_post()'>
-            <div id='dsba-back-btn'><span>←</span></div>
-          </a>
-          <h2><a>{{ post.title }}</a></h2>
-          <div class="blog-post-tags">
-            <ul class="list-unstyled list-inline blog-info">
-              <li>
-                <i class="fa fa-calendar"></i>
-                {{ beautify_date(post.date) }}
-              </li>
-              <li><i class="fa fa-pencil"></i> {{ post.writer }}</li>
-              <li>
-                <i class="fa fa-comments"></i>
-                <a href="#"> 0 Comments</a>
-              </li>
-              <li><i class="fa fa-tags"></i> {{ post.category }}</li>
-            </ul>
+        <ul class="pager pager-v3 pager-sm no-margin-bottom">
+          <li class="previous">
+            <a (click)='turn_post(+1)'>← Newer</a>
+          </li>
+          <li class="page-amount">{{ post.id+1 }} / {{ posts.length }}</li>
+          <li class="next">
+            <a (click)='turn_post(-1)'>Older →</a>
+          </li>
+        </ul>
+        <div id='daba-post-box'>
+          <div class="blog margin-bottom-40">
+            <a (click)='reset_post()'>
+              <div id='dsba-back-btn'><span>←</span></div>
+            </a>
+            <h2>{{ post.title }}</h2>
+            <div class="blog-post-tags">
+              <ul class="list-unstyled list-inline blog-info">
+                <li>
+                  <i class="fa fa-calendar"></i>
+                  {{ beautify_date(post.date) }}
+                </li>
+                <li><i class="fa fa-pencil"></i> {{ post.writer }}</li>
+                <li>
+                  <i class="fa fa-comments"></i>
+                  <a href="#"> 0 Comments</a>
+                </li>
+                <li><i class="fa fa-tags"></i> {{ post.category }}</li>
+              </ul>
+            </div>
+            <p [innerHTML]='post.content'></p>
           </div>
-          <p [innerHTML]='post.content'></p>
         </div>
       </div>
+      <!-- post-box end -->
+
+      <!-- post-list start -->
       <div class="row">
-        <ul class="pager pager-v3 pager-sm no-margin-bottom">
+        <ul class="pager pager-v3 pager-sm no-margin-bottom"
+        *ngIf='!post'>
           <li class="previous">
             <a (click)='turn_page(-1)'>← Newer</a>
           </li>
@@ -43,7 +61,7 @@
             <a (click)='turn_page(+1)'>Older →</a>
           </li>
         </ul>
-        <br><br>
+        <br>
         <div *ngFor='let post of post_group'>
           <div class="row"
           *ngIf='!is_image(post.images)'>
@@ -51,17 +69,15 @@
               <div class="news-v3-in-sm no-padding">
                 <ul class="list-inline posted-info">
                   <li>{{ post.writer }}</li>
-                  <li>In <a href="#">{{ post.category }}</a></li>
+                  <li>In {{ post.category }}</li>
                   <li>{{ beautify_date(post.date) }}</li>
                 </ul>
                 <h2><a (click)='show_post(post.id)'>{{ post.title }}</a></h2>
                 <p [innerHTML]='trim_html(post.content)'></p>
                 <ul class="post-shares">
                   <li>
-                    <a href="#">
-                      <i class="rounded-x icon-eye"></i>
-                      <span>{{ post.view_count }}</span>
-                    </a>
+                    <i class="rounded-x icon-eye"></i>
+                    <span>{{ post.view_count }}</span>
                   </li>
                 </ul>
               </div>
@@ -73,17 +89,15 @@
               <div class="news-v3-in-sm no-padding">
                 <ul class="list-inline posted-info">
                   <li>{{ post.writer }}</li>
-                  <li>In <a href="#">{{ post.category }}</a></li>
+                  <li>In {{ post.category }}</li>
                   <li>{{ beautify_date(post.date) }}</li>
                 </ul>
-                <h2>{{ post.title }}</h2>
+                <h2><a (click)='show_post(post.id)'>{{ post.title }}</a></h2>
                 <p [innerHTML]='trim_html(post.content)'></p>
                 <ul class="post-shares">
                   <li>
-                    <a href="#">
-                      <i class="rounded-x icon-eye"></i>
-                      <span>{{ post.view_count }}</span>
-                    </a>
+                    <i class="rounded-x icon-eye"></i>
+                    <span>{{ post.view_count }}</span>
                   </li>
                 </ul>
               </div>
@@ -105,21 +119,20 @@
             <a (click)='turn_page(+1)'>Older →</a>
           </li>
         </ul>
-        <br><br>
+        <br>
       </div>
+      <!-- post-list end -->
     </div>
+    <!-- post-board end -->
 
+    <!-- right-nav start -->
     <div class="col-md-3">
       <div id='dsba-right-nav' data-nav>
         <div class="headline-v2 bg-color-light"><h2>Latest Posts</h2></div>
         <ul class="list-unstyled blog-latest-posts margin-bottom-50">
-          <li>
-            <h3><a href="#">2018 대한산업공학회 춘계학술대회</a></h3>
-            <small>2018. 04. 16. / <a href="#">News</a></small>
-          </li>
-          <li>
-            <h3><a href="#">[DeepNLP]1&2. Introduction & word vector</a></h3>
-            <small>2017. 7. 22. / <a href="#">Youtube</a></small>
+          <li *ngFor='let post of latest_posts'>
+            <h3><a (click)='show_post(post.id)'>{{ post.title }}</a></h3>
+            <small>{{ beautify_date(post.date) }} / <a>{{ post.category }}</a></small>
           </li>
         </ul>
         <div class="headline-v2 bg-color-light"><h2>Categories</h2></div>
@@ -127,7 +140,6 @@
           <li><a>News</a></li>
           <li><a>Photos</a></li>
           <li><a>Seminar</a></li>
-          <li><a>Youtube</a></li>
           <li><a>Archive</a></li>
         </ul>
         <div class="headline-v2 bg-color-light"><h2>Photostream</h2></div>
@@ -144,6 +156,7 @@
         </ul>
       </div>
     </div>
+    <!-- right-nav end -->
 
   </div>
 </div>
