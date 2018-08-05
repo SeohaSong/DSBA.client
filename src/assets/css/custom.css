@@ -1,9 +1,5 @@
 /* Add here all your css styles (customizations) */
 
-.da-slide h2 i {
-  background-color: rgba(29, 49, 89, 0.8);
-}
-
 .header .navbar-nav > li > a:hover,
 .header .navbar-nav > .active > a,
 .headline h2, .headline h3, .headline h4 {

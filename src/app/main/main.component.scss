@@ -28,10 +28,13 @@
   }
   .da-slide{
     h2 {
-      top: 50px;
+      top: 65px;
+      i {
+        background-color: rgba(29, 49, 89, 0.6);
+      }
     }
     p {
-      top: 250px;
+      top: 265px;
       z-index: 10;
       width: 50%;
     }
