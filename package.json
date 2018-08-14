@@ -8,11 +8,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:client-and-server-bundles": "ng build --prod && ng run DSBA:server",
+    "build:client-and-server-bundles": "ng build --base-href /DSBA/ --prod && ng run DSBA:server",
     "build:prerender": "npm run build:client-and-server-bundles && npm run webpack:server && npm run generate:prerender",
     "generate:prerender": "cd dist && node prerender",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
   },
+
   "private": true,
   "dependencies": {
     "@angular/animations": "^6.0.0",
