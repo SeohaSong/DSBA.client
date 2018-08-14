@@ -23,6 +23,7 @@ export class BoardComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
+  all_posts: any;
   posts: any;
   post: any;
   post_groups: any;
@@ -31,16 +32,26 @@ export class BoardComponent implements OnInit {
   page_length: number;
   page: number;
 
+  snapshot = this.route.snapshot
+  category = this.snapshot.routeConfig.path.replace(/board\/*/, '')
+  post_id = this.snapshot.paramMap.get('id');
+
   ngOnInit() {
-    this.http.get('/assets/db/news.json').subscribe(
+    this.http.get('/assets/db/post.json').subscribe(
       ((data) => {
-        let posts = data.reverse();
-        this.posts = posts.slice().reverse();
+        this.all_posts = data;
+        let all_posts = this.all_posts
+        let posts: any;
+        if (this.category) {
+          posts = all_posts.filter(post => post.category == this.category);
+        } else {
+          posts = all_posts;
+        }
+        this.posts = posts
         this.post_groups = this.utilsService.group_list(10, posts);
         this.page_length = this.post_groups.length;
-        let post_id = this.route.snapshot.paramMap.get('id');
-        if (post_id) {
-          this.show_post(post_id);
+        if (this.post_id) {
+          this.show_post(this.post_id);
         }
         this.turn_page();
         this.latest_posts = posts.slice(0, 2);

@@ -38,7 +38,7 @@
                 <li><i class="fa fa-pencil"></i> {{ post.writer }}</li>
                 <li>
                   <i class="fa fa-comments"></i>
-                  <a href="#"> 0 Comments</a>
+                  <a href="#"> {{ post.view_count }} Views</a>
                 </li>
                 <li><i class="fa fa-tags"></i> {{ post.category }}</li>
               </ul>
@@ -137,10 +137,10 @@
         </ul>
         <div class="headline-v2 bg-color-light"><h2>Categories</h2></div>
         <ul class="list-inline tags-v2 margin-bottom-50">
+          <li><a>Overall</a></li>
           <li><a>News</a></li>
-          <li><a>Photos</a></li>
           <li><a>Seminar</a></li>
-          <li><a>Archive</a></li>
+          <li><a>Photo</a></li>
         </ul>
         <div class="headline-v2 bg-color-light"><h2>Photostream</h2></div>
         <ul class="list-inline blog-photostream margin-bottom-50">
