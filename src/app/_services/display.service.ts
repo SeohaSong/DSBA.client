@@ -9,7 +9,6 @@ declare const App: any;
 declare const FancyBox: any;
 declare const StyleSwitcher: any;
 declare const OwlCarousel: any;
-declare const ParallaxSlider: any;
 
 declare const $: any;
 
@@ -99,7 +98,7 @@ export class DisplayService {
       this.init_click_postprocessing();
       setTimeout(() => {
         OwlCarousel.initOwlCarousel();
-        ParallaxSlider.initParallaxSlider();
+        $('#da-slider').cslider({autoplay: false,});
         $("a[data-section]").click((e) => {
           let id = $(e.target).data('section');
           let scroll_top = $("div[data-section="+id+"]").offset().top

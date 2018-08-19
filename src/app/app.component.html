@@ -6,6 +6,15 @@
         <img height=40 src="assets/img/custom/dsba_logo.png" alt="Logo">
       </a>
 
+      <div class="topbar">
+        <ul class="loginbar pull-right">
+          <li>
+            <a *ngIf="uid" (click)='sign_out()'>sign out</a>
+            <a *ngIf="!uid" (click)='sign_in()'>sign in via google account</a>
+          </li>
+        </ul>
+      </div>
+
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="fa fa-bars"></span>

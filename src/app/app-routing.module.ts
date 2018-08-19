@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { RouterModule, Routes } from '@angular/router';
 
+import { UploaderComponent } from './uploader/uploader.component';
 import { MainComponent } from './main/main.component';
 import { MembersComponent } from './members/members.component';
 import { OverallComponent } from './members/overall/overall.component';
@@ -15,6 +16,7 @@ import { BoardComponent } from './board/board.component';
 
 
 const routes: Routes = [
+  { path: 'uploader', component: UploaderComponent },
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: MainComponent },
   { path: 'members', component: MembersComponent,

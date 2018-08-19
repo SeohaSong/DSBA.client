@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule }    from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { UploaderComponent } from './uploader/uploader.component';
 import { MainComponent } from './main/main.component';
 import { MembersComponent } from './members/members.component';
 import { ProfessorComponent } from './members/professor/professor.component';
@@ -23,6 +24,7 @@ import { UtilsService } from './_services/utils.service';
 @NgModule({
   declarations: [
     AppComponent,
+    UploaderComponent,
     MainComponent,
     MembersComponent,
     OverallComponent,

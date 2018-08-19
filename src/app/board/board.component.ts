@@ -37,7 +37,7 @@ export class BoardComponent implements OnInit {
   post_id = this.snapshot.paramMap.get('id');
 
   ngOnInit() {
-    this.http.get('/assets/db/post.json').subscribe(
+    this.http.get('assets/db/post.json').subscribe(
       ((data) => {
         this.all_posts = data;
         let all_posts = this.all_posts

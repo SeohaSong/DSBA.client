@@ -1,20 +1,9 @@
-/* Write here your custom javascript codes */
+firebase.initializeApp({
+  apiKey: 'AIzaSyDXZMi6ZfLPtUB8f2yoU50J8VuT86c2DbQ',
+  authDomain: 'dsba-142b3.firebaseapp.com',
+  projectId: 'dsba-142b3'
+});
 
-var ParallaxSlider = function () {
-	return {
-		//Parallax Slider
-		initParallaxSlider: function () {
-			$('#da-slider').cslider({
-				current     : 0,    
-				// index of current slide
-				bgincrement : 50,  
-				// increment the background position 
-				// (parallax effect) when sliding
-				autoplay    : true,
-				// slideshow on / off
-				interval    : 8000 
-				// time between transitions
-			});
-		},
-	};
-}();
+const storage = window.localStorage;
+const db = firebase.firestore();
+const auth = firebase.auth();
