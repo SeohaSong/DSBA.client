@@ -7,6 +7,8 @@ import { UtilsService } from "../_services/utils.service";
 
 import { ActivatedRoute } from '@angular/router';
 
+declare const db: any;
+
 
 @Component({
   selector: 'app-board',
@@ -23,8 +25,8 @@ export class BoardComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  all_posts: any;
-  posts: any;
+  all_posts = [];
+  posts = [];
   post: any;
   post_groups: any;
   post_group: any;
@@ -37,27 +39,45 @@ export class BoardComponent implements OnInit {
   post_id = this.snapshot.paramMap.get('id');
 
   ngOnInit() {
-    this.http.get('assets/db/post.json').subscribe(
-      ((data) => {
-        this.all_posts = data;
-        let all_posts = this.all_posts
-        let posts: any;
-        if (this.category) {
-          posts = all_posts.filter(post => post.category == this.category);
-        } else {
-          posts = all_posts;
+    let category = this.category;
+    let all_posts = this.all_posts;
+    db.collection("posts").orderBy('id').get().then(
+      (data => {
+        data.forEach(post => all_posts.push(post.data()));
+        this.posts = all_posts.reverse()
+        if (category) {
+          this.posts = this.posts.filter(post => post.category == category);
         }
-        this.posts = posts
-        this.post_groups = this.utilsService.group_list(10, posts);
+        this.post_groups = this.utilsService.group_list(10, this.posts);
         this.page_length = this.post_groups.length;
-        if (this.post_id) {
-          this.show_post(this.post_id);
-        }
+        if (this.post_id) {this.show_post(this.post_id)}
         this.turn_page();
-        this.latest_posts = posts.slice(0, 2);
+        this.latest_posts = this.posts.slice(0, 2);
         this.displayService.set_board_display();
       }).bind(this)
     );
+
+    // this.http.get('assets/db/post.json').subscribe(
+    //   ((data) => {
+    //     this.all_posts = data;
+    //     let all_posts = this.all_posts
+    //     let posts: any;
+    //     if (this.category) {
+    //       posts = all_posts.filter(post => post.category == this.category);
+    //     } else {
+    //       posts = all_posts;
+    //     }
+    //     this.posts = posts
+    //     this.post_groups = this.utilsService.group_list(10, posts);
+    //     this.page_length = this.post_groups.length;
+    //     if (this.post_id) {
+    //       this.show_post(this.post_id);
+    //     }
+    //     this.turn_page();
+    //     this.latest_posts = posts.slice(0, 2);
+    //     this.displayService.set_board_display();
+    //   }).bind(this)
+    // );
   }
 
   show_post(id) {

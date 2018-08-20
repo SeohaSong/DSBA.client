@@ -5,5 +5,5 @@ firebase.initializeApp({
 });
 
 const storage = window.localStorage;
-const db = firebase.firestore();
 const auth = firebase.auth();
+const db = firebase.firestore();
