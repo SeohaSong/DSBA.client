@@ -5,11 +5,6 @@ import { DisplayService } from './_services/display.service'
 import { UtilsService } from './_services/utils.service'
 
 
-declare const firebase: any;
-declare const auth: any;
-declare const db: any;
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -26,43 +21,14 @@ export class AppComponent {
   title = 'app';
   categories: any[];
   uid: any;
-  storage = this.utilsService.get_storage();
 
   ngOnInit() {
-    let storage = this.storage;
-    this.uid = storage.getItem('uid');
     this.displayService.init_display()
     this.categories = this.utilsService.get_categories();
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        let email = user.email
-        let uid = user.uid
-        storage.setItem('email', email);
-        storage.setItem('uid', uid);
-        this.uid = storage.getItem('uid');
-        db.collection('users').doc(uid).set({email: email, state: 0})
-        .then(data => console.log('신규 가입되었습니다.'))
-        .catch(error => console.log('기존 사용자입니다.'));
-        console.log(email)
-      } else {
-        storage.removeItem('email');
-        storage.removeItem('uid');
-        this.uid = storage.getItem('uid');
-        console.log('비회원입니다.')
-      }
-    });
+    this.utilsService.set_auth(this);
   }
 
-  sign_in() {
-    let storage = this.storage;
-    let provider = new firebase.auth.GoogleAuthProvider();
-    auth.languageCode = 'ko-KR';
-    this.uid = storage.setItem('uid', 'pendding');
-    auth.signInWithRedirect(provider);
-  }
-  sign_out() {
-    auth.signOut()
-    this.router.navigate(['main'])
-  }
+  sign_in() {this.utilsService.sign_in(this)}
+  sign_out() {this.utilsService.sign_out(this)}
 
 }

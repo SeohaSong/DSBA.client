@@ -8,6 +8,9 @@ import {
 } from "./database.service";
 
 declare const storage: any;
+declare const firebase: any;
+declare const auth: any;
+declare const db: any;
 
 
 @Injectable({
@@ -20,10 +23,43 @@ export class UtilsService {
     @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
-  get_storage() {
+  get_storage() {if (isPlatformBrowser(this.platformId)) return storage}
+  get_firebase() {if (isPlatformBrowser(this.platformId)) return firebase}
+  get_auth() {if (isPlatformBrowser(this.platformId)) return auth}
+  get_db() {if (isPlatformBrowser(this.platformId)) return db}
+
+  set_auth(app) {
     if (isPlatformBrowser(this.platformId)) {
-      return storage
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          let email = user.email
+          let uid = user.uid
+          storage.setItem('email', email);
+          storage.setItem('uid', uid);
+          db.collection('users').doc(uid).set({email: email, state: 0})
+          .then(data => console.log('신규 가입되었습니다.'))
+          .catch(error => console.log('기존 사용자입니다.'));
+          console.log(email)
+        } else {
+          storage.removeItem('email');
+          storage.removeItem('uid');
+          console.log('비회원입니다.')
+        }
+        app.uid = storage.getItem('uid');
+      });
     }
+  }
+
+  sign_in(app) {
+    let provider = new firebase.auth.GoogleAuthProvider();
+    auth.languageCode = 'ko-KR';
+    app.uid = storage.setItem('uid', 'pendding');
+    auth.signInWithRedirect(provider);
+  }
+
+  sign_out(app) {
+    auth.signOut();
+    this.router.navigate(['main']);
   }
 
   get_url_head(){
