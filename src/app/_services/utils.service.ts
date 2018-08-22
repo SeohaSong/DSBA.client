@@ -30,6 +30,12 @@ export class UtilsService {
 
   set_auth(app) {
     if (isPlatformBrowser(this.platformId)) {
+
+      app.uid = storage.getItem('uid');
+      if (app.uid == 'pendding') {
+        setTimeout(() => {if (app.uid == 'pendding') this.sign_out(app)}, 5000)
+      }
+
       auth.onAuthStateChanged((user) => {
         if (user) {
           let email = user.email
@@ -51,9 +57,9 @@ export class UtilsService {
   }
 
   sign_in(app) {
+    storage.setItem('uid', 'pendding');
     let provider = new firebase.auth.GoogleAuthProvider();
     auth.languageCode = 'ko-KR';
-    app.uid = storage.setItem('uid', 'pendding');
     auth.signInWithRedirect(provider);
   }
 
@@ -62,19 +68,12 @@ export class UtilsService {
     this.router.navigate(['main']);
   }
 
-  get_url_head(){
-    let head = this.router.url.split("/")[1];
-    return head
-  }
-
-  get_url_tail(){
-    let tail = this.router.url.split("/")[2];
-    return tail
-  }
+  get_url_head = () => this.router.url.split("/")[1];
+  get_url_tail = () => this.router.url.split("/")[2];
 
   group_list(size, list){
     let groups = [];
-    let group_idxs = []
+    let group_idxs = [];
     let n_group = parseInt(""+(list.length-1)/size)+1;
     for (let i=0; i < n_group; i++) {
       groups.push([]);
@@ -84,10 +83,6 @@ export class UtilsService {
       groups[group_idxs[i]].push(list[i])
     }
     return groups
-  }
-
-  get_categories() {
-    return CATEGORIES
   }
 
   get_student_pairs(type): any {
@@ -105,19 +100,9 @@ export class UtilsService {
     })
   }
 
-  get_researches() {
-    return RESEARCHES
-  }
-
-  get_publications() {
-    return PUBLICATIONS
-  }
-
-  get_cooperations() {
-    return COOPERATIONS
-  }
-
-  get_projects() {
-    return PROJECTS
-  }
+  get_categories = () => CATEGORIES
+  get_researches = () => RESEARCHES
+  get_publications = () => PUBLICATIONS
+  get_cooperations = () => COOPERATIONS
+  get_projects = () => PROJECTS
 }

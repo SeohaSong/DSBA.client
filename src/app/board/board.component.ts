@@ -7,8 +7,6 @@ import { UtilsService } from "../_services/utils.service";
 
 import { ActivatedRoute } from '@angular/router';
 
-declare const db: any;
-
 
 @Component({
   selector: 'app-board',
@@ -42,7 +40,9 @@ export class BoardComponent implements OnInit {
     let category = this.category;
     let all_posts = this.all_posts;
     let posts = this.posts;
-    db.collection("posts").orderBy('id').get().then((data => {
+    this.utilsService.get_db()
+    .collection("posts").orderBy('id').get()
+    .then((data => {
       data.forEach(post => {
         post = post.data();
         all_posts[post.id] = post;
