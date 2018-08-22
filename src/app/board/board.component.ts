@@ -37,28 +37,7 @@ export class BoardComponent implements OnInit {
   post_id = this.snapshot.paramMap.get('id');
 
   ngOnInit() {
-    let category = this.category;
-    let all_posts = this.all_posts;
-    let posts = this.posts;
-    this.utilsService.get_db()
-    .collection("posts").orderBy('id').get()
-    .then((data => {
-      data.forEach(post => {
-        post = post.data();
-        all_posts[post.id] = post;
-        posts.push(post);
-      });
-      posts.reverse();
-      if (category) {
-        this.posts = posts.filter(post => post.category == category);
-      }
-      this.post_groups = this.utilsService.group_list(10, this.posts);
-      this.page_length = this.post_groups.length;
-      if (this.post_id) {this.show_post(this.post_id)}
-      this.turn_page();
-      this.latest_posts = this.posts.slice(0, 2);
-      this.displayService.set_board_display();
-    }).bind(this));
+    this.utilsService.set_posts(this);
   }
 
   show_post(id) {

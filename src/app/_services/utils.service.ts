@@ -23,10 +23,31 @@ export class UtilsService {
     @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
-  get_storage() {if (isPlatformBrowser(this.platformId)) return storage}
-  get_firebase() {if (isPlatformBrowser(this.platformId)) return firebase}
-  get_auth() {if (isPlatformBrowser(this.platformId)) return auth}
-  get_db() {if (isPlatformBrowser(this.platformId)) return db}
+  set_posts(board) {
+    if (isPlatformBrowser(this.platformId)) {
+      let category = board.category;
+      let all_posts = board.all_posts;
+      let posts = board.posts;
+
+      db.collection("posts").orderBy('id').get().then(data => {
+        data.forEach(post => {
+          post = post.data();
+          all_posts[post.id] = post;
+          posts.push(post);
+        });
+        posts.reverse();
+        if (category) {
+          board.posts = posts.filter(post => post.category == category);
+        }
+        board.post_groups = board.utilsService.group_list(10, board.posts);
+        board.page_length = board.post_groups.length;
+        if (board.post_id) {board.show_post(board.post_id)}
+        board.turn_page();
+        board.latest_posts = board.posts.slice(0, 2);
+        board.displayService.set_board_display();
+      });
+    }
+  }
 
   set_auth(app) {
     if (isPlatformBrowser(this.platformId)) {
