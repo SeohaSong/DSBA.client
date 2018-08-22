@@ -6,7 +6,6 @@ import { UtilsService } from './_services/utils.service'
 
 
 declare const firebase: any;
-declare const storage: any;
 declare const auth: any;
 declare const db: any;
 
@@ -26,9 +25,12 @@ export class AppComponent {
 
   title = 'app';
   categories: any[];
-  uid = storage.getItem('uid');
+  uid: any;
+  storage = this.utilsService.get_storage();
 
   ngOnInit() {
+    let storage = this.storage;
+    this.uid = storage.getItem('uid');
     this.displayService.init_display()
     this.categories = this.utilsService.get_categories();
     auth.onAuthStateChanged((user) => {
@@ -52,6 +54,7 @@ export class AppComponent {
   }
 
   sign_in() {
+    let storage = this.storage;
     let provider = new firebase.auth.GoogleAuthProvider();
     auth.languageCode = 'ko-KR';
     this.uid = storage.setItem('uid', 'pendding');

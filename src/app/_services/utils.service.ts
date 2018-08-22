@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import {
   CATEGORIES, STUDENTS, RESEARCHES, PUBLICATIONS, COOPERATIONS, PROJECTS
 } from "./database.service";
+
+declare const storage: any;
 
 
 @Injectable({
@@ -13,7 +17,14 @@ export class UtilsService {
 
   constructor(
     private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
+
+  get_storage() {
+    if (isPlatformBrowser(this.platformId)) {
+      return storage
+    }
+  }
 
   get_url_head(){
     let head = this.router.url.split("/")[1];
