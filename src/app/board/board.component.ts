@@ -24,6 +24,8 @@ export class BoardComponent implements OnInit {
   ) { }
 
   all_posts = {};
+  post_n: number;
+
   posts = [];
   post: any;
   post_groups: any;
@@ -61,8 +63,8 @@ export class BoardComponent implements OnInit {
 
   turn_post(change=0) {
     let id = this.post.id+change;
-    if (!(id+1 < 1 || id+1 > this.posts.length)) {
-      this.post = this.posts[id]
+    if (!(id+1 < 1 || id+1 > this.post_n)) {
+      this.post = this.all_posts[id];
       let url = this.location.path().split('?');
       this.location.go(
         [[url[0].replace(/\/\d+/, ''), id].join('/'), url[1]]

@@ -54,6 +54,7 @@ export class UtilsService {
       if (category) {
         board.posts = posts.filter(post => post.category == category);
       }
+      board.post_n = Object.keys(all_posts).length
       board.post_groups = board.utilsService.group_list(10, board.posts);
       board.page_length = board.post_groups.length;
       if (board.post_id) {board.show_post(board.post_id)}

@@ -19,7 +19,9 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
           <li class="previous">
             <a (click)='turn_post(+1)'>← Newer</a>
           </li>
-          <li class="page-amount">{{ post.id+1 }} / {{ posts.length }}</li>
+          <li class="page-amount">
+            {{ post.id+1 }} / {{ post_n }}
+          </li>
           <li class="next">
             <a (click)='turn_post(-1)'>Older →</a>
           </li>
@@ -138,10 +140,10 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
         </ul>
         <div class="headline-v2 bg-color-light"><h2>Categories</h2></div>
         <ul class="list-inline tags-v2 margin-bottom-50">
-          <li><a>Overall</a></li>
-          <li><a>News</a></li>
-          <li><a>Seminar</a></li>
-          <li><a>Photo</a></li>
+          <li><a routerLink='/board'>Overall</a></li>
+          <li><a routerLink='/board/news'>News</a></li>
+          <li><a routerLink='/board/seminar'>Seminar</a></li>
+          <li><a routerLink='/board/photo'>Photo</a></li>
         </ul>
         <div class="headline-v2 bg-color-light"><h2>Photostream</h2></div>
         <ul class="list-inline blog-photostream margin-bottom-50">
