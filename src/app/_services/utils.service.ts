@@ -13,6 +13,21 @@ declare const auth: any;
 declare const db: any;
 
 
+let platformId: any;
+
+function limitToBrowser() {
+  return (target, propertyKey, descriptor) => {
+    let oldValue = descriptor.value;
+    descriptor.value = function() {
+      if (isPlatformBrowser(platformId)) {
+        return oldValue.apply(null, arguments);
+      }
+    }
+    return descriptor;
+  }
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,61 +35,58 @@ export class UtilsService {
 
   constructor(
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object,
-  ) { }
+    @Inject(PLATFORM_ID) private platformId_: Object,
+  ) {platformId = platformId_}
 
+  @limitToBrowser()
   set_posts(board) {
-    if (isPlatformBrowser(this.platformId)) {
-      let category = board.category;
-      let all_posts = board.all_posts;
-      let posts = board.posts;
+    let category = board.category;
+    let all_posts = board.all_posts;
+    let posts = board.posts;
 
-      db.collection("posts").orderBy('id').get().then(data => {
-        data.forEach(post => {
-          post = post.data();
-          all_posts[post.id] = post;
-          posts.push(post);
-        });
-        posts.reverse();
-        if (category) {
-          board.posts = posts.filter(post => post.category == category);
-        }
-        board.post_groups = board.utilsService.group_list(10, board.posts);
-        board.page_length = board.post_groups.length;
-        if (board.post_id) {board.show_post(board.post_id)}
-        board.turn_page();
-        board.latest_posts = board.posts.slice(0, 2);
-        board.displayService.set_board_display();
+    db.collection("posts").orderBy('id').get().then(data => {
+      data.forEach(post => {
+        post = post.data();
+        all_posts[post.id] = post;
+        posts.push(post);
       });
-    }
+      posts.reverse();
+      if (category) {
+        board.posts = posts.filter(post => post.category == category);
+      }
+      board.post_groups = board.utilsService.group_list(10, board.posts);
+      board.page_length = board.post_groups.length;
+      if (board.post_id) {board.show_post(board.post_id)}
+      board.turn_page();
+      board.latest_posts = board.posts.slice(0, 2);
+      board.displayService.set_board_display();
+    });
   }
 
+  @limitToBrowser()
   set_auth(app) {
-    if (isPlatformBrowser(this.platformId)) {
-
-      app.uid = storage.getItem('uid');
-      if (app.uid == 'pendding') {
-        setTimeout(() => {if (app.uid == 'pendding') this.sign_out(app)}, 5000)
-      }
-
-      auth.onAuthStateChanged((user) => {
-        if (user) {
-          let email = user.email
-          let uid = user.uid
-          storage.setItem('email', email);
-          storage.setItem('uid', uid);
-          db.collection('users').doc(uid).set({email: email, state: 0})
-          .then(data => console.log('신규 가입되었습니다.'))
-          .catch(error => console.log('기존 사용자입니다.'));
-          console.log(email)
-        } else {
-          storage.removeItem('email');
-          storage.removeItem('uid');
-          console.log('비회원입니다.')
-        }
-        app.uid = storage.getItem('uid');
-      });
+    app.uid = storage.getItem('uid');
+    if (app.uid == 'pendding') {
+      setTimeout(() => {if (app.uid == 'pendding') this.sign_out(app)}, 5000)
     }
+
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        let email = user.email
+        let uid = user.uid
+        storage.setItem('email', email);
+        storage.setItem('uid', uid);
+        db.collection('users').doc(uid).set({email: email, state: 0})
+        .then(data => console.log('신규 가입되었습니다.'))
+        .catch(error => console.log('기존 사용자입니다.'));
+        console.log(email)
+      } else {
+        storage.removeItem('email');
+        storage.removeItem('uid');
+        console.log('비회원입니다.')
+      }
+      app.uid = storage.getItem('uid');
+    });
   }
 
   sign_in(app) {
