@@ -1,5 +1,4 @@
 import { Component, Inject } from '@angular/core';
-import { Router } from "@angular/router";
 
 import { DisplayService } from './_services/display.service'
 import { UtilsService } from './_services/utils.service'
@@ -15,7 +14,6 @@ export class AppComponent {
   constructor(
     private displayService: DisplayService,
     private utilsService: UtilsService,
-    private router: Router
   ) { }
 
   title = 'app';

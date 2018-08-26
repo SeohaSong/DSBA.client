@@ -51,9 +51,9 @@ export const CATEGORIES: Array<Category> = [
     lv0content: {title: 'activities', link: null},
     lv1content: [
       {title: 'News', link: '/board/news'},
-      {title: 'Seminar', link: null},
-      {title: 'Photo', link: null},
-      {title: 'LINKS', link: null}
+      {title: 'Seminar', link: '/board/seminar'},
+      {title: 'Photo', link: '/board/photo'},
+      {title: 'LINKS', link: '/links'}
     ]
   }
 ]

@@ -172,7 +172,7 @@ export class DisplayService {
       this.init_click_postprocessing();
       setTimeout(() => {
         let doc = $(document);
-        this.init_scroll(doc, 80, 385);
+        this.init_scroll(doc, 80, 387);
       })
     }
   }

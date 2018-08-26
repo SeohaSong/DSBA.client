@@ -80,3 +80,13 @@ a:hover{
 /* #395182 */
 /* #482525 */
 /* #605B5B */
+
+
+.mce-tinymce.mce-container.mce-panel,
+.mce-edit-area.mce-container.mce-panel.mce-stack-layout-item.mce-last {
+  border: none;
+}
+
+iframe {
+  border: none;
+}

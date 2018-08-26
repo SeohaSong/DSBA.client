@@ -6,49 +6,98 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
   </div>
 </div>
 
+<div id='dsba-board-loading-box'
+*ngIf='loading_status'></div>
 
 <div class="container">
   <div class="row">
     <!-- post-board start -->
     <div class="col-md-9" id='daba-board'>
-
       <!-- post-box start -->
       <div class='row'
       *ngIf='post'>
-        <ul class="pager pager-v3 pager-sm no-margin-bottom">
-          <li class="previous">
-            <a (click)='turn_post(+1)'>← Newer</a>
-          </li>
-          <li class="page-amount">
-            {{ post.id+1 }} / {{ post_n }}
-          </li>
-          <li class="next">
-            <a (click)='turn_post(-1)'>Older →</a>
-          </li>
-        </ul>
-        <div id='daba-post-box'>
-          <div class="blog margin-bottom-40">
-            <a (click)='reset_post()'>
-              <div id='dsba-back-btn'><span>←</span></div>
-            </a>
-            <h2>{{ post.title }}</h2>
-            <div class="blog-post-tags">
-              <ul class="list-unstyled list-inline blog-info">
-                <li>
-                  <i class="fa fa-calendar"></i>
-                  {{ beautify_date(post.date) }}
-                </li>
-                <li><i class="fa fa-pencil"></i> {{ post.writer }}</li>
-                <li>
-                  <i class="fa fa-comments"></i>
-                  <a href="#"> {{ post.view_count }} Views</a>
-                </li>
-                <li><i class="fa fa-tags"></i> {{ post.category }}</li>
-              </ul>
+        <ng-container *ngIf='updating_status'>
+          <div class='daba-post-box'>
+            <div class="blog margin-bottom-40">
+              <a (click)='reset_post()'>
+                <div class='dsba-back-btn'><span>←</span></div>
+              </a>
+              <h2>
+                <input id='dsba-title-editor' type="text"
+                [(ngModel)]="updating_title">
+              </h2>
+              <div class="blog-post-tags">
+                <ul class="list-unstyled list-inline blog-info">
+                  <li>
+                    <i class="fa fa-calendar"></i>
+                    {{ post.date }}
+                  </li>
+                  <li (click)='toggleEditStatus(post.id)'>
+                    <i class="fa fa-pencil"></i>
+                    {{ post.writer }}
+                  </li>
+                  <li>
+                    <i class="fa fa-comments"></i>
+                    {{ post.view_count }} Views
+                  </li>
+                  <li><i class="fa fa-tags"></i> {{ post.category }}</li>
+                </ul>
+              </div>
+              <textarea id='dsba-content-editor' data-editor='w'>
+                {{ post.content }}
+              </textarea>
             </div>
-            <p [innerHTML]='post.content'></p>
           </div>
-        </div>
+        </ng-container>
+        <ng-container *ngIf='!updating_status'>
+          <ul class="pager pager-v3 pager-sm no-margin-bottom">
+            <li class="previous">
+              <a (click)='turn_post(+1)'>← Newer</a>
+            </li>
+            <li class="page-amount">
+              {{ post.id }} / {{ post_n }}
+            </li>
+            <li class="next">
+              <a (click)='turn_post(-1)'>Older →</a>
+            </li>
+          </ul>
+          <div class='daba-post-box'>
+            <div class="blog margin-bottom-40">
+              <a (click)='reset_post()'>
+                <div class='dsba-back-btn'><span>←</span></div>
+              </a>
+              <h2>{{ post.title }}</h2>
+              <div class="blog-post-tags">
+                <ul class="list-unstyled list-inline blog-info">
+                  <li>
+                    <i class="fa fa-calendar"></i>
+                    {{ post.date }}
+                  </li>
+                  <li (click)='toggleEditStatus(post.id)'>
+                    <i class="fa fa-pencil"></i>
+                    {{ post.writer }}
+                  </li>
+                  <li>
+                    <i class="fa fa-comments"></i>
+                    {{ post.view_count }} Views
+                  </li>
+                  <li><i class="fa fa-tags"></i> {{ post.category }}</li>
+                </ul>
+              </div>
+              <div class='dsba-post-image'
+              *ngFor='let img of post.images'>
+                <a href="http://dsba.korea.ac.kr/wp{{ img }}"
+                class="fancybox img-hover-v2">
+                  <span>
+                    <img class="img-responsive"
+                    src="http://dsba.korea.ac.kr/wp{{ img }}">
+                  </span>
+                </a>
+              </div>
+              <textarea data-editor='r'>{{ post.content }}</textarea>
+            </div>
+          </div>
+        </ng-container>
       </div>
       <!-- post-box end -->
 
@@ -67,13 +116,13 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
         <br>
         <div *ngFor='let post of post_group'>
           <div class="row"
-          *ngIf='!is_image(post.images)'>
+          *ngIf='!post.images.length'>
             <div class="col-sm-10 news-v3">
               <div class="news-v3-in-sm no-padding">
                 <ul class="list-inline posted-info">
                   <li>{{ post.writer }}</li>
                   <li>In {{ post.category }}</li>
-                  <li>{{ beautify_date(post.date) }}</li>
+                  <li>{{ post.date }}</li>
                 </ul>
                 <h2><a (click)='show_post(post.id)'>{{ post.title }}</a></h2>
                 <p [innerHTML]='trim_html(post.content)'></p>
@@ -87,13 +136,13 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
             </div>
           </div>
           <div class="row"
-          *ngIf='is_image(post.images)'>
+          *ngIf='post.images.length'>
             <div class="col-sm-7 news-v3">
               <div class="news-v3-in-sm no-padding">
                 <ul class="list-inline posted-info">
                   <li>{{ post.writer }}</li>
                   <li>In {{ post.category }}</li>
-                  <li>{{ beautify_date(post.date) }}</li>
+                  <li>{{ post.date }}</li>
                 </ul>
                 <h2><a (click)='show_post(post.id)'>{{ post.title }}</a></h2>
                 <p [innerHTML]='trim_html(post.content)'></p>
@@ -135,24 +184,24 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
         <ul class="list-unstyled blog-latest-posts margin-bottom-50">
           <li *ngFor='let post of latest_posts'>
             <h3><a (click)='show_post(post.id)'>{{ post.title }}</a></h3>
-            <small>{{ beautify_date(post.date) }} / <a>{{ post.category }}</a></small>
+            <small>{{ post.date }} / <a>{{ post.category }}</a></small>
           </li>
         </ul>
         <div class="headline-v2 bg-color-light"><h2>Categories</h2></div>
         <ul class="list-inline tags-v2 margin-bottom-50">
-          <li><a routerLink='/board'>Overall</a></li>
+          <li><a routerLink='/board/overall'>Overall</a></li>
           <li><a routerLink='/board/news'>News</a></li>
           <li><a routerLink='/board/seminar'>Seminar</a></li>
           <li><a routerLink='/board/photo'>Photo</a></li>
         </ul>
         <div class="headline-v2 bg-color-light"><h2>Photostream</h2></div>
         <ul class="list-inline blog-photostream margin-bottom-50">
-          <li *ngFor='let _ of [1,2,3,4,5,6,7,8,9]'>
-            <a href="assets/img/main/placeholder.jpg" rel="gallery"
-            class="fancybox img-hover-v2" title="Image 1">
+          <li *ngFor='let img of images.slice(0, 9)'>
+            <a href="http://dsba.korea.ac.kr/wp{{ img }}"
+            class="fancybox img-hover-v2">
               <span>
                 <img class="img-responsive"
-                src="assets/img/main/placeholder.jpg" alt="">
+                src="http://dsba.korea.ac.kr/wp{{ img }}">
               </span>
             </a>
           </li>

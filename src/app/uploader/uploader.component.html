@@ -1,6 +1,39 @@
-<div id='uploader-dashboard'>
-  <div class='uploader-btn'
-  (click)='upload_all_local_data()'>
-    upload_all_local_data
+<div class="container">
+  <div class="row">
+    <div class="col-md-9" id='daba-board'>
+      <div class='row'>
+        <div class='daba-post-box'>
+          <div class="blog margin-bottom-40">
+            <h2>
+              <input id='dsba-title-editor' type="text" placeholder='제목'
+              [(ngModel)]="creating_title">
+            </h2>
+            <select id='dsba-category-editor'
+            [(ngModel)]='creating_category'>
+              <option value=''>글 분류</option>
+              <option value='news'>News</option>
+              <option value='seminar'>Seminar</option>
+              <option value='photo'>Photo</option>
+            </select>
+            <br><br>
+            <textarea id='dsba-content-editor' data-editor='w'></textarea>
+            <br>
+            <a (click)='create_post()'>
+              <div class='dsba-create-btn'><span>CREATE</span></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div id='uploader-dashboard'>
+        <div class='uploader-btn'
+        (click)='upload_all_local_data()'>
+          upload_all_local_data
+        </div>
+      </div>
+      <iframe src="https://www.youtube.com/embed/BiIlQQAx70c"
+      allowfullscreen></iframe>
+    </div>
   </div>
 </div>

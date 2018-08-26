@@ -11,6 +11,7 @@ declare const storage: any;
 declare const firebase: any;
 declare const auth: any;
 declare const db: any;
+declare const tinymce: any;
 
 
 let platformId: any;
@@ -43,15 +44,21 @@ export class UtilsService {
     let category = board.category;
     let all_posts = board.all_posts;
     let posts = board.posts;
-
-    db.collection("posts").orderBy('id').get().then(data => {
-      data.forEach(post => {
-        post = post.data();
-        all_posts[post.id] = post;
+    let images = board.images;
+    let id2id = board.id2id;
+    let id = 0;
+    db.collection("posts").orderBy('date').get().then(data => {
+      data.forEach(post_ => {
+        id += 1;
+        id2id[id] = post_.id;
+        let post = post_.data();
+        post.id = id;
+        all_posts[id] = post;
+        post.images.forEach(img => images.push(img));
         posts.push(post);
       });
       posts.reverse();
-      if (category) {
+      if (category != 'overall') {
         board.posts = posts.filter(post => post.category == category);
       }
       board.post_n = Object.keys(all_posts).length
@@ -61,7 +68,22 @@ export class UtilsService {
       board.turn_page();
       board.latest_posts = board.posts.slice(0, 2);
       board.displayService.set_board_display();
+      board.loading_status = false;
     });
+  }
+
+  save_post(board, id) {
+    let title = board.updating_title
+    let content = this.getEditorContent();
+    db.collection('posts').doc(board.id2id[id]).set({
+      title: title,
+      content: content
+    },{merge: true})
+    return [title, content]
+  }
+
+  update_view_count(id) {
+    console.log('뷰카운트 업데이트는 서버측에서 작업해야함');
   }
 
   @limitToBrowser()
@@ -70,25 +92,31 @@ export class UtilsService {
     if (app.uid == 'pendding') {
       setTimeout(() => {if (app.uid == 'pendding') this.sign_out(app)}, 5000)
     }
-
     auth.onAuthStateChanged((user) => {
       if (user) {
+        let name = user.displayName
         let email = user.email
         let uid = user.uid
-        storage.setItem('email', email);
+        storage.setItem('name', name);
         storage.setItem('uid', uid);
-        db.collection('users').doc(uid).set({email: email, state: 0})
+        db.collection('users').doc(uid).set({
+          name: name,
+          email: email,
+          state: 0
+        })
         .then(data => console.log('신규 가입되었습니다.'))
         .catch(error => console.log('기존 사용자입니다.'));
-        console.log(email)
+        console.log(name)
       } else {
-        storage.removeItem('email');
+        storage.removeItem('name');
         storage.removeItem('uid');
         console.log('비회원입니다.')
       }
       app.uid = storage.getItem('uid');
     });
   }
+
+  get_username = () => storage.getItem('name');
 
   sign_in(app) {
     storage.setItem('uid', 'pendding');
@@ -102,8 +130,11 @@ export class UtilsService {
     this.router.navigate(['main']);
   }
 
-  get_url_head = () => this.router.url.split("/")[1];
-  get_url_tail = () => this.router.url.split("/")[2];
+  get_url_head = () => this.router.url.split("?")[0].split("/")[1];
+  get_url_tail = () => {
+    let pipes = this.router.url.split("?")[0].split("/");
+    return pipes[pipes.length-1];
+  }
 
   group_list(size, list){
     let groups = [];
@@ -131,8 +162,31 @@ export class UtilsService {
       let students = STUDENTS.filter(val => val.type == type);
       pairs = this.group_list(2, students)
       return [type, pairs]
-    })
+    });
   }
+
+  setEditor() {
+    setTimeout(() => {
+      tinymce.remove();
+      tinymce.init({
+        selector: '[data-editor=w]',
+        plugins : 'lists link image charmap preview hr table code autoresize',
+        menubar: false,
+        toolbar: ['undo redo | bold italic | underline strikethrough | link image | alignleft aligncenter alignright | outdent indent | formatselect | bullist numlist | preview code | charmap hr table']
+      });
+      tinymce.init({
+        selector: '[data-editor=r]',
+        plugins : 'autoresize',
+        readonly: true,
+        toolbar: false,
+        menubar: false,
+        statusbar: false
+      });
+    });
+  }
+
+  setEditorContent = (content) => tinymce.activeEditor.setContent(content);
+  getEditorContent = () => tinymce.activeEditor.getContent({format : 'raw'});
 
   get_categories = () => CATEGORIES
   get_researches = () => RESEARCHES

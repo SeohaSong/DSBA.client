@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule }    from '@angular/common/http';
 
@@ -15,6 +15,7 @@ import { ResearchesComponent } from './researches/researches.component';
 import { PublicationsComponent } from './publications/publications.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { BoardComponent } from './board/board.component';
+import { LinksComponent } from './links/links.component';
 
 import { DisplayService } from './_services/display.service';
 import { DatabaseService } from './_services/database.service';
@@ -33,12 +34,14 @@ import { UtilsService } from './_services/utils.service';
     ResearchesComponent,
     PublicationsComponent,
     ProjectsComponent,
-    BoardComponent
+    BoardComponent,
+    LinksComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'DSBA'}),
     AppRoutingModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [
     DisplayService,
