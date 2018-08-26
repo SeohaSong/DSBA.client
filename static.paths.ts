@@ -13,7 +13,6 @@ export const ROUTES = [
   '/researches',
   '/board',
   '/board/news',
-  '/board/news/:id',
   '/board/seminar',
   '/board/photo',
   '/links'
