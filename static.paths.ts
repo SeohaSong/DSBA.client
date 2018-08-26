@@ -12,5 +12,8 @@ export const ROUTES = [
   '/projects',
   '/researches',
   '/board',
-  '/board/news'
+  '/board/news',
+  '/board/seminar',
+  '/board/photo',
+  '/links'
 ];
