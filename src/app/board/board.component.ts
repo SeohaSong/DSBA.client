@@ -52,7 +52,12 @@ export class BoardComponent implements OnInit {
   }
 
   show_post(id) {
-    this.post = this.all_posts[id];
+    if (this.post) {
+      this.post = this.all_posts[id];
+      this.utilsService.setEditorContent(this.post.content);
+    } else {
+      this.post = this.all_posts[id];
+    }
     this.updating_status = false;
     let url = this.location.path().split('?');
     let parts = [[url[0].replace(/\/\d+/, ''), id].join('/'), url[1]]

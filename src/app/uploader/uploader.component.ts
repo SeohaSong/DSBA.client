@@ -62,7 +62,7 @@ export class UploaderComponent implements OnInit {
     }
   }
 
-  upload_all_local_data () {
+  delete_all_remote_data() {
     let post_collection = this.post_collection;
     post_collection.get().then(data => {
       data.forEach(post => {
@@ -70,31 +70,59 @@ export class UploaderComponent implements OnInit {
         .then(data => console.log('delete success'))
         .catch(error => console.log('delete fail'));
       });
-    }).then(() => {
-      let posts: any;
-      this.http.get('assets/db/post.json')
-      .subscribe((data => {
-        posts = data;
-        for (let i=0; i < posts.length; i++) {
-          let post = posts[i];
-          delete post['thumbnail'];
-          delete post['id'];
-          let date = post.date;
-          let yyyy = date.slice(0, 4);
-          let mm = date.slice(4, 6);
-          let dd = date.slice(6, 8);
-          let hh = date.slice(8, 10);
-          let mM = date.slice(10, 12);
-          let ss = date.slice(12, 14);
-          post.date = yyyy+'.'+mm+'.'+dd+' '+hh+':'+mM+':'+ss;
-          post.view_count = parseInt(post.view_count);
-          if (post.images.length) post.images = [post.images[0]];
-          post_collection.doc().set(post)
-          .then(data => console.log('create success'))
-          .catch(error => console.log('create fail'));
-        }
-      }).bind(this));
     });
   }
 
+  upload_all_local_data() {
+    let post_collection = this.post_collection;
+    let posts: any;
+    this.http.get('assets/db/posts.json')
+    .subscribe(data => {
+      posts = data;
+      for (let i=0; i < posts.length; i++) {
+        let post = posts[i];
+        delete post['thumbnail'];
+        delete post['id'];
+        let date = post.date;
+        let yyyy = date.slice(0, 4);
+        let mm = date.slice(4, 6);
+        let dd = date.slice(6, 8);
+        let hh = date.slice(8, 10);
+        let mM = date.slice(10, 12);
+        let ss = date.slice(12, 14);
+        post.date = yyyy+'.'+mm+'.'+dd+' '+hh+':'+mM+':'+ss;
+        post.view_count = parseInt(post.view_count);
+        if (post.images.length) post.images = [post.images[0]];
+        post_collection.doc().set(post)
+        .then(data => console.log('create success'))
+        .catch(error => console.log('create fail'));
+      }
+    });
+
+  }
+
+  upload_all_seminar_data() {
+    let post_collection = this.post_collection;
+    let posts: any;
+    this.http.get('assets/db/seminars.json')
+    .subscribe(data => {
+      posts = data;
+      for (let i=0; i < posts.length; i++) {
+        let post = {};
+        let post_ = posts[i].fields;
+        let keys = Object.keys(post_);
+        for (let i_=0; i_ < keys.length; i_++) {
+          let attr = post_[keys[i_]];
+          post[keys[i_]] = attr[Object.keys(attr)[0]];
+        }
+        post['view_count'] = parseInt(post['view_count']);
+        if(Object.keys(post['images']).length){
+          post['images'] = [post['images']['values'][0]['stringValue']];
+        }
+        post_collection.doc().set(post)
+        .then(data => console.log('create success'))
+        .catch(error => console.log('create fail'));
+      }
+    });
+  }
 }

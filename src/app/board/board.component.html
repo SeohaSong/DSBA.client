@@ -126,16 +126,10 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
                 </ul>
                 <h2><a (click)='show_post(post.id)'>{{ post.title }}</a></h2>
                 <p [innerHTML]='trim_html(post.content)'></p>
-                <ul class="post-shares">
-                  <li>
-                    <i class="rounded-x icon-eye"></i>
-                    <span>{{ post.view_count }}</span>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
-          <div class="row"
+          <div class="row dsba-post-with-photo"
           *ngIf='post.images.length'>
             <div class="col-sm-7 news-v3">
               <div class="news-v3-in-sm no-padding">
@@ -146,12 +140,6 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
                 </ul>
                 <h2><a (click)='show_post(post.id)'>{{ post.title }}</a></h2>
                 <p [innerHTML]='trim_html(post.content)'></p>
-                <ul class="post-shares">
-                  <li>
-                    <i class="rounded-x icon-eye"></i>
-                    <span>{{ post.view_count }}</span>
-                  </li>
-                </ul>
               </div>
             </div>
             <div class="col-sm-4 sm-margin-bottom-20">

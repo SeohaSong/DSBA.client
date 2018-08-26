@@ -28,12 +28,20 @@
     <div class="col-md-3">
       <div id='uploader-dashboard'>
         <div class='uploader-btn'
+        (click)='delete_all_remote_data()'>
+          delete_all_remote_data
+        </div>
+        <div class='uploader-btn'
         (click)='upload_all_local_data()'>
           upload_all_local_data
         </div>
+        <div class='uploader-btn'
+        (click)='upload_all_seminar_data()'>
+          upload_all_seminar_data
+        </div>
       </div>
-      <iframe src="https://www.youtube.com/embed/BiIlQQAx70c"
-      allowfullscreen></iframe>
+      <!-- <iframe src="https://www.youtube.com/embed/BiIlQQAx70c"
+      allowfullscreen></iframe> -->
     </div>
   </div>
 </div>
