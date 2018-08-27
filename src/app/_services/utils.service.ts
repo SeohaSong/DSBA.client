@@ -1,7 +1,6 @@
-import { Injectable, Inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { PLATFORM_ID } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
 
 import {
   CATEGORIES, STUDENTS, RESEARCHES, PUBLICATIONS, COOPERATIONS, PROJECTS
@@ -16,7 +15,8 @@ declare const tinymce: any;
 
 let platformId: any;
 
-function limitToBrowser() {
+export function limitToBrowser(platformId) {
+  console.log(platformId)
   return (target, propertyKey, descriptor) => {
     let oldValue = descriptor.value;
     descriptor.value = function() {
@@ -36,10 +36,10 @@ export class UtilsService {
 
   constructor(
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId_: Object,
+    @Inject(PLATFORM_ID) private platformId_: Object
   ) {platformId = platformId_}
 
-  @limitToBrowser()
+  @limitToBrowser(platformId)
   set_posts(board) {
     let category = board.category;
     let all_posts = board.all_posts;
@@ -86,7 +86,7 @@ export class UtilsService {
     console.log('뷰카운트 업데이트는 서버측에서 작업해야함');
   }
 
-  @limitToBrowser()
+  @limitToBrowser(platformId)
   set_auth(app) {
     app.uid = storage.getItem('uid');
     if (app.uid == 'pendding') {

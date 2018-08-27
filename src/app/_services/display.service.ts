@@ -1,15 +1,11 @@
-import { Injectable, Inject } from '@angular/core';
-import { PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable } from '@angular/core';
 
-import { UtilsService } from './utils.service';
-
+import { UtilsService, limitToBrowser } from './utils.service';
 
 declare const App: any;
 declare const FancyBox: any;
 declare const StyleSwitcher: any;
 declare const OwlCarousel: any;
-
 declare const $: any;
 
 
@@ -20,9 +16,7 @@ export class DisplayService {
 
   constructor(
     private utilsService: UtilsService,
-    @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
-
 
   init_scroll(doc, top_pad, bottom_pad) {
     let nav = $("[data-nav]");
@@ -58,33 +52,11 @@ export class DisplayService {
   }
 
 
-  init_display(){
-
-    let init = () => {
-      let type = this.utilsService.get_url_head();
-      if(type == 'board') {type = 'activities'}
-      $("[data-category]").removeClass('active');
-      $("[data-category="+type+"]").addClass('active');
-    }
-
-    if (isPlatformBrowser(this.platformId)) {
-      this.init_click_postprocessing();
-      setTimeout(() => {
-        App.init();
-  			FancyBox.initFancybox();
-        StyleSwitcher.initStyleSwitcher();
-        $("#loading-ui").fadeOut();
-        init();
-        $("a[href^='/']").click(() => {init();});
-      })
-    }
-  }
-
-
   do_click_postprocessing() {
     $(document).scrollTop(0)
     $('.navbar-responsive-collapse').removeClass("in");
   }
+
 
   init_click_postprocessing() {
     setTimeout(() => {
@@ -93,60 +65,75 @@ export class DisplayService {
   }
 
 
-  set_main_display(){
-    if (isPlatformBrowser(this.platformId)) {
-      this.init_click_postprocessing();
-      setTimeout(() => {
-        OwlCarousel.initOwlCarousel();
-        $('#da-slider').cslider({autoplay: false,});
-        $("a[data-section]").click((e) => {
-          let id = $(e.target).data('section');
-          let scroll_top = $("div[data-section="+id+"]").offset().top
-          $(document).scrollTop(scroll_top-100)
-        })
-      })
+  // @limitToBrowser(platformId)
+  init_display(){
+    let init = () => {
+      let type = this.utilsService.get_url_head();
+      if(type == 'board') {type = 'activities'}
+      $("[data-category]").removeClass('active');
+      $("[data-category="+type+"]").addClass('active');
     }
+    this.init_click_postprocessing();
+    setTimeout(() => {
+      App.init();
+      FancyBox.initFancybox();
+      StyleSwitcher.initStyleSwitcher();
+      $("#loading-ui").fadeOut();
+      init();
+      $("a[href^='/']").click(() => {init();});
+    })
   }
 
 
+  // @limitToBrowser(platformId)
+  set_main_display(){
+    this.init_click_postprocessing();
+    setTimeout(() => {
+      OwlCarousel.initOwlCarousel();
+      $('#da-slider').cslider({autoplay: false,});
+      $("a[data-section]").click((e) => {
+        let id = $(e.target).data('section');
+        let scroll_top = $("div[data-section="+id+"]").offset().top
+        $(document).scrollTop(scroll_top-100)
+      })
+    })
+  }
+
+
+  // @limitToBrowser(platformId)
   set_members_display(){
-    if (isPlatformBrowser(this.platformId)) {
-      this.init_click_postprocessing();
-      setTimeout(() => {
+    this.init_click_postprocessing();
+    setTimeout(() => {
+      let type = this.utilsService.get_url_tail();
+      $("li.list-group-item > a[href='/members/"+type+"']")
+      .parent().addClass("active");
+      $("a[href^='/members/']").click(() => {
         let type = this.utilsService.get_url_tail();
+        $("li.list-group-item").removeClass("active");
         $("li.list-group-item > a[href='/members/"+type+"']")
         .parent().addClass("active");
-        $("a[href^='/members/']").click(() => {
-          let type = this.utilsService.get_url_tail();
-          $("li.list-group-item").removeClass("active");
-          $("li.list-group-item > a[href='/members/"+type+"']")
-          .parent().addClass("active");
-        });
       });
-    }
+    });
   }
 
 
+  // @limitToBrowser(platformId)
   set_publications_display(){
-
     let init = () => {
       let type = this.utilsService.get_url_tail();
       $("[data-type0]").removeClass('in');
       $("[data-type0="+type+"]").addClass('in');
     }
-
-    if (isPlatformBrowser(this.platformId)) {
-      this.init_click_postprocessing();
-      setTimeout(() => {
-        init();
-        $("a[href^='/publications/']").click(() => {init();});
-      })
-    }
+    this.init_click_postprocessing();
+    setTimeout(() => {
+      init();
+      $("a[href^='/publications/']").click(() => {init();});
+    })
   }
 
 
+  // @limitToBrowser(platformId)
   set_researches_display(){
-
     let init_section = (doc, top_pad) => {
       $("a[data-section]").click((e) => {
         let id = $(e.currentTarget).data('section');
@@ -154,27 +141,23 @@ export class DisplayService {
         doc.scrollTop(scroll_top-top_pad)
       })
     }
-
-    if (isPlatformBrowser(this.platformId)) {
-      this.init_click_postprocessing();
-      setTimeout(() => {
-        let doc = $(document);
-        this.init_scroll(doc, 150, 450);
-        init_section(doc, 100);
-        this.init_pagenation();
-      })
-    }
+    this.init_click_postprocessing();
+    setTimeout(() => {
+      let doc = $(document);
+      this.init_scroll(doc, 150, 450);
+      init_section(doc, 100);
+      this.init_pagenation();
+    })
   }
 
 
+  // @limitToBrowser(platformId)
   set_board_display(){
-    if (isPlatformBrowser(this.platformId)) {
-      this.init_click_postprocessing();
-      setTimeout(() => {
-        let doc = $(document);
-        this.init_scroll(doc, 80, 387);
-      })
-    }
+    this.init_click_postprocessing();
+    setTimeout(() => {
+      let doc = $(document);
+      this.init_scroll(doc, 80, 387);
+    })
   }
 
 }
