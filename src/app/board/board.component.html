@@ -32,10 +32,12 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
                     <i class="fa fa-calendar"></i>
                     {{ post.date }}
                   </li>
+
                   <li (click)='toggleEditStatus(post.id)'>
                     <i class="fa fa-pencil"></i>
                     {{ post.writer }}
                   </li>
+
                   <li>
                     <i class="fa fa-comments"></i>
                     {{ post.view_count }} Views

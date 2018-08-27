@@ -116,6 +116,7 @@ export class UtilsService {
     });
   }
 
+  get_userid = () => storage.getItem('uid');
   get_username = () => storage.getItem('name');
 
   sign_in(app) {
@@ -172,7 +173,11 @@ export class UtilsService {
         selector: '[data-editor=w]',
         plugins : 'lists link image charmap preview hr table code autoresize',
         menubar: false,
-        toolbar: ['undo redo | bold italic | underline strikethrough | link image | alignleft aligncenter alignright | outdent indent | formatselect | bullist numlist | preview code | charmap hr table']
+        toolbar: [
+'undo redo | bold italic | underline strikethrough | link image\
+ | alignleft aligncenter alignright | outdent indent | formatselect\
+ | bullist numlist | preview code | charmap hr table'
+        ]
       });
       tinymce.init({
         selector: '[data-editor=r]',

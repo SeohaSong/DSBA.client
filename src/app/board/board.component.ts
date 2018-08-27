@@ -101,16 +101,21 @@ export class BoardComponent implements OnInit {
   trim_html = (html, limit=128) => html.slice(0, limit)+' ...';
 
   toggleEditStatus(id) {
-    if (this.updating_status) {
-      let post = this.all_posts[id];
-      [post.title, post.content] = this.utilsService.save_post(this, id);
+    let uid = this.utilsService.get_userid();
+    if (uid) {
+      if (this.updating_status) {
+        let post = this.all_posts[id];
+        [post.title, post.content] = this.utilsService.save_post(this, id);
+      } else {
+        let post = this.all_posts[id];
+        this.updating_title = post.title;
+      }
+      new Promise((resolve, reject) => {
+        resolve(this.updating_status = !this.updating_status)
+      }).then(() => this.utilsService.setEditor());
     } else {
-      let post = this.all_posts[id];
-      this.updating_title = post.title;
+      console.log('로그인을 해야합니다.')
     }
-    new Promise((resolve, reject) => {
-      resolve(this.updating_status = !this.updating_status)
-    }).then(() => this.utilsService.setEditor());
   }
 
 }

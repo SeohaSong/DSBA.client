@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+# Job Queue
+
+- 개별 개시물 조회 라우팅을 get방식에 맞게 변경
+- 되도록 로컬스토리지를 안쓰고 파이어베이스 안에서 해결되도록 변경
+- 리모트 이미지 파일들 로컬로 이동
