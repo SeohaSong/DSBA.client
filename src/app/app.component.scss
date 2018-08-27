@@ -15,3 +15,14 @@
   position: fixed;
   width: 100%;
 }
+
+@media (min-width: 992px) {
+  .dsba-logo {
+    height: 40px;
+  }
+}
+@media (max-width: 991px) {
+  .dsba-logo {
+    height: 20px;
+  }
+}
