@@ -48,7 +48,8 @@ export class BoardComponent implements OnInit {
   post_id = this.route.snapshot.paramMap.get('id');
 
   ngOnInit() {
-    this.utilsService.set_posts(this);
+    let func = this.utilsService.set_posts
+    this.utilsService.limitToBrowser(func, this.utilsService, [this]);
   }
 
   show_post(id) {

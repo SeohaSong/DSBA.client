@@ -13,22 +13,6 @@ declare const db: any;
 declare const tinymce: any;
 
 
-let platformId: any;
-
-export function limitToBrowser(platformId) {
-  console.log(platformId)
-  return (target, propertyKey, descriptor) => {
-    let oldValue = descriptor.value;
-    descriptor.value = function() {
-      if (isPlatformBrowser(platformId)) {
-        return oldValue.apply(null, arguments);
-      }
-    }
-    return descriptor;
-  }
-}
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -36,10 +20,13 @@ export class UtilsService {
 
   constructor(
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId_: Object
-  ) {platformId = platformId_}
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { }
 
-  @limitToBrowser(platformId)
+  limitToBrowser(func, this_, args) {
+    if (isPlatformBrowser(this.platformId)) return func.apply(this_, args);
+  }
+
   set_posts(board) {
     let category = board.category;
     let all_posts = board.all_posts;
@@ -86,7 +73,6 @@ export class UtilsService {
     console.log('뷰카운트 업데이트는 서버측에서 작업해야함');
   }
 
-  @limitToBrowser(platformId)
   set_auth(app) {
     app.uid = storage.getItem('uid');
     if (app.uid == 'pendding') {

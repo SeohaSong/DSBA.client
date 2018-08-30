@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
-import { UtilsService, limitToBrowser } from './utils.service';
+import { UtilsService } from './utils.service';
 
 declare const App: any;
 declare const FancyBox: any;
@@ -16,9 +17,12 @@ export class DisplayService {
 
   constructor(
     private utilsService: UtilsService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
-  init_scroll(doc, top_pad, bottom_pad) {
+  init_scroll(
+    doc, top_pad, bottom_pad
+  ) {if (isPlatformBrowser(this.platformId)) {
     let nav = $("[data-nav]");
     let init_top = parseInt(nav.css('top'));
     doc.on('scroll resize', () => {
@@ -33,10 +37,9 @@ export class DisplayService {
       else if (bottom_cutoff < 0) {nav.css('top', top_pad+bottom_cutoff);}
       else {nav.css('top', top_pad);}
     })
-  }
+  }}
 
-
-  init_pagenation() {
+  init_pagenation() {if (isPlatformBrowser(this.platformId)) {
     let lsts = $("[data-pagenation-lst]")
     let btns = $("[data-pagenation-btn]")
     $(lsts[0]).addClass('in');
@@ -49,24 +52,20 @@ export class DisplayService {
       btn.addClass('in');
       $(lst).addClass('in');
     });
-  }
+  }}
 
-
-  do_click_postprocessing() {
+  do_click_postprocessing() {if (isPlatformBrowser(this.platformId)) {
     $(document).scrollTop(0)
     $('.navbar-responsive-collapse').removeClass("in");
-  }
+  }}
 
-
-  init_click_postprocessing() {
+  init_click_postprocessing() {if (isPlatformBrowser(this.platformId)) {
     setTimeout(() => {
       this.do_click_postprocessing();
     });
-  }
+  }}
 
-
-  // @limitToBrowser(platformId)
-  init_display(){
+  init_display(){if (isPlatformBrowser(this.platformId)) {
     let init = () => {
       let type = this.utilsService.get_url_head();
       if(type == 'board') {type = 'activities'}
@@ -82,26 +81,22 @@ export class DisplayService {
       init();
       $("a[href^='/']").click(() => {init();});
     })
-  }
+  }}
 
-
-  // @limitToBrowser(platformId)
-  set_main_display(){
+  set_main_display(){if (isPlatformBrowser(this.platformId)) {
     this.init_click_postprocessing();
     setTimeout(() => {
       OwlCarousel.initOwlCarousel();
       $('#da-slider').cslider({autoplay: false,});
       $("a[data-section]").click((e) => {
         let id = $(e.target).data('section');
-        let scroll_top = $("div[data-section="+id+"]").offset().top
-        $(document).scrollTop(scroll_top-100)
-      })
-    })
-  }
+        let scroll_top = $("div[data-section="+id+"]").offset().top;
+        $(document).scrollTop(scroll_top-100);
+      });
+    });
+  }}
 
-
-  // @limitToBrowser(platformId)
-  set_members_display(){
+  set_members_display(){if (isPlatformBrowser(this.platformId)) {
     this.init_click_postprocessing();
     setTimeout(() => {
       let type = this.utilsService.get_url_tail();
@@ -114,11 +109,9 @@ export class DisplayService {
         .parent().addClass("active");
       });
     });
-  }
+  }}
 
-
-  // @limitToBrowser(platformId)
-  set_publications_display(){
+  set_publications_display(){if (isPlatformBrowser(this.platformId)) {
     let init = () => {
       let type = this.utilsService.get_url_tail();
       $("[data-type0]").removeClass('in');
@@ -128,12 +121,10 @@ export class DisplayService {
     setTimeout(() => {
       init();
       $("a[href^='/publications/']").click(() => {init();});
-    })
-  }
+    });
+  }}
 
-
-  // @limitToBrowser(platformId)
-  set_researches_display(){
+  set_researches_display(){if (isPlatformBrowser(this.platformId)) {
     let init_section = (doc, top_pad) => {
       $("a[data-section]").click((e) => {
         let id = $(e.currentTarget).data('section');
@@ -147,17 +138,14 @@ export class DisplayService {
       this.init_scroll(doc, 150, 450);
       init_section(doc, 100);
       this.init_pagenation();
-    })
-  }
+    });
+  }}
 
-
-  // @limitToBrowser(platformId)
-  set_board_display(){
+  set_board_display(){if (isPlatformBrowser(this.platformId)) {
     this.init_click_postprocessing();
     setTimeout(() => {
       let doc = $(document);
       this.init_scroll(doc, 80, 387);
     })
-  }
-
+  }}
 }

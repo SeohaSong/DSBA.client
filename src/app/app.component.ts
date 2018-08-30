@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { DisplayService } from './_services/display.service'
 import { UtilsService } from './_services/utils.service'
@@ -21,9 +21,11 @@ export class AppComponent {
   uid: any;
 
   ngOnInit() {
-    this.displayService.init_display()
+    this.displayService.init_display();
     this.categories = this.utilsService.get_categories();
-    this.utilsService.set_auth(this);
+
+    let func = this.utilsService.set_auth;
+    this.utilsService.limitToBrowser(func, this.utilsService, [this]);
   }
 
   sign_in() {this.utilsService.sign_in(this)}

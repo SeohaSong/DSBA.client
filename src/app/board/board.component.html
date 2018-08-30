@@ -88,11 +88,11 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
               </div>
               <div class='dsba-post-image'
               *ngFor='let img of post.images'>
-                <a href="http://dsba.korea.ac.kr/wp{{ img }}"
+                <a href="http://163.152.174.143/wp/{{ img }}"
                 class="fancybox img-hover-v2">
                   <span>
                     <img class="img-responsive"
-                    src="http://dsba.korea.ac.kr/wp{{ img }}">
+                    src="http://163.152.174.143/wp/{{ img }}">
                   </span>
                 </a>
               </div>
@@ -146,7 +146,7 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
             </div>
             <div class="col-sm-4 sm-margin-bottom-20">
               <div class="responsive-video">
-                <img src="http://dsba.korea.ac.kr/wp{{ post.images[0] }}">
+                <img src="http://163.152.174.143/wp/{{ post.images[0] }}">
               </div>
             </div>
           </div>
@@ -187,11 +187,11 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
         <div class="headline-v2 bg-color-light"><h2>Photostream</h2></div>
         <ul class="list-inline blog-photostream margin-bottom-50">
           <li *ngFor='let img of images.slice(0, 9)'>
-            <a href="http://dsba.korea.ac.kr/wp{{ img }}"
+            <a href="http://163.152.174.143/wp/{{ img }}"
             class="fancybox img-hover-v2">
               <span>
                 <img class="img-responsive"
-                src="http://dsba.korea.ac.kr/wp{{ img }}">
+                src="http://163.152.174.143/wp/{{ img }}">
               </span>
             </a>
           </li>
