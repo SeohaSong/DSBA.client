@@ -92,7 +92,10 @@ export class UploaderComponent implements OnInit {
         let ss = date.slice(12, 14);
         post.date = yyyy+'.'+mm+'.'+dd+' '+hh+':'+mM+':'+ss;
         post.view_count = parseInt(post.view_count);
-        if (post.images.length) post.images = [post.images[0]];
+        if (post.images.length) {
+          let parts = post.images[0].split('/');
+          post.images = ['/assets/img/posts/'+parts[parts.length-1]];
+        }
         post_collection.doc().set(post)
         .then(data => console.log('create success'))
         .catch(error => console.log('create fail'));
@@ -117,7 +120,8 @@ export class UploaderComponent implements OnInit {
         }
         post['view_count'] = parseInt(post['view_count']);
         if(Object.keys(post['images']).length){
-          post['images'] = [post['images']['values'][0]['stringValue']];
+          let parts = post['images']['values'][0]['stringValue'].split('/');
+          post['images'] = ['/assets/img/posts/'+parts[parts.length-1]];
         }
         post_collection.doc().set(post)
         .then(data => console.log('create success'))
