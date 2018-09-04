@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 
 import {
-  CATEGORIES, STUDENTS, RESEARCHES, PUBLICATIONS, COOPERATIONS, PROJECTS
+  CATEGORIES, RESEARCHES, PUBLICATIONS, COOPERATIONS, PROJECTS
 } from "./database.service";
 
 declare const storage: any;
@@ -88,7 +88,7 @@ export class UtilsService {
         db.collection('users').doc(uid).set({
           name: name,
           email: email,
-          state: 0
+          status: 0
         })
         .then(data => console.log('신규 가입되었습니다.'))
         .catch(error => console.log('기존 사용자입니다.'));
@@ -137,18 +137,18 @@ export class UtilsService {
     return groups
   }
 
-  get_student_pairs(type): any {
+  set_student_pairs(component): any {
+    let type = component.student_type;
     return new Promise(resolve => {
-      if (type == undefined) {
-        resolve(this.get_url_tail())
-      } else {
-        resolve(type)
-      }
+      if (type) {resolve(type)} else {resolve(this.get_url_tail())}
     }).then(type => {
       let pairs = [];
-      let students = STUDENTS.filter(val => val.type == type);
-      pairs = this.group_list(2, students)
-      return [type, pairs]
+      let objs = [];
+      db.collection("members").get().then(data => {
+        data.forEach(obj => objs.push(obj.data()));
+        pairs = this.group_list(2, objs.filter(val => val.type == type));
+        [component.student_type, component.student_pairs] = [type, pairs]
+      });
     });
   }
 

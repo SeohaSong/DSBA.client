@@ -12,8 +12,8 @@
         <img src="{{ one.img }}" alt="">
         <div class="name-location">
           <strong>{{ one.name_ko }} ({{ one.name_en }})</strong>
-          <span>{{ one.status1 }}</span>
-          <span *ngIf="one.status2">({{ one.status2 }}학기)</span><br>
+          <span>{{ one.status }}</span>
+          <!-- <span *ngIf="one.status2">({{ one.status2 }}학기)</span><br> -->
           <span *ngIf="one.mail">
             <a href="mailto:{{ one.mail }}">{{ one.mail }}</a>
             <a *ngIf="one.CV"
@@ -32,6 +32,9 @@
           </li>
           <li *ngIf="one.career">
             <span><strong>Career:</strong> {{ one.career }}</span>
+          </li>
+          <li *ngIf="one.current">
+            <span><strong>Current:</strong> {{ one.current }}</span>
           </li>
           <li *ngIf="one.admission">
             <span><strong>Admission:</strong> {{ one.admission }} ~ Current</span>

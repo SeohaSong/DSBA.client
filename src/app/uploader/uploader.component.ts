@@ -129,4 +129,18 @@ export class UploaderComponent implements OnInit {
       }
     });
   }
+
+  upload_all_members_data() {
+    let collection = db.collection("members");
+    let objs: any;
+    this.http.get('assets/db/members.json')
+    .subscribe(data => {
+      objs = data;
+      for (let i=0; i < objs.length; i++) {
+        collection.doc().set(objs[i])
+        .then(data => console.log('create success'))
+        .catch(error => console.log('create fail'));
+      }
+    });
+  }
 }

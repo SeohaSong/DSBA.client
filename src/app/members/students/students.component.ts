@@ -19,8 +19,7 @@ export class StudentsComponent implements OnInit {
 
   ngOnInit() {
     this.utilsService
-        .get_student_pairs(this.student_type)
-        .then(val => [this.student_type, this.student_pairs] = val);
+    .set_student_pairs(this);
   }
 
 }
