@@ -18,8 +18,8 @@ export class StudentsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.utilsService
-    .set_student_pairs(this);
+    let func = this.utilsService.set_student_pairs;
+    this.utilsService.limitToBrowser(func, this.utilsService, [this]);
   }
 
 }
