@@ -106,7 +106,7 @@ export class DisplayService {
       $("[data-link='/members/"+tail+"']").parent().addClass("active");
       if (!initialization) component.turnPage(tail);
     });
-    $("[data-link]").click(() => turnPage(false));
+    $("[data-link^='/members/']").click(() => turnPage(false));
     turnPage(true);
   }
 
