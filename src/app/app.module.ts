@@ -9,7 +9,6 @@ import { UploaderComponent } from './uploader/uploader.component';
 import { MainComponent } from './main/main.component';
 import { MembersComponent } from './members/members.component';
 import { ProfessorComponent } from './members/professor/professor.component';
-import { OverallComponent } from './members/overall/overall.component';
 import { StudentsComponent } from './members/students/students.component';
 import { ResearchesComponent } from './researches/researches.component';
 import { PublicationsComponent } from './publications/publications.component';
@@ -28,7 +27,6 @@ import { UtilsService } from './_services/utils.service';
     UploaderComponent,
     MainComponent,
     MembersComponent,
-    OverallComponent,
     ProfessorComponent,
     StudentsComponent,
     ResearchesComponent,

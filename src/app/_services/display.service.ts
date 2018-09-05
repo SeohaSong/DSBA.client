@@ -55,8 +55,9 @@ export class DisplayService {
   }}
 
   do_click_postprocessing() {if (isPlatformBrowser(this.platformId)) {
-    $(document).scrollTop(0)
-    $('.navbar-responsive-collapse').removeClass("in");
+    $(document).scrollTop(0);
+    $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
+    .removeClass("in");
   }}
 
   init_click_postprocessing() {if (isPlatformBrowser(this.platformId)) {
@@ -69,7 +70,7 @@ export class DisplayService {
     let init = () => {
       let type = this.utilsService.get_url_head();
       if(type == 'board') {type = 'activities'}
-      $("[data-category]").removeClass('active');
+      $("li").removeClass("active");
       $("[data-category="+type+"]").addClass('active');
     }
     this.init_click_postprocessing();
@@ -78,8 +79,8 @@ export class DisplayService {
       FancyBox.initFancybox();
       StyleSwitcher.initStyleSwitcher();
       $("#loading-ui").fadeOut();
+      $("a").click(() => {init()});
       init();
-      $("a[href^='/']").click(() => {init();});
     })
   }}
 
@@ -96,20 +97,18 @@ export class DisplayService {
     });
   }}
 
-  set_members_display(){if (isPlatformBrowser(this.platformId)) {
+  initMembersDisplay(component){
     this.init_click_postprocessing();
-    setTimeout(() => {
-      let type = this.utilsService.get_url_tail();
-      $("li.list-group-item > a[href='/members/"+type+"']")
-      .parent().addClass("active");
-      $("a[href^='/members/']").click(() => {
-        let type = this.utilsService.get_url_tail();
-        $("li.list-group-item").removeClass("active");
-        $("li.list-group-item > a[href='/members/"+type+"']")
-        .parent().addClass("active");
-      });
+    let utilsService = this.utilsService;
+    let turnPage = ((initialization: boolean) => {
+      let tail: string = utilsService.get_url_tail();
+      $("li").removeClass("active");
+      $("[data-link='/members/"+tail+"']").parent().addClass("active");
+      if (!initialization) component.turnPage(tail);
     });
-  }}
+    $("[data-link]").click(() => turnPage(false));
+    turnPage(true);
+  }
 
   set_publications_display(){if (isPlatformBrowser(this.platformId)) {
     let init = () => {

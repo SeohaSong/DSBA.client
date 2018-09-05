@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { UtilsService } from "../../_services/utils.service";
-
 
 @Component({
   selector: 'app-students',
@@ -10,16 +8,17 @@ import { UtilsService } from "../../_services/utils.service";
 })
 export class StudentsComponent implements OnInit {
 
-  @Input() student_type: string;
-  student_pairs: any[];
+  constructor() { }
 
-  constructor(
-    private utilsService: UtilsService,
-  ) { }
+  @Input() pageType: string;
+  @Input() studentPairs: any[];
 
-  ngOnInit() {
-    let func = this.utilsService.set_student_pairs;
-    this.utilsService.limitToBrowser(func, this.utilsService, [this]);
+  ngOnInit() { }
+
+  beautifyAdmission(admission: string) {
+    let parts: Array<string> = admission.split('-');
+    let head: string = ['March 1', 'September 1'][parseInt(parts[1])-1];
+    let beautified: string  = [head, parts[0]].join(', ');
+    return beautified;
   }
-
 }

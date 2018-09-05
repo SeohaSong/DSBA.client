@@ -81,6 +81,9 @@ a:hover{
 /* #482525 */
 /* #605B5B */
 
+#mceu_36 {
+  display: none;
+}
 
 .mce-tinymce.mce-container.mce-panel,
 .mce-edit-area.mce-container.mce-panel.mce-stack-layout-item.mce-last {

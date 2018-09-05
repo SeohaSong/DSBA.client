@@ -24,7 +24,9 @@ export class UtilsService {
   ) { }
 
   limitToBrowser(func, this_, args) {
-    if (isPlatformBrowser(this.platformId)) return func.apply(this_, args);
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => func.apply(this_, args));
+    }
   }
 
   set_posts(board) {
@@ -137,19 +139,38 @@ export class UtilsService {
     return groups
   }
 
-  set_student_pairs(component): any {
-    let type = component.student_type;
-    return new Promise(resolve => {
-      if (type) {resolve(type)} else {resolve(this.get_url_tail())}
-    }).then(type => {
-      let pairs = [];
+  initMembers(component) {
+    let statuses = [
+      "Ph.D. Candidate",
+      "Integrated M.S/Ph.D. Candidate",
+      "Ph.D. Student",
+      "Integrated M.S/Ph.D. Student",
+      "M.S. Student",
+      "M.S. Candidate",
+      "Ph.D.",
+      "M.S."
+    ];
+    db.collection("members").orderBy('name_ko').get().then(data => {
       let objs = [];
-      db.collection("members").get().then(data => {
-        data.forEach(obj => objs.push(obj.data()));
-        pairs = this.group_list(2, objs.filter(val => val.type == type));
-        [component.student_type, component.student_pairs] = [type, pairs]
+      data.forEach(obj => objs.push(obj.data()));
+      objs.sort((a, b): number => {
+        [a, b] = [statuses.indexOf(a.status)+a.admission,
+                  statuses.indexOf(b.status)+b.admission];
+        if (a < b) return -1;
+        if (a >= b) return 1;
       });
-    });
+      component.totalStudents = objs;
+      component.loadingStatus = false;
+    }).then(() => this.setStudentPairs(component));
+  }
+
+  setStudentPairs(component) {
+    let tail = this.get_url_tail();
+    component.pageType = tail;
+    let students = component.totalStudents.slice();
+    if (tail != 'overall') students = students.filter(val => val.type == tail);
+    if (tail == 'alumni') students = students.reverse();
+    component.studentPairs = this.group_list(2, students);
   }
 
   setEditor() {

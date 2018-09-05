@@ -36,7 +36,10 @@
               <ul class="dropdown-menu">
                 <li
                 *ngFor='let content of category.lv1content'>
-                  <a routerLink="{{ content.link }}">{{ content.title }}</a>
+                  <a routerLink="{{ content.link }}"
+                  [attr.data-link]='content.link'>
+                    {{ content.title }}
+                  </a>
                 </li>
               </ul>
             </li>

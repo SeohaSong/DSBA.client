@@ -13,7 +13,7 @@
 		"MS": null,
 		"career": null,
 		"current": null,
-		"admission": "March 1, 2015"
+		"admission": "2015-1"
   },
 	{
     "type": "students",
@@ -29,7 +29,7 @@
 		"MS": null,
 		"career": null,
 		"current": null,
-		"admission": "March 1, 2015"
+		"admission": "2015-1"
   },
   {
     "type": "students",
@@ -45,7 +45,7 @@
 		"MS": null,
 		"career": null,
 		"current": null,
-		"admission": "March 1, 2015"
+		"admission": "2015-1"
   },
 	{
     "type": "alumni",
@@ -61,7 +61,7 @@
 		"MS": "Industrial Management Engineering, Korea Univ, 2017",
 		"career": "KT Institute of Convenge Technology(2017 ~ 2018)",
 		"current": "LG CTO",
-		"admission": "September 1, 2015"
+		"admission": "2015-2"
   },
 	{
     "type": "students",
@@ -77,7 +77,7 @@
 		"MS": null,
 		"career": null,
 		"current": null,
-		"admission": "September 1, 2015"
+		"admission": "2015-2"
   },
 	{
     "type": "students",
@@ -93,7 +93,7 @@
 		"MS": "Data Science, Seoul Nat’l Univ. of Sci. & Tech., 2016",
 		"career": null,
 		"current": null,
-		"admission": "March 1, 2016"
+		"admission": "2016-1"
   },
   {
     "type": "alumni",
@@ -109,7 +109,7 @@
 		"MS": "Industrial Management Engineering, Korea Univ, 2017",
 		"career": "The Bank of Korea(2018.1 ~ 2018.6)",
 		"current": "Pennsylvania State University",
-		"admission": "March 1, 2016"
+		"admission": "2016-1"
   },
   {
     "type": "alumni",
@@ -125,7 +125,7 @@
 		"MS": "Industrial Management Engineering, Korea Univ, 2017",
 		"career": null,
 		"current": "SK C&C",
-		"admission": "March 1, 2016"
+		"admission": "2016-1"
   },
   {
     "type": "alumni",
@@ -141,7 +141,7 @@
 		"MS": "Industrial Management Engineering, Korea Univ, 2017",
 		"career": null,
 		"current": null,
-		"admission": "March 1, 2016"
+		"admission": "2016-1"
   },
 	{
     "type": "students",
@@ -157,7 +157,7 @@
 		"MS": "Information Security, Sungkyunkwan Univ., 2009",
 		"career": "AhnLab, South Korea(2007.1 ~ 2016.8)",
 		"current": null,
-		"admission": "September 1, 2016"
+		"admission": "2016-2"
 	},
   {
     "type": "alumni",
@@ -173,7 +173,7 @@
 		"MS": "Industrial Management Engineering, Korea Univ, 2018",
 		"career": null,
 		"current": "SK C&C",
-		"admission": "September 1, 2016"
+		"admission": "2016-2"
   },
   {
     "type": "alumni",
@@ -189,7 +189,7 @@
 		"MS": "Industrial Management Engineering, Korea Univ, 2018",
 		"career": null,
 		"current": "SKT T-Brain",
-		"admission": "September 1, 2016"
+		"admission": "2016-2"
   },
   {
     "type": "alumni",
@@ -203,9 +203,9 @@
 		"research_areas": "Data Mining, Machine Learning",
 		"BS": "Korean Language and Literature, Political Science, Seoul National University, 2009",
 		"MS": "Industrial Management Engineering, Korea Univ, 2018",
-		"career": null,
-		"current": "Naver Clova",
-		"admission": "September 1, 2016"
+		"career": "Maeil Business Newpaper(2009.10 ~ 2016.5)",
+		"current": "Naver Search&Clova(2018.2 ~)",
+		"admission": "2016-2"
   },
 	{
     "type": "students",
@@ -221,7 +221,7 @@
 		"MS": null,
 		"career": null,
 		"current": null,
-		"admission": "March 1, 2017"
+		"admission": "2017-1"
   },
   {
     "type": "students",
@@ -237,7 +237,7 @@
 		"MS": null,
 		"career": null,
 		"current": null,
-		"admission": "March 1, 2017"
+		"admission": "2017-1"
   },
   {
     "type": "students",
@@ -253,7 +253,7 @@
 		"MS": null,
 		"career": null,
 		"current": null,
-		"admission": "March 1, 2017"
+		"admission": "2017-1"
   },
   {
     "type": "students",
@@ -269,7 +269,7 @@
 		"MS": null,
 		"career": null,
 		"current": null,
-		"admission": "September 1, 2017"
+		"admission": "2017-2"
   },
 	{
     "type": "students",
@@ -285,7 +285,7 @@
 		"MS": null,
 		"career": null,
 		"current": null,
-		"admission": "March 1, 2018"
+		"admission": "2018-1"
   },
 	{
     "type": "students",
@@ -293,7 +293,7 @@
 		"img": "assets/img/members/019.jpeg",
 		"name_ko": "손규빈",
 		"name_en": "Gyubin Son",
-		"status": "Integrated M.S/Ph.D. Student",
+		"status": "M.S. Student",
 		"mail": "gyubin_son@korea.ac.kr",
 		"CV": null,
 		"research_areas": "Question Answering, Generative models in NLP",
@@ -301,7 +301,7 @@
 		"MS": null,
 		"career": null,
 		"current": null,
-		"admission": "March 1, 2018"
+		"admission": "2018-1"
 	},
   {
     "type": "students",
@@ -317,7 +317,7 @@
 		"MS": null,
 		"career": null,
 		"current": null,
-		"admission": "March 1, 2018"
+		"admission": "2018-1"
   },
   {
     "type": "students",
@@ -333,7 +333,7 @@
 		"MS": null,
 		"career": null,
 		"current": null,
-		"admission": "March 1, 2018"
+		"admission": "2018-1"
   },
   {
     "type": "students",
@@ -349,6 +349,6 @@
 		"MS": null,
 		"career": null,
 		"current": null,
-		"admission": "March 1, 2018"
+		"admission": "2018-1"
   }
 ]
