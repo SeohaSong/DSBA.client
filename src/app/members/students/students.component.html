@@ -9,7 +9,6 @@
         <div class="name-location">
           <strong>{{ one.name_ko }} ({{ one.name_en }})</strong>
           <span>{{ one.status }}</span>
-          <!-- <span *ngIf="one.status2">({{ one.status2 }}학기)</span> -->
           <br>
           <span *ngIf="one.mail">
             <a href="mailto:{{ one.mail }}">{{ one.mail }}</a>
@@ -36,7 +35,7 @@
           <li>
             <span>
               <strong>Admission:</strong>
-              {{ beautifyAdmission(one.admission) }}
+              {{ one.admission }}
             </span>
           </li>
         </ul>

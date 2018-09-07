@@ -11,6 +11,7 @@ import { PublicationsComponent } from './publications/publications.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { BoardComponent } from './board/board.component';
 import { LinksComponent } from './links/links.component';
+import { JenkinsComponent } from './jenkins/jenkins.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'board/photo', component: BoardComponent },
   { path: 'board/photo/:id', component: BoardComponent },
   { path: 'links', component: LinksComponent },
+  { path: 'jenkins', component: JenkinsComponent }
 ];
 
 

@@ -54,17 +54,13 @@ export class DisplayService {
     });
   }}
 
-  do_click_postprocessing() {if (isPlatformBrowser(this.platformId)) {
-    $(document).scrollTop(0);
-    $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
-    .removeClass("in");
-  }}
-
-  init_click_postprocessing() {if (isPlatformBrowser(this.platformId)) {
-    setTimeout(() => {
-      this.do_click_postprocessing();
-    });
-  }}
+  init_click_postprocessing() {
+    $("[data-link]").click(() => {
+      $(document).scrollTop(0);
+      $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
+      .removeClass("in");
+    })
+  }
 
   init_display(){if (isPlatformBrowser(this.platformId)) {
     let init = () => {

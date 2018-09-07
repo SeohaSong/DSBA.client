@@ -15,6 +15,7 @@ import { PublicationsComponent } from './publications/publications.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { BoardComponent } from './board/board.component';
 import { LinksComponent } from './links/links.component';
+import { JenkinsComponent } from './jenkins/jenkins.component';
 
 import { DisplayService } from './_services/display.service';
 import { DatabaseService } from './_services/database.service';
@@ -33,7 +34,8 @@ import { UtilsService } from './_services/utils.service';
     PublicationsComponent,
     ProjectsComponent,
     BoardComponent,
-    LinksComponent
+    LinksComponent,
+    JenkinsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'DSBA'}),

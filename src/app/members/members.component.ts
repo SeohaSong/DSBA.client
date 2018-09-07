@@ -13,7 +13,7 @@ import { DisplayService } from "../_services/display.service";
 export class MembersComponent implements OnInit {
 
   totalStudents: any[];
-  studentPairs: any[];
+  studentPairs: any[][];
   pageType: string;
   loadingStatus: boolean = true;
   types: string[] = ["overall", "professor", "students", "alumni"];

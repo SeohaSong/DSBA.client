@@ -1,3 +1,106 @@
-<p>
-  jenkins works!
-</p>
+<div class="container content profile">
+  <div class="row">
+    <div class="col-md-3 md-margin-bottom-40">
+      <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+        <li *ngFor='let week of weeks' class="list-group-item active">
+          <a>{{week}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <div class="profile-body margin-bottom-20">
+        <div class="panel-heading overflow-h margin-bottom-20">
+          <h2 class="panel-title heading-sm pull-left">개인연구 발표자</h2>
+        </div>
+        <div class="row margin-bottom-20">
+          <div class="col-sm-6 sm-margin-bottom-20" *ngFor="let one of prMemberPair">
+            <div class="profile-blog">
+              <img src="{{ one.img }}" alt="">
+              <div class="name-location">
+                <strong>{{ one.name_ko }} ({{ one.name_en }})</strong>
+                <span>{{ one.status }}</span>
+                <br>
+                <span>
+                  <a *ngIf="one.mail" href="mailto:{{ one.mail }}">{{ one.mail }}</a>
+                  <a *ngIf="one.CV" href="{{ one.CV }}" target="_blank"> / Curriculum Viate</a>
+                </span>
+              </div>
+              <div class="clearfix margin-bottom-20"></div>
+              <p><strong>Research Areas:</strong> {{ one.research_areas }}</p>
+              <hr>
+              <ul class="list-inline share-list">
+                <li *ngIf="one.BS">
+                  <span><strong>BS:</strong> {{ one.BS }}</span>
+                </li>
+                <li *ngIf="one.MS">
+                  <span><strong>MS:</strong> {{ one.MS }}</span>
+                </li>
+                <li *ngIf="one.career">
+                  <span><strong>Career:</strong> {{ one.career }}</span>
+                </li>
+                <li *ngIf="one.current">
+                  <span><strong>Current:</strong> {{ one.current }}</span>
+                </li>
+                <li>
+                  <span><strong>Admission:</strong> {{one.admission}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row margin-bottom-20">
+          <div class="col-sm-6 sm-margin-bottom-20" *ngFor="let one of seMember">
+            <div class="panel-heading overflow-h margin-bottom-20">
+              <h2 class="panel-title heading-sm pull-left">강화학습 세미나 발표자</h2>
+            </div>
+            <div class="profile-blog">
+              <img src="{{ one.img }}" alt="">
+              <div class="name-location">
+                <strong>{{ one.name_ko }} ({{ one.name_en }})</strong>
+                <span>{{ one.status }}</span>
+                <br>
+                <span>
+                  <a *ngIf="one.mail" href="mailto:{{ one.mail }}">{{ one.mail }}</a>
+                  <a *ngIf="one.CV" href="{{ one.CV }}" target="_blank"> / Curriculum Viate</a>
+                </span>
+              </div>
+              <div class="clearfix margin-bottom-20"></div>
+              <p><strong>Research Areas:</strong> {{ one.research_areas }}</p>
+              <hr>
+              <ul class="list-inline share-list">
+                <li *ngIf="one.BS">
+                  <span><strong>BS:</strong> {{ one.BS }}</span>
+                </li>
+                <li *ngIf="one.MS">
+                  <span><strong>MS:</strong> {{ one.MS }}</span>
+                </li>
+                <li *ngIf="one.career">
+                  <span><strong>Career:</strong> {{ one.career }}</span>
+                </li>
+                <li *ngIf="one.current">
+                  <span><strong>Current:</strong> {{ one.current }}</span>
+                </li>
+                <li>
+                  <span><strong>Admission:</strong> {{one.admission}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-6 sm-margin-bottom-20">
+            <div class="panel-heading overflow-h margin-bottom-20">
+              <h2 class="panel-title heading-sm pull-left">과제회의 순서</h2>
+            </div>
+            <div class="profile-blog">
+              <div class="name-location">
+                <strong *ngFor="let project of projects">{{project}}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

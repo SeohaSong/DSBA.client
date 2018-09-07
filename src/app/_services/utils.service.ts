@@ -139,23 +139,90 @@ export class UtilsService {
     return groups
   }
 
+  initJenkins(component) {
+    let [prOrder, seOrder, pjOrder, weeks] = [
+      [
+        "김준홍",
+        "김창엽",
+        "김동화",
+        "장명준",
+        "정재윤",
+        "김형석",
+        "박민식",
+        "송서하",
+        "서승완"
+      ],
+      [
+        "박경찬",
+        "양우식",
+        "손규빈",
+        "최희정",
+        "정민성"
+      ],
+      [
+        "의료영상",
+        "GCS",
+        "국보연-키스트로크",
+        "국과연",
+        "국보연-이상치탐지",
+        "NC",
+        "대우조선해양",
+        "삼성전자"
+      ],
+      [
+        "week1",
+        "week2",
+        "week3",
+        "week4",
+        "week5"
+      ]
+    ];
+    db.collection("members").get().then(data => {
+      let [prMembers, seMembers] = [[], []];
+      data.forEach(obj => {
+        obj = obj.data();
+        obj.admission = this.beautifyAdmission(obj.admission);
+        if (obj.type == "students") {
+          if (prOrder.indexOf(obj.name_ko) != -1) prMembers.push(obj);
+          if (seOrder.indexOf(obj.name_ko) != -1) seMembers.push(obj);
+        }
+      });
+      prMembers.sort((a, b): number => {
+        [a, b] = [prOrder.indexOf(a.name_ko),
+                  prOrder.indexOf(b.name_ko)];
+        if (a < b) return -1;
+        if (a >= b) return 1;
+      });
+      seMembers.sort((a, b): number => {
+        [a, b] = [seOrder.indexOf(a.name_ko),
+                  seOrder.indexOf(b.name_ko)];
+        if (a < b) return -1;
+        if (a >= b) return 1;
+      });
+      component.prMemberPair = this.group_list(2, prMembers)[0];
+      component.seMember = [seMembers[0]];
+      component.projects = pjOrder;
+      component.weeks = weeks;
+    });
+  }
+
   initMembers(component) {
     let statuses = [
       "Ph.D. Candidate",
       "Integrated M.S/Ph.D. Candidate",
+      "M.S. Candidate",
       "Ph.D. Student",
       "Integrated M.S/Ph.D. Student",
       "M.S. Student",
-      "M.S. Candidate",
       "Ph.D.",
       "M.S."
     ];
-    db.collection("members").orderBy('name_ko').get().then(data => {
+    db.collection("members").get().then(data => {
       let objs = [];
       data.forEach(obj => objs.push(obj.data()));
       objs.sort((a, b): number => {
-        [a, b] = [statuses.indexOf(a.status)+a.admission,
-                  statuses.indexOf(b.status)+b.admission];
+        [a, b] = [statuses.indexOf(a.status)+a.admission+a.name_ko,
+                  statuses.indexOf(b.status)+b.admission+b.name_ko];
         if (a < b) return -1;
         if (a >= b) return 1;
       });
@@ -164,12 +231,24 @@ export class UtilsService {
     }).then(() => this.setStudentPairs(component));
   }
 
+  beautifyAdmission(admission: string) {
+    let parts: Array<string> = admission.split('-');
+    let head: string = ['March 1', 'September 1'][parseInt(parts[1])-1];
+    let beautified: string  = [head, parts[0]].join(', ');
+    return beautified;
+  }
+
   setStudentPairs(component) {
     let tail = this.get_url_tail();
     component.pageType = tail;
     let students = component.totalStudents.slice();
-    if (tail != 'overall') students = students.filter(val => val.type == tail);
-    if (tail == 'alumni') students = students.reverse();
+    if (tail != 'overall') {
+      students = students.filter(val => val.type == tail);
+      students.reverse();
+    }
+    students.forEach(obj => {
+      obj.admission = this.beautifyAdmission(obj.admission);
+    });
     component.studentPairs = this.group_list(2, students);
   }
 
@@ -180,11 +259,11 @@ export class UtilsService {
         selector: '[data-editor=w]',
         plugins : 'lists link image charmap preview hr table code autoresize',
         menubar: false,
-        toolbar: [
-'undo redo | bold italic | underline strikethrough | link image\
- | alignleft aligncenter alignright | outdent indent | formatselect\
- | bullist numlist | preview code | charmap hr table'
-        ]
+        toolbar: [`
+          undo redo | bold italic | underline strikethrough | link image
+          | alignleft aligncenter alignright | outdent indent | formatselect
+          | bullist numlist | preview code | charmap hr table
+        `]
       });
       tinymce.init({
         selector: '[data-editor=r]',

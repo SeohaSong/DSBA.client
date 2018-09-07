@@ -17,5 +17,6 @@ export const ROUTES = [
   '/board/news',
   '/board/seminar',
   '/board/photo',
-  '/links'
+  '/links',
+  '/jenkins'
 ];
