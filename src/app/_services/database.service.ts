@@ -622,12 +622,20 @@ export const PUBLICATIONS: Array<Publication> = [
     title: 'International Journal',
     contents: [
       {
+        content: "Junhong Kim and Pilsung Kang*. (2018+). Analyzing International Collaboration and Identifying Core Topics for the “Internet of Things” based on Network Analysis and Topic Modeling, International Journal of Industrial Engineering: Theory, Applications and Practice, Accepted for Publication. (SCIE)",
+        url: null
+      },
+      {
         content: "Hakyeon Lee and Pilsung Kang*. (2017+). Identifying core topics in technology and innovation management studies: A topic model approach, Journal of Technology Transfer, Accepted for Publication. (SSCI).",
         url: null
       },
       {
         content: "Seokho Kang and Pilsung Kang*. (2018). Locally linear embedding for regression, Information Sciences 432, 199-209. (SCI).",
         url: "https://www.sciencedirect.com/science/article/pii/S0020025517303420"
+      },
+      {
+        content: "Gichang Lee, Jaeyun Jeong, Seungwan Seo, Czang Yeob Kim, and Pilsung Kang*. (2018). Sentiment classification with word localization based on weakly supervised learning with a convolutional neural network, Knowledge-based Systems 152, 70-82. (SCI).",
+        url: "https://www.sciencedirect.com/science/article/pii/S0950705118301710"
       },
       {
         content: "Junhong Kim, Haedong Kim, and Pilsung Kang*. (2018). Keystroke dynamics-based user authentication using freely typed text based on user-adaptive feature extraction and novelty detection, Applied Soft Computing 62, 1077-1087. (SCIE).",
@@ -775,6 +783,10 @@ export const PUBLICATIONS: Array<Publication> = [
     type: 'domestic-journal',
     title: 'Domestic Journal',
     contents: [
+      {
+        content: "박재선, 김준홍, 김형석, 모경현, 강필성*. (2018). 합성곱 신경망을 이용한 웨이퍼 맵 기반 불량 탐지. 대한산업공학회지 44(4), 249-258.",
+        url: null
+      },
       {
         content: "모경현, 박재선, 장명준, 강필성*. (2018). 단어와 자소 기반 합성곱 신경망을 이용한 문서 분류. 대한산업공학회지 44(3), 180-188.",
         url: null
