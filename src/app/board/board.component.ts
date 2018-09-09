@@ -64,7 +64,7 @@ export class BoardComponent implements OnInit {
     let parts = [[url[0].replace(/\/\d+/, ''), id].join('/'), url[1]]
     this.location.go(parts.join('?'))
     this.utilsService.update_view_count(this.id2id[id]);
-    this.displayService.do_click_postprocessing();
+    this.displayService.init_click_postprocessing();
     this.utilsService.setEditor();
   }
 
