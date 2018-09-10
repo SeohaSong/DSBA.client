@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { UtilsService } from "../../_services/utils.service";
+
 
 @Component({
   selector: 'app-students',
@@ -8,10 +10,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class StudentsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private utilsService: UtilsService
+  ) { }
 
   @Input() pageType: string;
   @Input() studentPairs: any[];
+
+  beautifyAdmission = this.utilsService.beautifyAdmission;
 
   ngOnInit() { }
 }

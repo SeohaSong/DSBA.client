@@ -181,7 +181,6 @@ export class UtilsService {
       let [prMembers, seMembers] = [[], []];
       data.forEach(obj => {
         obj = obj.data();
-        obj.admission = this.beautifyAdmission(obj.admission);
         if (obj.type == "students") {
           if (prOrder.indexOf(obj.name_ko) != -1) prMembers.push(obj);
           if (seOrder.indexOf(obj.name_ko) != -1) seMembers.push(obj);
@@ -246,9 +245,6 @@ export class UtilsService {
       students = students.filter(val => val.type == tail);
       students.reverse();
     }
-    students.forEach(obj => {
-      obj.admission = this.beautifyAdmission(obj.admission);
-    });
     component.studentPairs = this.group_list(2, students);
   }
 

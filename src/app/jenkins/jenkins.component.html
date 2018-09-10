@@ -81,7 +81,9 @@
                   <span><strong>Current:</strong> {{ one.current }}</span>
                 </li>
                 <li>
-                  <span><strong>Admission:</strong> {{one.admission}}</span>
+                  <span><strong>Admission:</strong>
+                    {{beautifyAdmission(one.admission)}}
+                  </span>
                 </li>
               </ul>
             </div>

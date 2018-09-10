@@ -18,6 +18,7 @@ export class JenkinsComponent implements OnInit {
   seMember: any[];
   projects: any[];
   weeks: any[];
+  beautifyAdmission = this.utilsService.beautifyAdmission;
 
   ngOnInit() {
     let func = this.utilsService.initJenkins;
