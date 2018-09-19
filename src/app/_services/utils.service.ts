@@ -267,7 +267,8 @@ export class UtilsService {
         readonly: true,
         toolbar: false,
         menubar: false,
-        statusbar: false
+        statusbar: false,
+        default_link_target: "_blank"
       });
     });
   }
