@@ -24,10 +24,10 @@
   min-height: 800px;
   padding: 30px;
   .daba-post-box {
+    box-shadow: 0.5px 0.5px 2px #ddd;
     & > div {
       padding: 15px;
       margin-top: 15px;
-      box-shadow: 0.5px 0.5px 2px #ddd;
       .dsba-back-btn {
         height: 40px;
         width: 40px;
