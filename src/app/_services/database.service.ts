@@ -622,11 +622,11 @@ export const PUBLICATIONS: Array<Publication> = [
     title: 'International Journal',
     contents: [
       {
-        content: "Junhong Kim and Pilsung Kang*. (2018+). Analyzing International Collaboration and Identifying Core Topics for the “Internet of Things” based on Network Analysis and Topic Modeling, International Journal of Industrial Engineering: Theory, Applications and Practice, Accepted for Publication. (SCIE)",
+        content: "Junhong Kim and Pilsung Kang*. (2018). Analyzing International Collaboration and Identifying Core Topics for the \"Internet of Things\" based on Network Analysis and Topic Modeling, International Journal of Industrial Engineering: Theory, Applications and Practice 25(3), 349-369. (SCIE)",
         url: null
       },
       {
-        content: "Hakyeon Lee and Pilsung Kang*. (2017+). Identifying core topics in technology and innovation management studies: A topic model approach, Journal of Technology Transfer, Accepted for Publication. (SSCI).",
+        content: "Hakyeon Lee and Pilsung Kang*. (2018). Identifying core topics in technology and innovation management studies: A topic model approach, Journal of Technology Transfer 43(5), 1291-1317. (SSCI)",
         url: null
       },
       {
