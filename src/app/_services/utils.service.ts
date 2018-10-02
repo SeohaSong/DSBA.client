@@ -208,13 +208,10 @@ export class UtilsService {
   initMembers(component) {
     let statuses = [
       "Ph.D. Candidate",
-      "Integrated M.S/Ph.D. Candidate",
-      "M.S. Candidate",
       "Ph.D. Student",
+      "Integrated M.S/Ph.D. Candidate",
       "Integrated M.S/Ph.D. Student",
-      "M.S. Student",
-      "Ph.D.",
-      "M.S."
+      "M.S. Student"
     ];
     db.collection("members").get().then(data => {
       let objs = [];
@@ -238,14 +235,22 @@ export class UtilsService {
   }
 
   setStudentPairs(component) {
+
     let tail = this.get_url_tail();
     component.pageType = tail;
-    let students = component.totalStudents.slice();
-    if (tail != 'overall') {
-      students = students.filter(val => val.type == tail);
-      students.reverse();
+
+    let members: any[];
+    let overall = component.totalStudents.slice();
+    let students = overall.filter(val => val.type == 'students');
+    let alumni = overall.filter(val => val.type == 'alumni').reverse();
+
+    if (tail == 'overall') members = students.concat(alumni);
+    if (tail == 'students') members = students;
+    if (tail == 'alumni') members = alumni;
+
+    if (tail != 'professor') {
+      component.studentPairs = this.group_list(2, members);
     }
-    component.studentPairs = this.group_list(2, students);
   }
 
   setEditor() {
