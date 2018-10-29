@@ -3,8 +3,8 @@
   <div class="row">
     <div id="dsba-side-nav" class="col-md-3 md-margin-bottom-40">
       <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
-        <li *ngFor='let type of types' class="list-group-item">
-          <a [routerLink]="'/members/'+type" [attr.data-link]="'/members/'+type">
+        <li *ngFor='let type of types' [attr._members-active-toggle]="type" class="list-group-item">
+          <a [routerLink]="'/members/'+type" [attr._init-page]>
             {{ type }}
           </a>
         </li>

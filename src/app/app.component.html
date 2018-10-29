@@ -27,25 +27,19 @@
       <div class="container">
         <ul class="nav navbar-nav">
           <ng-template ngFor let-category [ngForOf]='categories'>
-            <li class="dropdown"
-            *ngIf='!category.lv0content.link'
-            [attr.data-category]="category.lv0content.title">
+            <li *ngIf='!category.lv0content.link' [attr.data-category]="category.lv0content.title" class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">
                 {{ category.lv0content.title }}
               </a>
               <ul class="dropdown-menu">
-                <li
-                *ngFor='let content of category.lv1content'>
-                  <a routerLink="{{ content.link }}"
-                  [attr.data-link]='content.link'>
+                <li *ngFor='let content of category.lv1content'>
+                  <a routerLink="{{ content.link }}" [attr.data-link]>
                     {{ content.title }}
                   </a>
                 </li>
               </ul>
             </li>
-            <li
-            *ngIf='category.lv0content.link'
-            [attr.data-category]="category.lv0content.title">
+            <li *ngIf='category.lv0content.link' [attr.data-category]="category.lv0content.title">
               <a routerLink="{{ category.lv0content.title }}">
                 {{ category.lv0content.title }}
               </a>

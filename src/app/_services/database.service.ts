@@ -622,6 +622,10 @@ export const PUBLICATIONS: Array<Publication> = [
     title: 'International Journal',
     contents: [
       {
+        content: "Donghwa Kim, Deokseong Seo, Suhyoun Cho, Pilsung Kang*. (2019). Multi-co-training for document classification using various document representations: TF–IDF, LDA, and Doc2Vec, Information Sciences 477, 15-29. (SCI).",
+        url: null
+      },
+      {
         content: "Junhong Kim and Pilsung Kang*. (2018). Analyzing International Collaboration and Identifying Core Topics for the \"Internet of Things\" based on Network Analysis and Topic Modeling, International Journal of Industrial Engineering: Theory, Applications and Practice 25(3), 349-369. (SCIE)",
         url: null
       },
