@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UtilsService } from "../_services/utils.service";
 import { DisplayService } from "../_services/display.service";
 
 
@@ -18,8 +17,7 @@ export class MembersComponent implements OnInit {
   types = ["overall", "professor", "students", "alumni"];
 
   constructor(
-    private displayService: DisplayService,
-    private utilsService: UtilsService
+    private displayService: DisplayService
   ) { }
 
   ngOnInit() {

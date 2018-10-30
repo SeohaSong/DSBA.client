@@ -49,7 +49,7 @@ export class BoardComponent implements OnInit {
 
   ngOnInit() {
     let func = this.utilsService.set_posts
-    this.utilsService.limitToBrowser(func, this.utilsService, [this]);
+    // this.utilsService.limitToBrowser(func, this.utilsService, [this]);
   }
 
   show_post(id) {
@@ -64,7 +64,7 @@ export class BoardComponent implements OnInit {
     let parts = [[url[0].replace(/\/\d+/, ''), id].join('/'), url[1]]
     this.location.go(parts.join('?'))
     this.utilsService.update_view_count(this.id2id[id]);
-    this.displayService.init_scroll8nav();
+    // this.displayService.init_scroll8nav();
     this.utilsService.setEditor();
   }
 

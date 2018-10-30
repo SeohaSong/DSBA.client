@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 import { DisplayService } from './_services/display.service'
-import { UtilsService } from './_services/utils.service'
 
 
 @Component({
@@ -12,24 +11,19 @@ import { UtilsService } from './_services/utils.service'
 export class AppComponent {
 
   constructor(
-    private displayService: DisplayService,
-    private utilsService: UtilsService,
+    private displayService: DisplayService
   ) { }
 
-  title = 'app';
-  categories: any[];
-  uid: any;
+  title = 'app'
+  categories: any[]
+  uid: any
+
+  signIn: Function
+  signOut: Function
+
 
   ngOnInit() {
-    this.categories = this.utilsService.get_categories();
-
-    let func1 = this.utilsService.set_auth
-    let func2 = this.displayService.initAppDisplay
-    this.displayService.initPage_(func1, this.utilsService, [this])
-    .then(() => this.displayService.initPage(func2, [this]))
+    this.displayService.startApp(this)
   }
-
-  sign_in() {this.utilsService.sign_in(this)}
-  sign_out() {this.utilsService.sign_out(this)}
 
 }

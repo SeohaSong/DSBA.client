@@ -10,7 +10,9 @@ declare const StyleSwitcher: any;
 declare const OwlCarousel: any;
 declare const $: any;
 declare const db: any;
-
+declare const auth: any;
+declare const storage: any;
+declare const firebase: any;
 
 @Injectable({
   providedIn: 'root'
@@ -23,60 +25,124 @@ export class DisplayService {
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
-  initPage_(func, this_, args) {
+
+  _groupList(size, list){
+    let groups = [];
+    let group_idxs = [];
+    let n_group = parseInt(""+(list.length-1)/size)+1;
+    for (let i=0; i < n_group; i++) {
+      groups.push([]);
+      for (let i_=0; i_ < size; i_++) group_idxs.push(i);
+    }
+    for (let i=0; i < list.length; i++) {
+      groups[group_idxs[i]].push(list[i])
+    }
+    return groups
+  }
+
+
+  startPage() {
+
     let initScroll8Nav = () => {
       $(document).scrollTop(0)
       $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
       .removeClass("in")
     }
+
     if (isPlatformBrowser(this.platformId)) {
       $("[data-_initScroll8Nav]").click(initScroll8Nav)
-      return new Promise((resolve) => {
-        setTimeout(() => resolve(func.apply(this_, args)))
+      return new Promise((resolve) => {setTimeout(() => resolve())})
+    }
+  }
+
+
+  startApp(app) {
+
+    let _signIn = () => {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      auth.languageCode = 'ko-KR';
+      auth.signInWithRedirect(provider);
+    }
+
+    let _signOut = () => {
+      auth.signOut();
+      this.router.navigate(['main']);
+    }
+
+    let initData = () => {
+      app.categories = this.utilsService.get_categories()
+      app.signIn = _signIn
+      app.signOut = _signOut
+    }
+
+    let initDisplay = () => {
+      let init = () => {
+        let type = this.utilsService.get_url_head();
+        if(type == 'board') {type = 'activities'}
+        $("li").removeClass("active");
+        $("[data-category="+type+"]").addClass('active');
+      }
+      App.init();
+      FancyBox.initFancybox();
+      StyleSwitcher.initStyleSwitcher();
+      $("a").click(() => {init()});
+      init();
+    }
+
+    let initAuth = () => {
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          let name = user.displayName
+          let email = user.email
+          let uid = user.uid
+          storage.setItem('name', name)
+          storage.setItem('uid', uid)
+          console.log(name)
+          db.collection('users').doc(uid).set({
+            name: name,
+            email: email,
+            status: 0
+          })
+          .then(() => console.log('신규 가입되었습니다.'))
+          .catch(() => console.log('기존 사용자입니다.'))
+        } else {
+          storage.removeItem('name')
+          storage.removeItem('uid')
+          console.log('비회원입니다.')
+        }
+        app.uid = storage.getItem('uid')
+        $("#loading-ui").fadeOut()
       })
+      // setInterval(() => console.log(app.uid), 500)
     }
+
+    this.startPage()
+    .then(() => initData())
+    .then(() => initDisplay())
+    .then(() => initAuth())
   }
 
-  initPage(func, args) {
-    let initScroll8Nav = () => {
-      $(document).scrollTop(0)
-      $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
-      .removeClass("in")
+
+  initMain(comoponent) {
+
+    let groupList = this._groupList
+
+    let initData = () => {
+      comoponent.cooperations = this.utilsService.get_cooperations();
+      let projects = this.utilsService.get_projects();
+      comoponent.project_groups = groupList(4, projects).slice(0, 1);
+      let researches = this.utilsService.get_researches()
+      comoponent.research_groups = groupList(4, researches).slice(0, 1);
     }
-    if (isPlatformBrowser(this.platformId)) {
-      $("[data-_initScroll8nav]").click(initScroll8Nav)
-      return new Promise((resolve) => {
-        setTimeout(() => resolve(func.apply(this, args)))
-      })
+
+    let initDisplay = () => {
+      OwlCarousel.initOwlCarousel();
+      $('#da-slider').cslider({autoplay: false});
     }
+
+    this.startPage().then(() => initData()).then(() => initDisplay())
   }
 
-  initAppDisplay(){
-    let init = () => {
-      let type = this.utilsService.get_url_head();
-      if(type == 'board') {type = 'activities'}
-      $("li").removeClass("active");
-      $("[data-category="+type+"]").addClass('active');
-    }
-    App.init();
-    FancyBox.initFancybox();
-    StyleSwitcher.initStyleSwitcher();
-    $("#loading-ui").fadeOut();
-    $("a").click(() => {init()});
-    init();
-  }
-
-  initMain() {
-    OwlCarousel.initOwlCarousel();
-    $('#da-slider').cslider({autoplay: false,});
-  }
-  initMainDisplay() {
-    $("a[data-section]").click((e) => {
-      let id = $(e.target).data('section');
-      let scroll_top = $("div[data-section="+id+"]").offset().top;
-      $(document).scrollTop(scroll_top-100);
-    })
-  }
 
 
   initMembers(component) {
@@ -120,7 +186,7 @@ export class DisplayService {
           if (tail == 'students') members = students;
           if (tail == 'alumni') members = alumni;
           if (tail != 'professor') {
-            component.studentPairs = utilsService.group_list(2, members);
+            component.studentPairs = this._groupList(2, members);
           }
         });
       });
@@ -128,7 +194,7 @@ export class DisplayService {
       turnPage();
     }
 
-    this.initPage(initData, []).then(() => initDisplay())
+    this.startPage().then(() => initData()).then(() => initDisplay())
   }
 
 
@@ -167,6 +233,11 @@ export class DisplayService {
     });
   }}
 
+  // $("a[data-section]").click((e) => {
+  //   let id = $(e.target).data('section');
+  //   let scroll_top = $("div[data-section="+id+"]").offset().top;
+  //   $(document).scrollTop(scroll_top-100);
+  // })
 
 
   set_publications_display(){if (isPlatformBrowser(this.platformId)) {
@@ -175,7 +246,7 @@ export class DisplayService {
       $("[data-type0]").removeClass('in');
       $("[data-type0="+type+"]").addClass('in');
     }
-    this.init_scroll8nav();
+    // this.init_scroll8nav();
     setTimeout(() => {
       init();
       $("a[href^='/publications/']").click(() => {init();});
@@ -190,7 +261,7 @@ export class DisplayService {
         doc.scrollTop(scroll_top-top_pad)
       })
     }
-    this.init_scroll8nav();
+    // this.init_scroll8nav();
     setTimeout(() => {
       let doc = $(document);
       this.init_scroll(doc, 150, 450);
@@ -200,7 +271,7 @@ export class DisplayService {
   }}
 
   set_board_display(){if (isPlatformBrowser(this.platformId)) {
-    this.init_scroll8nav();
+    // this.init_scroll8nav();
     setTimeout(() => {
       let doc = $(document);
       this.init_scroll(doc, 80, 387);
