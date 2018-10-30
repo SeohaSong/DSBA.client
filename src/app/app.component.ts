@@ -21,11 +21,12 @@ export class AppComponent {
   uid: any;
 
   ngOnInit() {
-    this.displayService.init_display();
     this.categories = this.utilsService.get_categories();
 
-    let func = this.utilsService.set_auth;
-    this.utilsService.limitToBrowser(func, this.utilsService, [this]);
+    let func1 = this.utilsService.set_auth
+    let func2 = this.displayService.initAppDisplay
+    this.displayService.initPage_(func1, this.utilsService, [this])
+    .then(() => this.displayService.initPage(func2, [this]))
   }
 
   sign_in() {this.utilsService.sign_in(this)}

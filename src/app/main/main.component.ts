@@ -46,7 +46,9 @@ export class MainComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.displayService.set_main_display();
+    let iFunc = this.displayService.initMain
+    let dFunc = this.displayService.initMainDisplay
+    this.displayService.initPage(iFunc, [this]).then(() => dFunc())
 
     this.cooperations = this.utilsService.get_cooperations();
 

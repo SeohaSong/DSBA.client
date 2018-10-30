@@ -14,8 +14,8 @@ export class MembersComponent implements OnInit {
   totalStudents: any[];
   studentPairs: any[][];
   pageType: string;
-  loadingStatus: boolean = true;
-  types: string[] = ["overall", "professor", "students", "alumni"];
+  loadingStatus = true;
+  types = ["overall", "professor", "students", "alumni"];
 
   constructor(
     private displayService: DisplayService,
@@ -23,9 +23,7 @@ export class MembersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let func = this.displayService.initMembers;
-    this.utilsService.limitToBrowser(func, this.utilsService, [this])
-    .then(() => this.displayService.initMembersDisplay(this));
+    this.displayService.initMembers(this)
   }
 
   checkPage(pageTypes: string[]) {

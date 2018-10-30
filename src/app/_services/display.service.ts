@@ -23,6 +23,117 @@ export class DisplayService {
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
+  initPage_(func, this_, args) {
+    let initScroll8Nav = () => {
+      $(document).scrollTop(0)
+      $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
+      .removeClass("in")
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      $("[data-_initScroll8Nav]").click(initScroll8Nav)
+      return new Promise((resolve) => {
+        setTimeout(() => resolve(func.apply(this_, args)))
+      })
+    }
+  }
+
+  initPage(func, args) {
+    let initScroll8Nav = () => {
+      $(document).scrollTop(0)
+      $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
+      .removeClass("in")
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      $("[data-_initScroll8nav]").click(initScroll8Nav)
+      return new Promise((resolve) => {
+        setTimeout(() => resolve(func.apply(this, args)))
+      })
+    }
+  }
+
+  initAppDisplay(){
+    let init = () => {
+      let type = this.utilsService.get_url_head();
+      if(type == 'board') {type = 'activities'}
+      $("li").removeClass("active");
+      $("[data-category="+type+"]").addClass('active');
+    }
+    App.init();
+    FancyBox.initFancybox();
+    StyleSwitcher.initStyleSwitcher();
+    $("#loading-ui").fadeOut();
+    $("a").click(() => {init()});
+    init();
+  }
+
+  initMain() {
+    OwlCarousel.initOwlCarousel();
+    $('#da-slider').cslider({autoplay: false,});
+  }
+  initMainDisplay() {
+    $("a[data-section]").click((e) => {
+      let id = $(e.target).data('section');
+      let scroll_top = $("div[data-section="+id+"]").offset().top;
+      $(document).scrollTop(scroll_top-100);
+    })
+  }
+
+
+  initMembers(component) {
+
+    let initData = () => {
+      let statuses = [
+        "Ph.D. Candidate",
+        "Ph.D. Student",
+        "Integrated M.S/Ph.D. Candidate",
+        "Integrated M.S/Ph.D. Student",
+        "M.S. Student"
+      ];
+      let promise = db.collection("members").get().then(data => {
+        let objs = [];
+        data.forEach(obj => objs.push(obj.data()))
+        objs.sort((a, b): number => {
+          [a, b] = [statuses.indexOf(a.status)+a.admission+a.name_ko,
+                    statuses.indexOf(b.status)+b.admission+b.name_ko];
+          if (a < b) return -1;
+          if (a >= b) return 1;
+        });
+        component.totalStudents = objs;
+        component.loadingStatus = false;
+      });
+      return promise
+    }
+
+    let initDisplay = () => {
+      let utilsService = this.utilsService
+      let turnPage = (() => {
+        let tail = utilsService.get_url_tail();
+        $("[data-_membersBtn]").removeClass("active");
+        $("[data-_membersBtn="+tail+"]").addClass("active");
+        this.router.navigate(['members', tail]).then(() => {
+          component.pageType = tail;
+          let members: any[];
+          let overall = component.totalStudents.slice();
+          let students = overall.filter(val => val.type == 'students');
+          let alumni = overall.filter(val => val.type == 'alumni').reverse();
+          if (tail == 'overall') members = students.concat(alumni);
+          if (tail == 'students') members = students;
+          if (tail == 'alumni') members = alumni;
+          if (tail != 'professor') {
+            component.studentPairs = utilsService.group_list(2, members);
+          }
+        });
+      });
+      $("[href^='/members']").click(() => turnPage());
+      turnPage();
+    }
+
+    this.initPage(initData, []).then(() => initDisplay())
+  }
+
+
+
+
   init_scroll(
     doc, top_pad, bottom_pad
   ) {if (isPlatformBrowser(this.platformId)) {
@@ -41,109 +152,21 @@ export class DisplayService {
       else {nav.css('top', top_pad);}
     })
   }}
-
   init_pagenation() {if (isPlatformBrowser(this.platformId)) {
     let lsts = $("[data-pagenation-lst]")
     let btns = $("[data-pagenation-btn]")
-    $(lsts[0]).addClass('in');
-    $(btns[0]).addClass('in');
+    $(lsts[0]).addClass('in')
+    $(btns[0]).addClass('in')
     btns.click((e) => {
       let btn = $(e.currentTarget)
       let lst = lsts[btn.data('pagenation-btn')]
-      lsts.removeClass('in');
-      btns.removeClass('in');
-      btn.addClass('in');
-      $(lst).addClass('in');
+      lsts.removeClass('in')
+      btns.removeClass('in')
+      btn.addClass('in')
+      $(lst).addClass('in')
     });
   }}
 
-  init_click_postprocessing() {
-    $("[_init-page]").click(() => {
-      $(document).scrollTop(0);
-      $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
-      .removeClass("in");
-    })
-  }
-
-  init_display(){if (isPlatformBrowser(this.platformId)) {
-    let init = () => {
-      let type = this.utilsService.get_url_head();
-      if(type == 'board') {type = 'activities'}
-      $("li").removeClass("active");
-      $("[data-category="+type+"]").addClass('active');
-    }
-    this.init_click_postprocessing();
-    setTimeout(() => {
-      App.init();
-      FancyBox.initFancybox();
-      StyleSwitcher.initStyleSwitcher();
-      $("#loading-ui").fadeOut();
-      $("a").click(() => {init()});
-      init();
-    })
-  }}
-
-  set_main_display(){if (isPlatformBrowser(this.platformId)) {
-    this.init_click_postprocessing();
-    setTimeout(() => {
-      OwlCarousel.initOwlCarousel();
-      $('#da-slider').cslider({autoplay: false,});
-      $("a[data-section]").click((e) => {
-        let id = $(e.target).data('section');
-        let scroll_top = $("div[data-section="+id+"]").offset().top;
-        $(document).scrollTop(scroll_top-100);
-      });
-    });
-  }}
-
-
-  initMembers(component) {
-    let statuses = [
-      "Ph.D. Candidate",
-      "Ph.D. Student",
-      "Integrated M.S/Ph.D. Candidate",
-      "Integrated M.S/Ph.D. Student",
-      "M.S. Student"
-    ];
-    let promise = db.collection("members").get().then(data => {
-      let objs = [];
-      data.forEach(obj => objs.push(obj.data()));
-      objs.sort((a, b): number => {
-        [a, b] = [statuses.indexOf(a.status)+a.admission+a.name_ko,
-                  statuses.indexOf(b.status)+b.admission+b.name_ko];
-        if (a < b) return -1;
-        if (a >= b) return 1;
-      });
-      component.totalStudents = objs;
-      component.loadingStatus = false;
-    });
-    return promise
-  }
-
-  initMembersDisplay(component){
-    this.init_click_postprocessing();
-    let utilsService = this.utilsService
-    let turnPage = (() => {
-      let tail = utilsService.get_url_tail();
-      $("[_members-active-toggle]").removeClass("active");
-      $("[_members-active-toggle="+tail+"]").addClass("active");
-      this.router.navigate(['members', tail]).then(() => {
-        component.pageType = tail;
-        let members: any[];
-        let overall = component.totalStudents.slice();
-        let students = overall.filter(val => val.type == 'students');
-        let alumni = overall.filter(val => val.type == 'alumni').reverse();
-        if (tail == 'overall') members = students.concat(alumni);
-        if (tail == 'students') members = students;
-        if (tail == 'alumni') members = alumni;
-        if (tail != 'professor') {
-          component.studentPairs = utilsService.group_list(2, members);
-        }
-      });
-    });
-    $("[_members-active-toggle]").click(() => turnPage());
-    turnPage();
-  }
 
 
   set_publications_display(){if (isPlatformBrowser(this.platformId)) {
@@ -152,7 +175,7 @@ export class DisplayService {
       $("[data-type0]").removeClass('in');
       $("[data-type0="+type+"]").addClass('in');
     }
-    this.init_click_postprocessing();
+    this.init_scroll8nav();
     setTimeout(() => {
       init();
       $("a[href^='/publications/']").click(() => {init();});
@@ -167,7 +190,7 @@ export class DisplayService {
         doc.scrollTop(scroll_top-top_pad)
       })
     }
-    this.init_click_postprocessing();
+    this.init_scroll8nav();
     setTimeout(() => {
       let doc = $(document);
       this.init_scroll(doc, 150, 450);
@@ -177,7 +200,7 @@ export class DisplayService {
   }}
 
   set_board_display(){if (isPlatformBrowser(this.platformId)) {
-    this.init_click_postprocessing();
+    this.init_scroll8nav();
     setTimeout(() => {
       let doc = $(document);
       this.init_scroll(doc, 80, 387);

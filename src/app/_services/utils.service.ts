@@ -23,14 +23,6 @@ export class UtilsService {
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
-  limitToBrowser(func, this_, args) {
-    if (isPlatformBrowser(this.platformId)) {
-      return new Promise((resolve) => {
-        setTimeout(() => resolve(func.apply(this_, args)))
-      })
-    }
-  }
-
   set_posts(board) {
     let category = board.category;
     let all_posts = board.all_posts;

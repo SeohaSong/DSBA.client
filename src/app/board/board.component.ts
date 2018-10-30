@@ -60,11 +60,11 @@ export class BoardComponent implements OnInit {
       this.post = this.all_posts[id];
     }
     this.updating_status = false;
-    let url = this.location.path().split('?');
+    let url = this.location.path().split('?')
     let parts = [[url[0].replace(/\/\d+/, ''), id].join('/'), url[1]]
     this.location.go(parts.join('?'))
     this.utilsService.update_view_count(this.id2id[id]);
-    this.displayService.init_click_postprocessing();
+    this.displayService.init_scroll8nav();
     this.utilsService.setEditor();
   }
 
