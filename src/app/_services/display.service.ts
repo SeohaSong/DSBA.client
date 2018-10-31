@@ -3,6 +3,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { UtilsService } from './utils.service';
+import { DatabaseService } from "./database.service";
+
 
 declare const App: any;
 declare const FancyBox: any;
@@ -14,17 +16,27 @@ declare const auth: any;
 declare const storage: any;
 declare const firebase: any;
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class DisplayService {
 
+
   constructor(
     private utilsService: UtilsService,
+    private databaseService :DatabaseService,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
+
+  _get_url_head = () => this.router.url.split("?")[0].split("/")[1];
+
+  _get_url_tail = () => {
+    let pipes = this.router.url.split("?")[0].split("/");
+    return pipes[pipes.length-1];
+  }
 
   _groupList(size, list){
     let groups = [];
@@ -41,55 +53,35 @@ export class DisplayService {
   }
 
 
-  startPage() {
-
-    let initScroll8Nav = () => {
-      $(document).scrollTop(0)
-      $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
-      .removeClass("in")
-    }
-
-    if (isPlatformBrowser(this.platformId)) {
-      $("[data-_initScroll8Nav]").click(initScroll8Nav)
-      return new Promise((resolve) => {setTimeout(() => resolve())})
-    }
-  }
-
-
   startApp(app) {
 
-    let _signIn = () => {
+    let signIn = () => {
       let provider = new firebase.auth.GoogleAuthProvider();
       auth.languageCode = 'ko-KR';
       auth.signInWithRedirect(provider);
     }
 
-    let _signOut = () => {
+    let signOut = () => {
       auth.signOut();
       this.router.navigate(['main']);
     }
 
-    let initData = () => {
-      app.categories = this.utilsService.get_categories()
-      app.signIn = _signIn
-      app.signOut = _signOut
-    }
+    if (isPlatformBrowser(this.platformId)) {
 
-    let initDisplay = () => {
-      let init = () => {
-        let type = this.utilsService.get_url_head();
-        if(type == 'board') {type = 'activities'}
-        $("li").removeClass("active");
-        $("[data-category="+type+"]").addClass('active');
-      }
-      App.init();
-      FancyBox.initFancybox();
-      StyleSwitcher.initStyleSwitcher();
-      $("a").click(() => {init()});
-      init();
-    }
+      app.categories = this.databaseService.categories
+      app.signIn = signIn
+      app.signOut = signOut
 
-    let initAuth = () => {
+      App.init()
+      FancyBox.initFancybox()
+      StyleSwitcher.initStyleSwitcher()
+
+      setTimeout(() => {
+        let type = this._get_url_head()
+        $("li").removeClass("active")
+        $("[data-category="+type+"]").addClass('active')
+      })
+
       auth.onAuthStateChanged((user) => {
         if (user) {
           let name = user.displayName
@@ -113,26 +105,40 @@ export class DisplayService {
         app.uid = storage.getItem('uid')
         $("#loading-ui").fadeOut()
       })
-      // setInterval(() => console.log(app.uid), 500)
+    }
+  }
+
+
+  startPage(loadData) {
+
+    let initScroll8Nav = () => {
+      $(document).scrollTop(0)
+      $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
+      .removeClass("in")
     }
 
-    this.startPage()
-    .then(() => initData())
-    .then(() => initDisplay())
-    .then(() => initAuth())
+    if (isPlatformBrowser(this.platformId)) {
+      let promise = new Promise((resolve) => resolve())
+      .then(() => loadData())
+      .then(() => {
+        $("[data-_initScroll8Nav]").click(initScroll8Nav)
+      })
+      return promise
+    }
   }
 
 
   initMain(comoponent) {
 
     let groupList = this._groupList
+    let databaseService = this.databaseService
 
-    let initData = () => {
-      comoponent.cooperations = this.utilsService.get_cooperations();
-      let projects = this.utilsService.get_projects();
+    let loadData = () => {
+      let projects = databaseService.projects;
       comoponent.project_groups = groupList(4, projects).slice(0, 1);
-      let researches = this.utilsService.get_researches()
+      let researches = databaseService.researches
       comoponent.research_groups = groupList(4, researches).slice(0, 1);
+      comoponent.cooperations = databaseService.cooperations;
     }
 
     let initDisplay = () => {
@@ -140,14 +146,13 @@ export class DisplayService {
       $('#da-slider').cslider({autoplay: false});
     }
 
-    this.startPage().then(() => initData()).then(() => initDisplay())
+    this.startPage(loadData).then(() => initDisplay())
   }
-
 
 
   initMembers(component) {
 
-    let initData = () => {
+    let loadData = () => {
       let statuses = [
         "Ph.D. Candidate",
         "Ph.D. Student",
@@ -171,9 +176,11 @@ export class DisplayService {
     }
 
     let initDisplay = () => {
-      let utilsService = this.utilsService
+
+      console.log($("[data-_membersBtn]"))
+
       let turnPage = (() => {
-        let tail = utilsService.get_url_tail();
+        let tail = this._get_url_tail();
         $("[data-_membersBtn]").removeClass("active");
         $("[data-_membersBtn="+tail+"]").addClass("active");
         this.router.navigate(['members', tail]).then(() => {
@@ -194,7 +201,7 @@ export class DisplayService {
       turnPage();
     }
 
-    this.startPage().then(() => initData()).then(() => initDisplay())
+    this.startPage(loadData).then(() => initDisplay())
   }
 
 

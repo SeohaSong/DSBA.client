@@ -23,7 +23,7 @@ export class ProjectsComponent implements OnInit {
     this.displayService.set_researches_display();
     let projects = this.utilsService.get_projects();
     this.projects = projects;
-    this.project_groups = this.utilsService.group_list(4, projects)
+    // this.project_groups = this.utilsService.group_list(4, projects)
   }
 
 }

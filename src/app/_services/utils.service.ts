@@ -2,9 +2,7 @@ import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 
-import {
-  CATEGORIES, RESEARCHES, PUBLICATIONS, COOPERATIONS, PROJECTS
-} from "./database.service";
+import { PUBLICATIONS } from "./database.service";
 
 declare const storage: any;
 declare const db: any;
@@ -110,10 +108,5 @@ export class UtilsService {
 
   setEditorContent = (content) => tinymce.activeEditor.setContent(content);
   getEditorContent = () => tinymce.activeEditor.getContent({format : 'raw'});
-
-  get_categories = () => CATEGORIES
-  get_researches = () => RESEARCHES
   get_publications = () => PUBLICATIONS
-  get_cooperations = () => COOPERATIONS
-  get_projects = () => PROJECTS
 }
