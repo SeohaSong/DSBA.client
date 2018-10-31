@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { DisplayService } from "../_services/display.service";
-import { UtilsService } from "../_services/utils.service";
+import { DisplayService } from "../_services/display.service"
 
 
 @Component({
@@ -11,16 +10,14 @@ import { UtilsService } from "../_services/utils.service";
 })
 export class PublicationsComponent implements OnInit {
 
-  pubs: any[];
-
   constructor(
-    private displayService: DisplayService,
-    private utilsService: UtilsService,
+    private displayService: DisplayService
   ) { }
 
+  publications: any[]
+
   ngOnInit() {
-    this.displayService.set_publications_display();
-    this.pubs = this.utilsService.get_publications();
+    this.displayService.initPublications(this)
   }
 
 }

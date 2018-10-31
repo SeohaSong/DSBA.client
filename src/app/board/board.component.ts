@@ -40,16 +40,14 @@ export class BoardComponent implements OnInit {
 
   loading_status = true;
 
-  category = (
-    this.route.snapshot.routeConfig.path
-    .replace(/board\/*/, '')
-    .replace(/\/.*/, '')
-  )
+  category = this.route.snapshot.routeConfig.path
+  .replace(/board\/*/, '')
+  .replace(/\/.*/, '')
+
   post_id = this.route.snapshot.paramMap.get('id');
 
   ngOnInit() {
-    let func = this.utilsService.set_posts
-    // this.utilsService.limitToBrowser(func, this.utilsService, [this]);
+    this.displayService.initBoard(this)
   }
 
   show_post(id) {
@@ -64,7 +62,6 @@ export class BoardComponent implements OnInit {
     let parts = [[url[0].replace(/\/\d+/, ''), id].join('/'), url[1]]
     this.location.go(parts.join('?'))
     this.utilsService.update_view_count(this.id2id[id]);
-    // this.displayService.init_scroll8nav();
     this.utilsService.setEditor();
   }
 

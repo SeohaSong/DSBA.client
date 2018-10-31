@@ -1,21 +1,16 @@
-<div class="breadcrumbs-v1"
-style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
+<div class="breadcrumbs-v1" style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
   <div class="container">
     <span>DSBA</span>
     <h1>BOARD</h1>
   </div>
 </div>
 
-<div id='dsba-board-loading-box'
-*ngIf='loading_status'></div>
+<div *ngIf='loading_status' id='dsba-board-loading-box'></div>
 
 <div class="container">
   <div class="row">
-    <!-- post-board start -->
     <div class="col-md-9" id='daba-board'>
-      <!-- post-box start -->
-      <div class='row'
-      *ngIf='post'>
+      <div *ngIf='post' class='row'>
         <ng-container *ngIf='updating_status'>
           <div class='daba-post-box'>
             <div class="blog margin-bottom-40">
@@ -23,8 +18,7 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
                 <div class='dsba-back-btn'><span>←</span></div>
               </a>
               <h2>
-                <input id='dsba-title-editor' type="text"
-                [(ngModel)]="updating_title">
+                <input [(ngModel)]="updating_title" id='dsba-title-editor' type="text">
               </h2>
               <div class="blog-post-tags">
                 <ul class="list-unstyled list-inline blog-info">
@@ -86,13 +80,10 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
                   <li><i class="fa fa-tags"></i> {{ post.category }}</li>
                 </ul>
               </div>
-              <div class='dsba-post-image'
-              *ngFor='let img of post.images'>
-                <a href="{{ img }}"
-                class="fancybox img-hover-v2">
+              <div *ngFor='let img of post.images' class='dsba-post-image'>
+                <a href="{{ img }}" class="fancybox img-hover-v2">
                   <span>
-                    <img class="img-responsive"
-                    src="{{ img }}">
+                    <img class="img-responsive" src="{{ img }}">
                   </span>
                 </a>
               </div>
@@ -101,12 +92,9 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
           </div>
         </ng-container>
       </div>
-      <!-- post-box end -->
 
-      <!-- post-list start -->
       <div class="row">
-        <ul class="pager pager-v3 pager-sm no-margin-bottom"
-        *ngIf='!post'>
+        <ul *ngIf='!post' class="pager pager-v3 pager-sm no-margin-bottom">
           <li class="previous">
             <a (click)='turn_page(-1)'>← Newer</a>
           </li>
@@ -117,8 +105,7 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
         </ul>
         <br>
         <div *ngFor='let post of post_group'>
-          <div class="row"
-          *ngIf='!post.images.length'>
+          <div *ngIf='!post.images.length' class="row">
             <div class="col-sm-10 news-v3">
               <div class="news-v3-in-sm no-padding">
                 <ul class="list-inline posted-info">
@@ -131,8 +118,7 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
               </div>
             </div>
           </div>
-          <div class="row dsba-post-with-photo"
-          *ngIf='post.images.length'>
+          <div *ngIf='post.images.length' class="row dsba-post-with-photo">
             <div class="col-sm-7 news-v3">
               <div class="news-v3-in-sm no-padding">
                 <ul class="list-inline posted-info">
@@ -163,11 +149,8 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
         </ul>
         <br>
       </div>
-      <!-- post-list end -->
     </div>
-    <!-- post-board end -->
 
-    <!-- right-nav start -->
     <div class="col-md-3">
       <div id='dsba-right-nav' data-nav>
         <div class="headline-v2 bg-color-light"><h2>Latest Posts</h2></div>
@@ -187,17 +170,14 @@ style="background-image: url('assets/img/breadcrumbs/hanasquare.jpg')">
         <div class="headline-v2 bg-color-light"><h2>Photostream</h2></div>
         <ul class="list-inline blog-photostream margin-bottom-50">
           <li *ngFor='let img of images.slice(0, 9)'>
-            <a href="{{ img }}"
-            class="fancybox img-hover-v2">
+            <a href="{{ img }}" class="fancybox img-hover-v2">
               <span>
-                <img class="img-responsive"
-                src="{{ img }}">
+                <img class="img-responsive" src="{{ img }}">
               </span>
             </a>
           </li>
         </ul>
       </div>
     </div>
-    <!-- right-nav end -->
   </div>
 </div>

@@ -16,14 +16,11 @@ export class ResearchesComponent implements OnInit {
     private displayService: DisplayService
   ) { }
 
-  researches: any[];
-  research_groups: any[];
+  datas: any[];
+  dataGroups: any[];
 
   ngOnInit() {
-    this.displayService.set_researches_display();
-    let researches = this.utilsService.get_researches();
-    this.researches = researches;
-    this.research_groups = this.utilsService.group_list(4, researches);
+    this.displayService.initResearches0Projects(this);
   }
 
 }

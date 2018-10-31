@@ -4,6 +4,5 @@ firebase.initializeApp({
   projectId: 'dsba-142b3'
 });
 
-const storage = window.localStorage;
 const auth = firebase.auth();
 const db = firebase.firestore();

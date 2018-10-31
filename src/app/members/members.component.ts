@@ -23,10 +23,4 @@ export class MembersComponent implements OnInit {
   ngOnInit() {
     this.displayService.initMembers(this)
   }
-
-  checkPage(pageTypes: string[]) {
-    if (this.pageType == 'overall') return true;
-    if (pageTypes.indexOf(this.pageType) >= 0) return true;
-    return false;
-  }
 }
