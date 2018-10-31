@@ -9,10 +9,10 @@
       <div class="topbar">
         <ul class="loginbar pull-right">
           <li>
-            <a *ngIf="uid" (click)='signOut()'>로그아웃</a>
+            <a *ngIf="isSigned" (click)='signOut()'>로그아웃</a>
             &nbsp;&nbsp;
-            <a *ngIf="uid" routerLink='/uploader'>글쓰기</a>
-            <a *ngIf="!uid" (click)='signIn()'>google 계정으로 로그인</a>
+            <a *ngIf="isSigned" routerLink='/uploader'>글쓰기</a>
+            <a *ngIf="!isSigned" (click)='signIn()'>google 계정으로 로그인</a>
           </li>
         </ul>
       </div>
@@ -27,7 +27,7 @@
       <div class="container">
         <ul class="nav navbar-nav">
           <ng-template ngFor let-category [ngForOf]='categories'>
-            <li *ngIf='!category.lv0content.link' [attr.data-category]="category.lv0content.title" class="dropdown">
+            <li *ngIf='!category.lv0content.link' [attr.data-_category]="category.lv0content.title" class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">
                 {{ category.lv0content.title }}
               </a>

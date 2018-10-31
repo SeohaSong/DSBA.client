@@ -16,11 +16,11 @@ export class AppComponent {
 
   title = 'app'
   categories: any[]
-  uid: any
+  isAuthVarified: any
+  isSigned: any
 
   signIn: Function
   signOut: Function
-
 
   ngOnInit() {
     this.displayService.startApp(this)

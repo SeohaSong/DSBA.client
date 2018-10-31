@@ -31,13 +31,13 @@ export class DisplayService {
   ) { }
 
 
-  _get_url_head = () => this.router.url.split("?")[0].split("/")[1];
-
-  _get_url_tail = () => {
+  _getUrlHead = () => {
+    return this.router.url.split("?")[0].split("/")[1];
+  }
+  _getUrlTail = () => {
     let pipes = this.router.url.split("?")[0].split("/");
     return pipes[pipes.length-1];
   }
-
   _groupList(size, list){
     let groups = [];
     let group_idxs = [];
@@ -52,64 +52,7 @@ export class DisplayService {
     return groups
   }
 
-
-  startApp(app) {
-
-    let signIn = () => {
-      let provider = new firebase.auth.GoogleAuthProvider();
-      auth.languageCode = 'ko-KR';
-      auth.signInWithRedirect(provider);
-    }
-
-    let signOut = () => {
-      auth.signOut();
-      this.router.navigate(['main']);
-    }
-
-    if (isPlatformBrowser(this.platformId)) {
-
-      app.categories = this.databaseService.categories
-      app.signIn = signIn
-      app.signOut = signOut
-
-      App.init()
-      FancyBox.initFancybox()
-      StyleSwitcher.initStyleSwitcher()
-
-      setTimeout(() => {
-        let type = this._get_url_head()
-        $("li").removeClass("active")
-        $("[data-category="+type+"]").addClass('active')
-      })
-
-      auth.onAuthStateChanged((user) => {
-        if (user) {
-          let name = user.displayName
-          let email = user.email
-          let uid = user.uid
-          storage.setItem('name', name)
-          storage.setItem('uid', uid)
-          console.log(name)
-          db.collection('users').doc(uid).set({
-            name: name,
-            email: email,
-            status: 0
-          })
-          .then(() => console.log('신규 가입되었습니다.'))
-          .catch(() => console.log('기존 사용자입니다.'))
-        } else {
-          storage.removeItem('name')
-          storage.removeItem('uid')
-          console.log('비회원입니다.')
-        }
-        app.uid = storage.getItem('uid')
-        $("#loading-ui").fadeOut()
-      })
-    }
-  }
-
-
-  startPage(loadData) {
+  _startPage(loadData) {
 
     let initScroll8Nav = () => {
       $(document).scrollTop(0)
@@ -118,13 +61,83 @@ export class DisplayService {
     }
 
     if (isPlatformBrowser(this.platformId)) {
-      let promise = new Promise((resolve) => resolve())
-      .then(() => loadData())
-      .then(() => {
+      return new Promise(loadData)
+      .then(() => new Promise(resolve => {
         $("[data-_initScroll8Nav]").click(initScroll8Nav)
-      })
-      return promise
+        resolve()
+      }))
     }
+  }
+
+
+  startApp(app) {
+
+    let getUrlHead = this._getUrlHead
+
+    app.signIn = () => {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      auth.languageCode = 'ko-KR';
+      auth.signInWithRedirect(provider);
+    }
+
+    app.signOut = () => {
+      auth.signOut();
+      this.router.navigate(['main']);
+    }
+
+    if (isPlatformBrowser(this.platformId)) {
+
+      new Promise(resolve => {
+        app.categories = this.databaseService.categories
+        resolve()
+      })
+      .then(() => {
+        App.init()
+        FancyBox.initFancybox()
+        StyleSwitcher.initStyleSwitcher()
+        this.router.events.subscribe(() => {
+          let head = getUrlHead()
+          if (head) {
+            $("[data-_category]").removeClass("active")
+            $("[data-_category="+head+"]").addClass('active')
+          }
+        })
+      })
+
+      let intervalId = setInterval(() => {
+// 양방향 바인딩의 업데이트는
+// (1) 추적 가능한 범위 안에서 (2) 상호작용이 발생할 때
+// 이루어집니다.
+// onAuthStateChanged 함수로 보내진 콜백 함수는 추적 가능한 범위를 벗어납니다.
+// 이 문제를 해결하기 위해
+// (1) setInterval 루프를 이용해 인위적으로 추적 가능한 범위에서 상호작용을 계속 수행하고
+// (2) 콜백함수가 정상 호출되면 수행하던 루프를 삭제합니다.
+        if (app.isAuthVarified) {
+          clearInterval(intervalId)
+          $("#loading-ui").fadeOut()
+        }
+        else console.log('인증 진행중')
+      })
+
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          let data = {name: user.displayName, email: user.email, status: 0}
+          db.collection('users').doc(user.uid).set(data)
+          .then(() => console.log('신규 가입되었습니다.'))
+          .catch(() => console.log('기존 사용자입니다.'))
+          .then(() => {
+            console.log(data)
+            app.isSigned = true
+            app.isAuthVarified = true
+          })
+        } else {
+          console.log('비회원입니다.')
+          app.isSigned = false
+          app.isAuthVarified = true
+        }
+      })
+    }
+
   }
 
 
@@ -133,26 +146,25 @@ export class DisplayService {
     let groupList = this._groupList
     let databaseService = this.databaseService
 
-    let loadData = () => {
+    let loadData = (resolve) => {
       let projects = databaseService.projects;
       comoponent.project_groups = groupList(4, projects).slice(0, 1);
       let researches = databaseService.researches
       comoponent.research_groups = groupList(4, researches).slice(0, 1);
       comoponent.cooperations = databaseService.cooperations;
+      resolve()
     }
 
-    let initDisplay = () => {
+    this._startPage(loadData).then(() => {
       OwlCarousel.initOwlCarousel();
       $('#da-slider').cslider({autoplay: false});
-    }
-
-    this.startPage(loadData).then(() => initDisplay())
+    })
   }
 
 
   initMembers(component) {
 
-    let loadData = () => {
+    let loadData = (resolve) => {
       let statuses = [
         "Ph.D. Candidate",
         "Ph.D. Student",
@@ -160,27 +172,24 @@ export class DisplayService {
         "Integrated M.S/Ph.D. Student",
         "M.S. Student"
       ];
-      let promise = db.collection("members").get().then(data => {
-        let objs = [];
+      db.collection("members").get().then(data => {
+        let objs = []
         data.forEach(obj => objs.push(obj.data()))
         objs.sort((a, b): number => {
           [a, b] = [statuses.indexOf(a.status)+a.admission+a.name_ko,
-                    statuses.indexOf(b.status)+b.admission+b.name_ko];
+                    statuses.indexOf(b.status)+b.admission+b.name_ko]
           if (a < b) return -1;
           if (a >= b) return 1;
         });
-        component.totalStudents = objs;
-        component.loadingStatus = false;
+        component.totalStudents = objs
+        component.loadingStatus = false
+        resolve()
       });
-      return promise
     }
 
-    let initDisplay = () => {
-
-      console.log($("[data-_membersBtn]"))
-
+    this._startPage(loadData).then(() => {
       let turnPage = (() => {
-        let tail = this._get_url_tail();
+        let tail = this._getUrlTail();
         $("[data-_membersBtn]").removeClass("active");
         $("[data-_membersBtn="+tail+"]").addClass("active");
         this.router.navigate(['members', tail]).then(() => {
@@ -199,9 +208,7 @@ export class DisplayService {
       });
       $("[href^='/members']").click(() => turnPage());
       turnPage();
-    }
-
-    this.startPage(loadData).then(() => initDisplay())
+    })
   }
 
 
