@@ -27,7 +27,7 @@
             </a>
           </li>
         </ul>
-        <div *ngIf='dataGroups[1]' class="cbp-l-filters-text content-xs" id="filters-container">
+        <div *ngIf="dataGroups && dataGroups[1]" class="cbp-l-filters-text content-xs" id="filters-container">
           <span *ngFor='let dataGroup of dataGroups; let i=index' [attr.data-pagenation-btn]='i'>
             <span *ngIf='i'>|</span>
             <a><div class="cbp-filter-item">{{ i+1 }}</div></a>

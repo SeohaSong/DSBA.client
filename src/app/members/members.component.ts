@@ -10,15 +10,17 @@ import { DisplayService } from "../_services/display.service";
 })
 export class MembersComponent implements OnInit {
 
-  totalStudents: any[];
-  studentPairs: any[][];
-  pageType: string;
-  loadingStatus = true;
-  types = ["overall", "professor", "students", "alumni"];
-
   constructor(
     private displayService: DisplayService
   ) { }
+
+  totalStudents: any[]
+  studentPairs: any[][]
+  pageType: string
+  loadingStatus = true
+  types = ["overall", "professor", "students", "alumni"]
+
+  checkPage: Function
 
   ngOnInit() {
     this.displayService.initMembers(this)

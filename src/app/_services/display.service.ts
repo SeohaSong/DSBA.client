@@ -60,13 +60,13 @@ export class DisplayService {
       .removeClass("in")
     }
 
-    if (isPlatformBrowser(this.platformId)) {
-      return new Promise(loadData)
-      .then(() => new Promise(resolve => {
-        $("[data-_initScroll8Nav]").click(initScroll8Nav)
-        resolve()
-      }))
-    }
+    return new Promise(resolve => {
+      if (isPlatformBrowser(this.platformId)) loadData(resolve)
+    })
+    .then(() => new Promise(resolve => {
+      $("[data-_initScroll8Nav]").click(initScroll8Nav)
+      resolve()
+    }))
   }
 
   _initScroll(doc, top_pad, bottom_pad) {
