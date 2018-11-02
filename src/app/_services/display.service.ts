@@ -259,13 +259,10 @@ export class DisplayService {
     }
 
     let loadData = resolve => {
+      let head = this._getUrlHead()
       let datas: any
-      if (component.constructor.name == 'ResearchesComponent') {
-        datas = this.databaseService.researches
-      }
-      if (component.constructor.name == 'ProjectsComponent') {
-        datas = this.databaseService.projects
-      }
+      if (head == 'researches') datas = this.databaseService.researches
+      else if (head == 'projects') datas = this.databaseService.projects
       component.datas = datas
       component.dataGroups = this._groupList(4, datas)
       resolve()
