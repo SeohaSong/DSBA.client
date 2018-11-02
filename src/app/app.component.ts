@@ -16,8 +16,8 @@ export class AppComponent {
 
   title = 'app'
   categories: any[]
-  isAuthVarified: any
-  isSigned: any
+
+  currentUser: object
 
   signIn: Function
   signOut: Function

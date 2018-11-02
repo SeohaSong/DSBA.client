@@ -121,37 +121,23 @@ export class DisplayService {
         })
       })
 
-      let intervalId = setInterval(() => {
-// 양방향 바인딩의 업데이트는
-// (1) 추적 가능한 범위 안에서 (2) 상호작용이 발생할 때
-// 이루어집니다.
-// onAuthStateChanged 함수로 보내진 콜백 함수는 추적 가능한 범위를 벗어납니다.
-// 이 문제를 해결하기 위해
-// (1) setInterval 루프를 이용해 인위적으로 추적 가능한 범위에서 상호작용을 계속 수행하고
-// (2) 콜백함수가 정상 호출되면 수행하던 루프를 삭제합니다.
-        if (app.isAuthVarified) {
+      let intervalId = setInterval(() => console.log('인증 과정이 진행중입니다.'))
+      let _closeProcess = (message) => {
+        app.currentUser = auth.currentUser
+        $("#loading-ui").fadeOut(() => {
           clearInterval(intervalId)
-          $("#loading-ui").fadeOut()
-        }
-        else console.log('인증 과정이 진행중입니다.')
-      })
-
+          console.log(message)
+        })
+      }
       auth.onAuthStateChanged((user) => {
         if (user) {
           let data = {name: user.displayName, email: user.email, status: 0}
           db.collection('users').doc(user.uid).set(data)
-          .then(() => console.log('신규 가입되었습니다.'))
-          .catch(() => console.log('기존 사용자입니다.'))
-          .then(() => {
-            console.log([data.name, data.email].join(': '))
-            app.isSigned = true
-            app.isAuthVarified = true
+          .then(() => '신규 가입되었습니다.').catch(() => '기존 사용자입니다.')
+          .then(msg => {
+            _closeProcess(msg+'\n'+data.name+': '+data.email)
           })
-        } else {
-          console.log('비회원입니다.')
-          app.isSigned = false
-          app.isAuthVarified = true
-        }
+        } else _closeProcess('비회원입니다.')
       })
     }
   }
@@ -233,7 +219,9 @@ export class DisplayService {
   }
 
 
-  initResearches0Projects(component) {
+  initSlides(component) {
+
+    component.isPagination = () => component.dataGroups.length > 1
 
     let initSection = (doc, top_pad) => {
       $("a[data-section]").click((e) => {

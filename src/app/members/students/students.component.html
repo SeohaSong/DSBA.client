@@ -17,7 +17,10 @@
           </span>
         </div>
         <div class="clearfix margin-bottom-20"></div>
-        <p><strong>Research Areas:</strong> {{ one.research_areas }}</p>
+        <p>
+          <strong>Research Areas: </strong>
+          <span [innerHTML]="one.research_areas"></span>
+        </p>
         <hr>
         <ul class="list-inline share-list">
           <li *ngIf="one.BS">

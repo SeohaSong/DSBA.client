@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { UtilsService } from "../_services/utils.service";
-import { DisplayService } from "../_services/display.service";
+import { UtilsService } from "../_services/utils.service"
+import { DisplayService } from "../_services/display.service"
 
 
 @Component({
@@ -16,11 +16,13 @@ export class ResearchesComponent implements OnInit {
     private displayService: DisplayService
   ) { }
 
-  datas: any[];
-  dataGroups: any[];
+  datas: any[]
+  dataGroups: any[]
+
+  isPagination: Function
 
   ngOnInit() {
-    this.displayService.initResearches0Projects(this);
+    this.displayService.initSlides(this)
   }
 
 }
