@@ -53,20 +53,18 @@ export class DisplayService {
   }
 
   _startPage(loadData) {
-
-    let initScroll8Nav = () => {
-      $(document).scrollTop(0)
-      $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
-      .removeClass("in")
+    let initDisplay = (resolve) => {
+      $("[data-_initScroll8Nav]").click(() => {
+        $(document).scrollTop(0)
+        $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
+        .removeClass("in")
+      })
+      resolve()
     }
-
     return new Promise(resolve => {
       if (isPlatformBrowser(this.platformId)) loadData(resolve)
     })
-    .then(() => new Promise(resolve => {
-      $("[data-_initScroll8Nav]").click(initScroll8Nav)
-      resolve()
-    }))
+    .then(() => new Promise(initDisplay))
   }
 
   _initScroll(doc, top_pad, bottom_pad) {
@@ -221,8 +219,6 @@ export class DisplayService {
 
   initSlides(component) {
 
-    component.isPagination = () => component.dataGroups.length > 1
-
     let initSection = (doc, top_pad) => {
       $("a[data-section]").click((e) => {
         let id = $(e.currentTarget).data('section')
@@ -253,6 +249,7 @@ export class DisplayService {
       else if (head == 'projects') datas = this.databaseService.projects
       component.datas = datas
       component.dataGroups = this._groupList(4, datas)
+      component.isPagination = () => component.dataGroups.length > 1
       resolve()
     }
     this._startPage(loadData).then(() => {

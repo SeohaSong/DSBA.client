@@ -19,10 +19,12 @@ export class ResearchesComponent implements OnInit {
   datas: any[]
   dataGroups: any[]
 
-  isPagination: Function
-
   ngOnInit() {
     this.displayService.initSlides(this)
+  }
+
+  isPagination() {
+    return false
   }
 
 }
