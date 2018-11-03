@@ -9,9 +9,13 @@
       <div class="topbar">
         <ul class="loginbar pull-right">
           <li>
-            <a *ngIf="currentUser" (click)='signOut()'>로그아웃</a>
-            &nbsp;&nbsp;
-            <a *ngIf="currentUser" routerLink='/uploader'>글쓰기</a>
+            <ng-container *ngIf="currentUser">
+              <a>{{currentUser.displayName}}</a>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a (click)='signOut()'>로그아웃</a>
+              &nbsp;&nbsp;
+              <a routerLink='/uploader'>글쓰기</a>
+            </ng-container>
             <a *ngIf="!currentUser" (click)='signIn()'>google 계정으로 로그인</a>
           </li>
         </ul>
