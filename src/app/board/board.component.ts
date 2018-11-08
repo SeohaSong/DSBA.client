@@ -46,6 +46,8 @@ export class BoardComponent implements OnInit {
 
   post_id = this.route.snapshot.paramMap.get('id');
 
+  turn_page: Function;
+
   ngOnInit() {
     this.displayService.initBoard(this)
   }
@@ -81,19 +83,6 @@ export class BoardComponent implements OnInit {
       this.location.go(parts.join('?'));
       this.utilsService.setEditorContent(this.post.content);
     }
-  }
-
-  turn_page(change=0) {
-    let page: number;
-    let max_page = this.page_length;
-    let path = this.location.path();
-    let post_groups = this.post_groups;
-    let page_param = /\?.*page=(\w+)/.exec(path);
-    if(!page_param) {page = 1} else {page = parseInt(page_param[1])+change}
-    if(page < 1) {page = 1} else if(page > max_page) {page = max_page}
-    this.page = page;
-    this.post_group = post_groups[page-1];
-    this.location.go(path.split('?')[0]+'?page='+page);
   }
 
   trim_html = (html, limit=128) => html.slice(0, limit)+' ...';

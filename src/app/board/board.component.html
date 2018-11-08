@@ -113,7 +113,9 @@
                   <li>In {{ post.category }}</li>
                   <li>{{ post.date }}</li>
                 </ul>
-                <h2><a (click)='show_post(post.id)'>{{ post.title }}</a></h2>
+                <h2><a (click)='show_post(post.id)' data-_scrollToContent>
+                  {{ post.title }}
+                </a></h2>
                 <p [innerHTML]='trim_html(post.content)'></p>
               </div>
             </div>
@@ -126,7 +128,9 @@
                   <li>In {{ post.category }}</li>
                   <li>{{ post.date }}</li>
                 </ul>
-                <h2><a (click)='show_post(post.id)'>{{ post.title }}</a></h2>
+                <h2><a (click)='show_post(post.id)' data-_scrollToContent>
+                  {{ post.title }}
+                </a></h2>
                 <p [innerHTML]='trim_html(post.content)'></p>
               </div>
             </div>

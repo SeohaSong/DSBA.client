@@ -52,20 +52,23 @@ export class DisplayService {
     return groups
   }
 
+
+  _initDisplay(resolve) {
+    $("[data-_initScroll8Nav]").click(() => {
+      $(document).scrollTop(0)
+      $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
+      .removeClass("in")
+    })
+    resolve()
+  }
   _startPage(loadData) {
-    let initDisplay = (resolve) => {
-      $("[data-_initScroll8Nav]").click(() => {
-        $(document).scrollTop(0)
-        $('.navbar-collapse.mega-menu.navbar-responsive-collapse.collapse')
-        .removeClass("in")
-      })
-      resolve()
-    }
+
     return new Promise(resolve => {
       if (isPlatformBrowser(this.platformId)) loadData(resolve)
     })
-    .then(() => new Promise(initDisplay))
+    .then(() => new Promise(this._initDisplay))
   }
+
 
   _initScroll(doc, top_pad, bottom_pad) {
     let nav = $("[data-nav]")
@@ -281,6 +284,27 @@ export class DisplayService {
 
 
   initBoard(component) {
+
+    component.turn_page = (change=0) => {
+      let page: number;
+      let max_page = component.page_length;
+      let path = component.location.path();
+      let post_groups = component.post_groups;
+      let page_param = /\?.*page=(\w+)/.exec(path);
+      if(!page_param) {page = 1} else {page = parseInt(page_param[1])+change}
+      if(page < 1) {page = 1} else if(page > max_page) {page = max_page}
+      component.page = page;
+      component.post_group = post_groups[page-1];
+      component.location.go(path.split('?')[0]+'?page='+page);
+
+      let top = (
+        $('#daba-board').offset()['top']-$('.breadcrumbs-v1').offset()['top']
+      )
+      let scrollToContent = () => $(document).scrollTop(top)
+      setTimeout(() => $("[data-_scrollToContent]").click(scrollToContent))
+
+
+    }
 
     let loadData = resolve => {
       let category = component.category
