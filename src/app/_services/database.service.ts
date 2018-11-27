@@ -925,6 +925,14 @@ export class DatabaseService {
       title: 'International Conference',
       contents: [
         {
+          content: "Myeongjun Jang, Pilsung Kang.* (2018) Sentence Embedding Module Satisfying a Characteristic of Human Language Recognition. INFORMS 2018 Annual Meeting, Phoenix, AZ, Nov. 4-7.",
+          url: null
+        },
+        {
+          content: "Seungwan Seo, Deokseong  Seo, Myungjun Jang, Jaeyun Jung, Philsung Kang* (2018) Identifying and visualizing uncommon customer response on machine learning. INFORMS 2018 Annual Meeting, Phoenix, AZ, Nov. 4-7.",
+          url: null
+        },
+        {
           content: "Donghwa Kim, Deokseong Seo, Suhyoun Cho, Pilsung Kang.* (2017) Multi-co-training for Document Classification using Multi-views. INFORMS 2017 Annual Meeting, Houston, TX, Oct. 22-25.",
           url: null
         },
@@ -998,6 +1006,46 @@ export class DatabaseService {
       type: 'domestic-conference',
       title: 'Domestic Conference',
       contents: [
+        {
+          content: '장명준, 김창엽, 서승완, 박경찬, 강필성. (2018) 비지도학습 이상치 탐지 알고리즘을 이용한 시스템 이상상태 탐지 방법론, 한국데이터마이닝학회 추계학술대회, 서울대학교, 서울, 11월 30일.',
+          url: null
+        },
+        {
+          content: '김창엽, 서승완, 장명준, 박민식, 정민성, 강필성.(2018) 이상치 탐지 알고리즘을 활용한 네트워크 이상 행위 탐지, 한국데이터마이닝학회 추계학술대회, 서울대학교, 서울, 11월 30일.',
+          url: null
+        },
+        {
+          content: '양우식, 김동화, 김형석, 송서하, 강필성. (2018) 예측 알고리즘 Prophet을 활용한 CDN환경에서의 콘텐치 캐싱 기법 연구, 한국데이터마이닝학회 추계학술대회, 서울대학교, 서울, 11월 30일.',
+          url: null
+        },
+        {
+          content: '최희정, 박민식, 정재윤, 손규빈, 모경현, 박재선, 강필성.(2018) 해상 이미지 데이터와 합성곱 신경망을 활용한 유의파고 예측, 대한산업공학회 추계학술대회, 한양대학교, 서울, 11월 9일.',
+          url: null
+        },
+        {
+          content: '김동화, 김준홍, 김창엽, 강필성. (2018) Structural MRI 이용한 청소년기 주요 우울 장애 분류 모델, 대한산업공학회 추계학술대회, 한양대학교, 서울, 11월 9일.',
+          url: null
+        },
+        {
+          content: '김준홍, 문지훈, 황은준, 강필성. (2018) Recurrent inception convolution neural network for multi short term load forecasting, 대한산업공학회 추계학술대회, 한양대학교, 서울, 11월 9일.',
+          url: null
+        },
+        {
+          content: '장명준, 강필성. (2018) Paraphrase Thought: Sentence Embedding Module Imitating Human Language Recognition, 대한산업공학회 추계학술대회, 한양대학교, 서울, 11월 9일.',
+          url: null
+        },
+        {
+          content: '최희정, 박민식, 정재윤, 손규빈, 모경현, 박재선, 강필성. (2018) 해상 이미지 데이터와 합성곱 신경망을 활용한 유의파고 예측, 대한산업공학회 추계학술대회, 한양대학교, 서울, 11월 9일.',
+          url: null
+        },
+        {
+          content: '김준홍, 김동화, 손규빈, 강필성. (2018) Short-Long term wafer bin map outlier detection based on convolution autoencoder and Isola-tion forest, 대한산업공학회 추계학술대회, 한양대학교, 서울, 11월 9일.',
+          url: null
+        },
+        {
+          content: '송서하, 강필성. (2018) 텍스트 데이터를 활용한 조기경보모형 개발, 대한산업공학회 추계학술대회, 한양대학교, 서울, 11월 9일.',
+          url: null
+        },
         {
           content: '김준홍, 박재선, 박민식, 정재윤, 강필성. (2018) CAM과 Grad-CAM 기반의 불량 웨이퍼 bin map 분류 및 원인 지역 시각화 방법론, 대한산업공학회 춘계학술대회, 현대 호텔, 경주, 4월 4일 ~ 4월 7일.',
           url: null
