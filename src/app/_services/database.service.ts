@@ -1011,6 +1011,10 @@ export class DatabaseService {
           url: null
         },
         {
+          content: '김준홍, 정재윤, 송서하, 양우식, 강필성. (2018) Recurrent neural network based smartphone user authentication with freely typed keystroke and drawing data, 한국데이터마이닝학회 추계학술대회, 서울대학교, 서울, 11월 30일.',
+          url: null
+        },
+        {
           content: '김창엽, 서승완, 장명준, 박민식, 정민성, 강필성.(2018) 이상치 탐지 알고리즘을 활용한 네트워크 이상 행위 탐지, 한국데이터마이닝학회 추계학술대회, 서울대학교, 서울, 11월 30일.',
           url: null
         },
