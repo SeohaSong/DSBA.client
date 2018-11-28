@@ -1035,10 +1035,6 @@ export class DatabaseService {
           url: null
         },
         {
-          content: '최희정, 박민식, 정재윤, 손규빈, 모경현, 박재선, 강필성. (2018) 해상 이미지 데이터와 합성곱 신경망을 활용한 유의파고 예측, 대한산업공학회 추계학술대회, 한양대학교, 서울, 11월 9일.',
-          url: null
-        },
-        {
           content: '김준홍, 김동화, 손규빈, 강필성. (2018) Short-Long term wafer bin map outlier detection based on convolution autoencoder and Isola-tion forest, 대한산업공학회 추계학술대회, 한양대학교, 서울, 11월 9일.',
           url: null
         },
