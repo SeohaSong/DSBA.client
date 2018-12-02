@@ -143,11 +143,3 @@ export class UploaderComponent implements OnInit {
     });
   }
 }
-
-
-// var rootRef = firebase.storage().ref();
-// var ref = rootRef.child('test');
-// var file = $("#tttt")[0].files.item(0)
-// ref.put(file).then(function(snapshot) {
-//   console.log('Uploaded a blob or file!');
-// });
