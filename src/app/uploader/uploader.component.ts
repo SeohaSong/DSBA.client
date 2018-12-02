@@ -4,7 +4,6 @@ import { Router } from "@angular/router";
 
 import { UtilsService } from '../_services/utils.service'
 
-declare const firebase: any;
 declare const db: any;
 declare const tinymce: any;
 
@@ -47,13 +46,13 @@ export class UploaderComponent implements OnInit {
       let yyyy = ''+dt.getFullYear()
       let mm_ = dt.getMonth()+1
       let mm = ''+parseInt(mm_/10+'')+mm_%10;
-      let dd_ = dt.getMonth()+1
+      let dd_ = dt.getDate()
       let dd = ''+parseInt(dd_/10+'')+dd_%10;
-      let hh_ = dt.getHours()+1
+      let hh_ = dt.getHours()
       let hh = ''+parseInt(hh_/10+'')+hh_%10;
-      let mM_ = dt.getMinutes()+1
+      let mM_ = dt.getMinutes()
       let mM = ''+parseInt(mM_/10+'')+mM_%10;
-      let ss_ = dt.getSeconds()+1
+      let ss_ = dt.getSeconds()
       let ss = ''+parseInt(ss_/10+'')+ss_%10;
       let date = yyyy+'.'+mm+'.'+dd+' '+hh+':'+mM+':'+ss;
       post['date'] = date;
@@ -144,3 +143,11 @@ export class UploaderComponent implements OnInit {
     });
   }
 }
+
+
+// var rootRef = firebase.storage().ref();
+// var ref = rootRef.child('test');
+// var file = $("#tttt")[0].files.item(0)
+// ref.put(file).then(function(snapshot) {
+//   console.log('Uploaded a blob or file!');
+// });

@@ -53,11 +53,8 @@ export class UtilsService {
         selector: '[data-editor=w]',
         plugins : 'lists link image charmap preview hr table code autoresize',
         menubar: false,
-        toolbar: [`
-          undo redo | bold italic | underline strikethrough | link image
-          | alignleft aligncenter alignright | outdent indent | formatselect
-          | bullist numlist | preview code | charmap hr table
-        `]
+        toolbar: "undo redo | formatselect | bold italic | underline strikethrough | charmap link image | alignleft aligncenter alignright | outdent indent | bullist numlist | preview code | hr table",
+        default_link_target: "_blank"
       });
       tinymce.init({
         selector: '[data-editor=r]',

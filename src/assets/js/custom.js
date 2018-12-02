@@ -1,7 +1,9 @@
 firebase.initializeApp({
   apiKey: 'AIzaSyDXZMi6ZfLPtUB8f2yoU50J8VuT86c2DbQ',
   authDomain: 'dsba-142b3.firebaseapp.com',
-  projectId: 'dsba-142b3'
+  projectId: 'dsba-142b3',
+  databaseURL: 'https://dsba-142b3.firebaseio.com',
+  storageBucket: 'gs://dsba-142b3.appspot.com'
 });
 
 const auth = firebase.auth();

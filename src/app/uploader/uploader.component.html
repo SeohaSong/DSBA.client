@@ -5,11 +5,9 @@
         <div class='daba-post-box'>
           <div class="blog margin-bottom-40">
             <h2>
-              <input id='dsba-title-editor' type="text" placeholder='제목'
-              [(ngModel)]="creating_title">
+              <input [(ngModel)]="creating_title" id='dsba-title-editor' type="text" placeholder='제목'>
             </h2>
-            <select id='dsba-category-editor'
-            [(ngModel)]='creating_category'>
+            <select [(ngModel)]='creating_category' id='dsba-category-editor'>
               <option value=''>글 분류</option>
               <option value='news'>News</option>
               <option value='seminar'>Seminar</option>
@@ -25,27 +23,10 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3">
-      <!-- <div id='uploader-dashboard'>
-        <div class='uploader-btn'
-        (click)='delete_all_remote_data()'>
-          delete_all_remote_data
-        </div>
-        <div class='uploader-btn'
-        (click)='upload_all_local_data()'>
-          upload_all_local_data
-        </div>
-        <div class='uploader-btn'
-        (click)='upload_all_seminar_data()'>
-          upload_all_seminar_data
-        </div>
-        <div class='uploader-btn'
-        (click)='upload_all_members_data()'>
-          upload_all_members_data
-        </div>
-      </div> -->
-      <!-- <iframe src="https://www.youtube.com/embed/BiIlQQAx70c"
-      allowfullscreen></iframe> -->
+    <div class="col-md-3" id='daba-board'>
+      <div class='row'>
+        <input type="file" id="tttt">
+      </div>
     </div>
   </div>
 </div>
