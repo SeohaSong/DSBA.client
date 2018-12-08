@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common'
 import { ActivatedRoute } from '@angular/router';
 
@@ -15,7 +14,6 @@ import { UtilsService } from "../_services/utils.service";
 export class BoardComponent implements OnInit {
 
   constructor(
-    private http: HttpClient,
     private displayService: DisplayService,
     private utilsService: UtilsService,
     private location: Location,
@@ -52,36 +50,53 @@ export class BoardComponent implements OnInit {
     this.displayService.initBoard(this)
   }
 
-  show_post(id) {
+  getUpdatedUrl(f) {
+    let [updatedUrl, pStr] = this.location.path().split('?')
+
+    let k2v = {}
+    pStr.split('&').forEach(a => {
+      let [k, v] = a.split("=")
+      k2v[k] = v
+    })
+
+    f(k2v)
+
+    updatedUrl += "?"
+    updatedUrl += Object.keys(k2v).map(k => [k, k2v[k]].join("=")).join("&")
+
+    return updatedUrl
+  }
+
+  showPost(id) {
+    this.updating_status = false;
+
     if (this.post) {
       this.post = this.all_posts[id];
       this.utilsService.setEditorContent(this.post.content);
     } else {
       this.post = this.all_posts[id];
     }
-    this.updating_status = false;
-    let url = this.location.path().split('?')
-    let parts = [[url[0].replace(/\/\d+/, ''), id].join('/'), url[1]]
-    this.location.go(parts.join('?'))
-    this.utilsService.update_view_count(this.id2id[id]);
-    this.utilsService.setEditor();
+
+    let updatedUrl = this.getUpdatedUrl(k2v => k2v["postId"] = id)
+    this.location.go(updatedUrl)
+    this.utilsService.update_view_count(this.id2id[id])
+    this.utilsService.setEditor()
   }
 
-  reset_post() {
-    this.post = null;
-    this.updating_status = false;
-    let url = this.location.path().split('?');
-    this.location.go([url[0].replace(/\/\d+/, ''), url[1]].join('?'));
+  hidePost() {
+    this.updating_status = false
+    this.post = null
+    let updatedUrl = this.getUpdatedUrl(k2v => delete k2v["postId"])
+    this.location.go(updatedUrl)
   }
 
   turn_post(change=0) {
     let id = this.post.id+change;
     if (!(id < 1 || id > this.post_n)) {
-      this.post = this.all_posts[id];
-      let url = this.location.path().split('?');
-      let parts = [[url[0].replace(/\/\d+/, ''), id].join('/'), url[1]];
-      this.location.go(parts.join('?'));
-      this.utilsService.setEditorContent(this.post.content);
+      this.post = this.all_posts[id]
+      let updatedUrl = this.getUpdatedUrl(k2v => k2v["postId"] = id)
+      this.location.go(updatedUrl)
+      this.utilsService.setEditorContent(this.post.content)
     }
   }
 

@@ -14,7 +14,7 @@
         <ng-container *ngIf='updating_status'>
           <div class='daba-post-box'>
             <div class="blog margin-bottom-40">
-              <a (click)='reset_post()'>
+              <a (click)='hidePost()'>
                 <div class='dsba-back-btn'><span>←</span></div>
               </a>
               <h2>
@@ -59,7 +59,7 @@
           </ul>
           <div class='daba-post-box'>
             <div class="blog margin-bottom-40">
-              <a (click)='reset_post()'>
+              <a (click)='hidePost()'>
                 <div class='dsba-back-btn'><span>←</span></div>
               </a>
               <h2>{{ post.title }}</h2>
@@ -113,7 +113,7 @@
                   <li>In {{ post.category }}</li>
                   <li>{{ post.date }}</li>
                 </ul>
-                <h2><a (click)='show_post(post.id)' data-_scrollToContent>
+                <h2><a (click)='showPost(post.id)' data-_scrollToContent>
                   {{ post.title }}
                 </a></h2>
                 <p [innerHTML]='trim_html(post.content)'></p>
@@ -128,7 +128,7 @@
                   <li>In {{ post.category }}</li>
                   <li>{{ post.date }}</li>
                 </ul>
-                <h2><a (click)='show_post(post.id)' data-_scrollToContent>
+                <h2><a (click)='showPost(post.id)' data-_scrollToContent>
                   {{ post.title }}
                 </a></h2>
                 <p [innerHTML]='trim_html(post.content)'></p>
@@ -160,7 +160,7 @@
         <div class="headline-v2 bg-color-light"><h2>Latest Posts</h2></div>
         <ul class="list-unstyled blog-latest-posts margin-bottom-50">
           <li *ngFor='let post of latest_posts'>
-            <h3><a (click)='show_post(post.id)'>{{ post.title }}</a></h3>
+            <h3><a (click)='showPost(post.id)'>{{ post.title }}</a></h3>
             <small>{{ post.date }} / <a>{{ post.category }}</a></small>
           </li>
         </ul>

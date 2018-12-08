@@ -1,9 +1,11 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core'
-import { isPlatformBrowser } from '@angular/common'
 import { Router } from '@angular/router'
+import { Location } from '@angular/common'
+import { isPlatformBrowser } from '@angular/common'
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core'
 
 import { UtilsService } from './utils.service'
 import { DatabaseService } from "./database.service"
+import { resolve } from 'url';
 
 
 declare const App: any
@@ -24,9 +26,9 @@ export class DisplayService {
 
 
   constructor(
-    private utilsService: UtilsService,
-    private databaseService :DatabaseService,
     private router: Router,
+    private location: Location,
+    private databaseService :DatabaseService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
@@ -62,7 +64,6 @@ export class DisplayService {
     resolve()
   }
   _startPage(loadData) {
-
     return new Promise(resolve => {
       if (isPlatformBrowser(this.platformId)) loadData(resolve)
     })
@@ -286,24 +287,39 @@ export class DisplayService {
   initBoard(component) {
 
     component.turn_page = (change=0) => {
-      let page: number;
-      let max_page = component.page_length;
-      let path = component.location.path();
+      let maxPage = component.page_length;
       let post_groups = component.post_groups;
-      let page_param = /\?.*page=(\w+)/.exec(path);
-      if(!page_param) {page = 1} else {page = parseInt(page_param[1])+change}
-      if(page < 1) {page = 1} else if(page > max_page) {page = max_page}
-      component.page = page;
-      component.post_group = post_groups[page-1];
-      component.location.go(path.split('?')[0]+'?page='+page);
+      let updatedUrl = getUpdatedUrl(k2v => {
+        let page = k2v["page"]
+        let postId = k2v["postId"]
 
-      let top = (
-        $('#daba-board').offset()['top']-$('.breadcrumbs-v1').offset()['top']
-      )
-      let scrollToContent = () => $(document).scrollTop(top)
-      setTimeout(() => $("[data-_scrollToContent]").click(scrollToContent))
+        if (!page) {page = 1} else {page = parseInt(page)+change}
+        if(page < 1) {k2v["page"] = 1}
+        else if (page > maxPage) {k2v["page"] = maxPage}
+        else {k2v["page"] = page}
 
+        if (postId) k2v["postId"] = parseInt(postId)
 
+        component.page = k2v["page"]
+        component.post_id = k2v["postId"]
+      })
+      component.post_group = post_groups[component.page-1];
+      component.location.go(updatedUrl);
+    }
+
+    let getUpdatedUrl = f => {
+      let [updatedUrl, pStr] = this.location.path().split('?')
+      let k2v = {}
+      if(pStr){
+        pStr.split('&').forEach(a => {
+          let [k, v] = a.split("=")
+          k2v[k] = v
+        })
+      }
+      f(k2v)
+      updatedUrl += "?"
+      updatedUrl += Object.keys(k2v).map(k => [k, k2v[k]].join("=")).join("&")
+      return updatedUrl
     }
 
     let loadData = resolve => {
@@ -330,16 +346,23 @@ export class DisplayService {
         component.post_n = Object.keys(all_posts).length
         component.post_groups = this._groupList(10, component.posts)
         component.page_length = component.post_groups.length
-        if (component.post_id) {component.show_post(component.post_id)}
         component.turn_page()
+        if (component.post_id) {component.showPost(component.post_id)}
         component.latest_posts = component.posts.slice(0, 2)
         resolve()
       })
     }
     this._startPage(loadData).then(() => {
+      component.loading_status = false
       let doc = $(document)
       this._initScroll(doc, 80, 387)
-      component.loading_status = false
+      // ng for 이 랜더링 이후에 적용가능하도록.
+      setTimeout(() => {
+        let top = 0
+        top += $('#daba-board').offset()['top']
+        top -= $('.breadcrumbs-v1').offset()['top']
+        $("[data-_scrollToContent]").click(() => $(document).scrollTop(top))
+      })
     })
   }
 }

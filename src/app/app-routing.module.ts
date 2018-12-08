@@ -38,13 +38,9 @@ const routes: Routes = [
   },
   { path: 'board', component: BoardComponent },
   { path: 'board/overall', component: BoardComponent },
-  { path: 'board/overall/:id', component: BoardComponent },
   { path: 'board/news', component: BoardComponent },
-  { path: 'board/news/:id', component: BoardComponent },
   { path: 'board/seminar', component: BoardComponent },
-  { path: 'board/seminar/:id', component: BoardComponent },
   { path: 'board/photo', component: BoardComponent },
-  { path: 'board/photo/:id', component: BoardComponent },
   { path: 'links', component: LinksComponent },
 ];
 
