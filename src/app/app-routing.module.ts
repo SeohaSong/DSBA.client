@@ -38,6 +38,7 @@ const routes: Routes = [
   },
   { path: 'board', component: BoardComponent },
   { path: 'board/overall', component: BoardComponent },
+  { path: 'board/notice', component: BoardComponent },
   { path: 'board/news', component: BoardComponent },
   { path: 'board/seminar', component: BoardComponent },
   { path: 'board/photo', component: BoardComponent },
