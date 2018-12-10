@@ -42,10 +42,10 @@ export class DatabaseService {
       id: 4,
       lv0content: {title: 'board', link: null},
       lv1content: [
+        {title: 'Notice', link: '/board/notice'},
         {title: 'News', link: '/board/news'},
         {title: 'Seminar', link: '/board/seminar'},
-        {title: 'Photo', link: '/board/photo'},
-        {title: 'Links & Awards', link: '/links'}
+        {title: 'Photo', link: '/board/photo'}
       ]
     }
   ]
