@@ -6,6 +6,7 @@ import { Injectable, Inject, PLATFORM_ID } from '@angular/core'
 import { UtilsService } from './utils.service'
 import { DatabaseService } from "./database.service"
 import { resolve } from 'url';
+import { strictEqual } from 'assert';
 
 
 declare const App: any
@@ -324,6 +325,12 @@ export class DisplayService {
       return updatedUrl
     }
 
+    let getPreview = (content) => {
+      let txt = content.replace(/<.+?>/g, " ")
+      let preview = txt.slice(0, 200)+" ..."
+      return preview
+    }
+
     let loadData = resolve => {
       let category = component.category
       let all_posts = component.all_posts
@@ -337,6 +344,7 @@ export class DisplayService {
           id2id[id] = post_.id
           let post = post_.data()
           post.id = id
+          post.preview = getPreview(post.content)
           all_posts[id] = post
           post.images.forEach(img => images.push(img))
           posts.push(post)

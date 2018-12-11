@@ -113,10 +113,12 @@
                   <li>In {{ post.category }}</li>
                   <li>{{ post.date }}</li>
                 </ul>
-                <h2><a (click)='showPost(post.id)' data-_scrollToContent>
-                  {{ post.title }}
-                </a></h2>
-                <p [innerHTML]='trim_html(post.content)'></p>
+                <h2>
+                  <a (click)='showPost(post.id)' data-_scrollToContent>
+                    {{ post.title }}
+                  </a>
+                </h2>
+                <p [innerHTML]="post.preview" class="-preview"></p>
               </div>
             </div>
           </div>
@@ -128,10 +130,12 @@
                   <li>In {{ post.category }}</li>
                   <li>{{ post.date }}</li>
                 </ul>
-                <h2><a (click)='showPost(post.id)' data-_scrollToContent>
-                  {{ post.title }}
-                </a></h2>
-                <p [innerHTML]='trim_html(post.content)'></p>
+                <h2>
+                  <a (click)='showPost(post.id)' data-_scrollToContent>
+                    {{ post.title }}
+                  </a>
+                </h2>
+                <p [innerHTML]="post.preview" class="-preview"></p>
               </div>
             </div>
             <div class="col-sm-4 sm-margin-bottom-20">

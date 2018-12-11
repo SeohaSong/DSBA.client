@@ -100,8 +100,6 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  trim_html = (html, limit=128) => html.slice(0, limit)+' ...';
-
   toggleEditStatus(id) {
     let uid = this.utilsService.get_userid();
     if (uid) {
