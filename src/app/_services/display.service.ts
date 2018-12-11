@@ -74,7 +74,7 @@ export class DisplayService {
   _initScroll(doc, top_pad, bottom_pad) {
     let nav = $("[data-nav]")
     let init_top = parseInt(nav.css('top'))
-    doc.on('scroll resize', () => {
+    let run = () => {
       let scroll_top = doc.scrollTop()
       let top = init_top-scroll_top
       let nav_h = parseInt(nav.css('height'))
@@ -85,7 +85,9 @@ export class DisplayService {
       if (top_cutoff > 0) {nav.css('top', top)}
       else if (bottom_cutoff < 0) {nav.css('top', top_pad+bottom_cutoff)}
       else {nav.css('top', top_pad)}
-    })
+    }
+    doc.on('scroll resize', run)
+    setTimeout(run)
   }
 
 
@@ -355,7 +357,7 @@ export class DisplayService {
     this._startPage(loadData).then(() => {
       component.loading_status = false
       let doc = $(document)
-      this._initScroll(doc, 80, 387)
+      this._initScroll(doc, 80, 425)
       // ng for 이 랜더링 이후에 적용가능하도록.
       setTimeout(() => {
         let top = 0
