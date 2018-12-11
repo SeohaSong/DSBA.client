@@ -65,10 +65,15 @@
       }
     }
   }
-  .-preview {
+  .-preview, .-preview-cover {
+    position: relative;
     height: 60px;
     overflow: hidden;
-    margin: 0px;
+    margin: 0;
+  }
+  .-preview-cover {
+    margin-top: -60px;
+    background-image: linear-gradient(0deg, white, rgba(0, 0, 0, 0));
   }
 }
 
